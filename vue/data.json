@@ -1,64 +1,144 @@
 {
-    "zapatillas": [
-      {
-        "nombre": "Zapatilla Running Pro",
-        "talla": 42,
-        "precio": "79.99 €",
-        "imagen": "img/img1.jpg"
-      },
-      {
-        "nombre": "Zapatilla Urban Style",
-        "talla": 40,
-        "precio": "59.99 €",
-        "imagen": "img/img14.jpg"
-      },
-      {
-        "nombre": "Zapatilla Casual Comfort",
-        "talla": 41,
-        "precio": "49.99 €",
-        "imagen": "img/img3.jpg"
-      },
-      {
-        "nombre": "Zapatilla Sport Max",
-        "talla": 43,
-        "precio": "89.99 €",
-        "imagen": "img/img12.jpg"
-      },
-      {
-        "nombre": "Zapatilla Trail Runner",
-        "talla": 44,
-        "precio": "99.99 €",
-        "imagen": "img/img5.jpg"
-      },
-      {
-        "nombre": "Zapatilla Streetwear",
-        "talla": 39,
-        "precio": "69.99 €",
-        "imagen": "img/img15.jpg"
-      },
-      {
-        "nombre": "Zapatilla Flex Fit",
-        "talla": 42,
-        "precio": "74.99 €",
-        "imagen": "img/img7.jpg"
-      },
-      {
-        "nombre": "Zapatilla All-Terrain",
-        "talla": 45,
-        "precio": "109.99 €",
-        "imagen": "img/img11.jpg"
-      },
-      {
-        "nombre": "Zapatilla Classic Retro",
-        "talla": 40,
-        "precio": "64.99 €",
-        "imagen": "img/img9.jpg"
-      },
-      {
-        "nombre": "Zapatilla Ultra Boost",
-        "talla": 41,
-        "precio": "119.99 €",
-        "imagen": "img/img13.jpg"
-      }
-    ]
+  "categories": [
+    {
+      "id": 1,
+      "nom": "Running",
+      "created_at": "2024-10-01",
+      "updated_at": "2024-10-01"
+    },
+    {
+      "id": 2,
+      "nom": "Casual",
+      "created_at": "2024-10-01",
+      "updated_at": "2024-10-01"
+    },
+    {
+      "id": 3,
+      "nom": "Deporte",
+      "created_at": "2024-10-01",
+      "updated_at": "2024-10-01"
+    }
+  ],
+  "productes": [
+    {
+      "id": 1,
+      "nom": "Nike Air Max",
+      "descripcio": "Zapatillas ligeras y cómodas para correr.",
+      "preu": 120.00,
+      "imatge": "img/img10.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    },
+    {
+      "id": 2,
+      "nom": "Adidas Ultraboost",
+      "descripcio": "Zapatillas de alto rendimiento para largas distancias.",
+      "preu": 150.00,
+      "imatge": "img/img7.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    },
+    {
+      "id": 3,
+      "nom": "Puma Suede Classic",
+      "descripcio": "Zapatillas casuales con un toque retro.",
+      "preu": 85.00,
+      "imatge": "img/img9.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    },
+    {
+      "id": 4,
+      "nom": "New Balance 990v5",
+      "descripcio": "Zapatillas de running clásicas con soporte adicional.",
+      "preu": 175.00,
+      "imatge": "img/img10.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    },
+    {
+      "id": 5,
+      "nom": "Reebok Classic Leather",
+      "descripcio": "Zapatillas retro casuales hechas de cuero.",
+      "preu": 90.00,
+      "imatge": "img/img15.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    },
+    {
+      "id": 6,
+      "nom": "Asics Gel-Nimbus 23",
+      "descripcio": "Zapatillas con amortiguación de gel para largas distancias.",
+      "preu": 160.00,
+      "imatge": "img/img5.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    },
+    {
+      "id": 7,
+      "nom": "Vans Old Skool",
+      "descripcio": "Zapatillas casuales de skate con el clásico diseño de Vans.",
+      "preu": 65.00,
+      "imatge": "img/img11.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    },
+    {
+      "id": 8,
+      "nom": "Converse Chuck Taylor",
+      "descripcio": "Las icónicas zapatillas de lona de perfil alto.",
+      "preu": 55.00,
+      "imatge": "img/img14.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    },
+    {
+      "id": 9,
+      "nom": "Salomon Speedcross 5",
+      "descripcio": "Zapatillas de trail running con gran agarre para terrenos irregulares.",
+      "preu": 140.00,
+      "imatge": "img/img3.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    },
+    {
+      "id": 10,
+      "nom": "Mizuno Wave Rider 24",
+      "descripcio": "Zapatillas con una mezcla perfecta de amortiguación y soporte.",
+      "preu": 130.00,
+      "imatge": "img/img12.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    },
+    {
+      "id": 11,
+      "nom": "Under Armour HOVR Phantom",
+      "descripcio": "Zapatillas de running con gran amortiguación y estilo moderno.",
+      "preu": 110.00,
+      "imatge": "img/img1.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    },
+    {
+      "id": 12,
+      "nom": "Saucony Kinvara 12",
+      "descripcio": "Zapatillas ligeras para carreras rápidas y entrenamientos.",
+      "preu": 125.00,
+      "imatge": "img/img13.jpg",
+      "actiu": true,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10"
+    }
+  ]
 }
