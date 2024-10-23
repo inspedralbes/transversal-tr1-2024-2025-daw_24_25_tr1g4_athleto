@@ -136,7 +136,7 @@
       "descripcio": "Zapatillas ligeras para carreras rápidas y entrenamientos.",
       "preu": 125.00,
       "imatge": "img/img13.jpg",
-      "actiu": true,
+      "actiu": true,  
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     }

@@ -63,16 +63,44 @@
         </div>
 
 
-
-        <div v-if="visibleProd">      
-            <div class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
+        
+        <div class="contentZapatos" v-if="visibleProd">      
+            <div @click="mostrar(actual.id)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
                
-               <a href=""> <img :src="actual.imagen"></a>
-                {{ actual.nombre }} {{ actual.precio }}
+               <img :src="actual.imatge">
+                {{ actual.nom }} {{ actual.preu }}€
                
             </div>
       
         </div>    
+
+       
+        <div v-if="visibleActual">
+
+            <div class="product-container">
+                <div class="product-card">
+                    <div class="product-left">
+                    <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
+                    </div>
+                    <div class="product-right">
+                        <h2 class="product-title"> {{ actual.nom }}</h2>
+                        <p class="product-description">{{actual.descripcio}}</p>
+                        <p class="product-price">{{actual.preu}}€</p>
+                        <div class="product-buttons">
+                            <button class="buy-now-btn">Comprar ahora</button>
+                            <button class="add-to-cart-btn">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+          
+          
+          
+
+        </div>
+
+
     </div>
 
 
