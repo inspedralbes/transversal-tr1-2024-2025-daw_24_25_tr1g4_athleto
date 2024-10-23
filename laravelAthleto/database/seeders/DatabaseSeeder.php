@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Categoria;
+use App\Models\Producte;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
@@ -19,12 +21,19 @@ class DatabaseSeeder extends Seeder
         $data = json_decode($jsonData, true); // Decodificar el JSON a un array
 
         //hacer foreach
-        foreach ($data as $key => $value) {
-            //el ->create([]);
+        foreach ($data['categories'] as $key => $categoria) {
+            Categoria::create([
+                'nom'=> $categoria['nom'],
+            ]);
         }
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        foreach ($data['productes'] as $key => $producte) {
+            Producte::create([
+                'nom'=> $producte['nom'],
+                'descripcio'=> $producte['descripcio'],
+                'preu'=> $producte['preu'],
+                'imatge'=> $producte['imatge'],
+                'actiu'=> $producte['actiu'],
+            ]);
+        }
     }
 }
