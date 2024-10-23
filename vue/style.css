@@ -1,14 +1,14 @@
-    /* Estilos generales */
+/* Estilos generales */
 body {
-   font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #eff6ee; /* Fondo claro */
 }
 
 /* Estilos del navbar */
 .navbar {
-    background-color: #333;
+    background-color: #273043; /* Azul oscuro para el navbar */
     padding: 15px;
 }
 
@@ -25,6 +25,7 @@ body {
     position: relative;
     margin: 0 20px;
 }
+
 /* Estilos para los iconos (lupa y carrito) */
 .icons {
     display: flex;
@@ -37,18 +38,19 @@ body {
 
 .icons a {
     text-decoration: none;
-    color: white;
+    color: #eff6ee; /* Texto claro para los iconos */
     font-size: 20px;
     margin-left: 20px;
     transition: color 0.3s;
-  
 }
 
-
+.icons a:hover {
+    color: #9197ae; /* Hover en color gris azulado */
+}
 
 .menu-item a {
     text-decoration: none;
-    color: white;
+    color: #eff6ee; /* Texto claro en el menú */
     font-weight: bold;
     font-size: 16px;
     padding: 10px 20px;
@@ -57,7 +59,7 @@ body {
 }
 
 .menu-item a:hover {
-    color: #b312f3;
+    color: #9197ae; /* Gris azulado al hacer hover */
 }
 
 /* Estilos del submenú (desplegable) */
@@ -68,7 +70,7 @@ body {
     position: absolute;
     top: 40px;
     left: 0;
-    background-color: #444;
+    background-color: #9197ae; /* Fondo gris azulado para el submenú */
     border-radius: 5px;
     display: none;
     z-index: 1000;
@@ -81,14 +83,14 @@ body {
 
 .submenu a {
     padding: 10px 20px;
-    color: white;
+    color: #eff6ee; /* Texto claro en el submenú */
     display: block;
     text-decoration: none;
     transition: background-color 0.3s;
 }
 
 .submenu a:hover {
-    background-color: #f39c12;
+    background-color: #273043; /* Azul oscuro al hacer hover */
 }
 
 /* Mostrar submenú al pasar el ratón por encima */
@@ -112,23 +114,22 @@ body {
         right: 0;
     }
 }
-.zapatos{
 
-    background-color: white;
-    
+.zapatos {
+    background-color: #eff6ee; /* Fondo claro para las tarjetas de productos */
     height: 250px;
     width: 200px;
     margin: 30px;
     border-radius: 5px;
     display: inline-block;
-    
-}
-img{
-    height: 200px;
-    width: 200px;
-    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
-#appVue{
-   text-align: center;
+img {
+    height: 200px;
+    width: 200px;
+}
+
+#appVue {
+    text-align: center;
 }
