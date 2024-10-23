@@ -23,7 +23,8 @@
     const visibleProd=ref(false);
     const visiblePort=ref(true);
     const visibleActual=ref(false);
-    const actual=reactive({nom:"",preu:"",imatge:"", })
+    let genero=ref("niño"); 
+    const actual=reactive({nom:"",preu:"",imatge:"",genero:"", })
     function mostrar(data){
 
         actual.nom=llista.zapatillas[data].nom;
@@ -37,7 +38,7 @@
 
     return {
 
-            llista, visibleProd,visiblePort,visibleActual,mostrar,actual 
+            llista, visibleProd,visiblePort,visibleActual,mostrar,actual,genero 
             
             }
 
