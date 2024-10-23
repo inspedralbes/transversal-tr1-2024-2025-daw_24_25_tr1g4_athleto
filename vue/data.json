@@ -25,7 +25,7 @@
       "nom": "Nike Air Max",
       "descripcio": "Zapatillas ligeras y cómodas para correr.",
       "preu": 120.00,
-      "imatge": "img/img10.jpg",
+      "imatge": "img/img15.jpg",
       "actiu": true,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
@@ -45,7 +45,7 @@
       "nom": "Puma Suede Classic",
       "descripcio": "Zapatillas casuales con un toque retro.",
       "preu": 85.00,
-      "imatge": "img/img9.jpg",
+      "imatge": "img/img2.jpg",
       "actiu": true,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
@@ -65,7 +65,7 @@
       "nom": "Reebok Classic Leather",
       "descripcio": "Zapatillas retro casuales hechas de cuero.",
       "preu": 90.00,
-      "imatge": "img/img15.jpg",
+      "imatge": "img/img6.jpg",
       "actiu": true,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
