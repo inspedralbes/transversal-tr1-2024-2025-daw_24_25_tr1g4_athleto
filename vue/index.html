@@ -47,14 +47,34 @@
             </div>
     </nav>
 
-    <div id="objetos">
+    
 
-
-    </div>
 
 
     <div id="appVue">
-            
+        <div v-if="visiblePort">  
+        <div id="portada">
+            <div @click="visibleProd!=visibleProd" class="card">
+                Hombres
+
+            </div>
+            <div @click="visibleProd!=visibleProd" class="card">
+                Mujeres
+
+            </div>
+            <div @click="visibleProd!=visibleProd" class="card">
+                Niños
+            </div>
+            <div @click="visibleProd!=visibleProd" class="card">
+                Ofertas
+            </div>
+
+        </div>
+        </div>
+
+
+
+        <div v-if="visibleProd">      
             <div class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
                
                <a href=""> <img :src="actual.imagen"></a>
@@ -62,11 +82,11 @@
                
             </div>
       
-
+        </div>    
     </div>
 
 
-    
+
        
     <script type="module" src="funtion.js"></script>
 </body>
