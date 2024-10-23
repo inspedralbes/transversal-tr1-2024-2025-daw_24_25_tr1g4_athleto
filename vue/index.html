@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inici</title>
+    <link rel="stylesheet" href="./css/style.css">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="menu">
+            <li class="menu-item">
+                <a href="#">Hombres</a>
+                <ul class="submenu">
+                    <li><a href="#">Deporte</a></li>
+                  <!--  <li><a href="#">Calzado</a></li>
+                    <li><a href="#">Accesorios</a></li>-->
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#">Mujer</a>
+                <ul class="submenu">
+                    <li><a href="#">Deporte</a></li>
+                   <!--  <li><a href="#">Calzado</a></li>
+                    <li><a href="#">Accesorios</a></li>-->
+                </ul>
+            </li>
+           
+            <li class="menu-item">
+                <a href="#">Niño</a>
+                <ul class="submenu">
+             <li><a href="#">Deporte</a></li>
+                  <!--  <li><a href="#">Calzado</a></li>
+                    <li><a href="#">Juguetes</a></li>-->  
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="#">Ofertas</a>
+            </li>
+        </ul>
+
+    <div class="icons">
+            <a href="#" class="search-icon">🔍</a>
+            <a href="#" class="cart-icon">🛒</a>
+            </div>
+    </nav>
+
+    
+
+
+
+    <div id="appVue">
+        <div v-if="visiblePort">  
+        <div id="portada">
+            <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" class="card">
+                
+            </div>
+
+        </div>
+        </div>
+
+
+      
+        <div class="contentZapatos" v-if="visibleProd">
+
+            <div v-if="genero=='all'">
+              
+            <div @click="mostrar(actual.id)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
+               
+               <img :src="actual.imatge">
+                {{ actual.nom }} {{ actual.preu }}€
+               
+            </div>
+
+            </div>
+            <div v-else>
+            
+                <div @click="mostrar(actual.id)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index" v-if="genero==actual.genero">
+                   
+                    <img :src="actual.imatge">
+                     {{ actual.nom }} {{ actual.preu }}€
+                   
+                 </div>
+
+
+
+
+            </div>
+      
+        </div>    
+
+       
+        <div v-if="visibleActual">
+
+            <div class="product-container">
+                <div class="product-card">
+                    <div class="product-left">
+                    <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
+                    </div>
+                    <div class="product-right">
+                        <h2 class="product-title"> {{ actual.nom }}</h2>
+                        <p class="product-description">{{actual.descripcio}}</p>
+                        <p class="product-price">{{actual.preu}}€</p>
+                        <div class="product-buttons">
+                            <button class="buy-now-btn">Comprar ahora</button>
+                            <button class="add-to-cart-btn">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+          
+          
+          
+
+        </div>
+      
+
+
+    </div>
+
+
+
+       
+    <script type="module" src="./js/funtion.js"></script>
+</body>
+</html>
