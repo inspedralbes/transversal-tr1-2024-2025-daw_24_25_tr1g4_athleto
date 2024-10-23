@@ -21,124 +21,224 @@
   ],
   "productes": [
     {
-      "id": 1,
+      "id": 0,
       "nom": "Nike Air Max",
       "descripcio": "Zapatillas ligeras y cómodas para correr.",
       "preu": 120.00,
-      "imatge": "img/img15.jpg",
+      "imatge": "img/imghombre1.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
     },
     {
-      "id": 2,
+      "id": 1,
       "nom": "Adidas Ultraboost",
       "descripcio": "Zapatillas de alto rendimiento para largas distancias.",
       "preu": 150.00,
-      "imatge": "img/img7.jpg",
+      "imatge": "img/imghombre2.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
     },
     {
-      "id": 3,
+      "id": 2,
       "nom": "Puma Suede Classic",
       "descripcio": "Zapatillas casuales con un toque retro.",
       "preu": 85.00,
-      "imatge": "img/img2.jpg",
+      "imatge": "img/imgmujer1.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "mujer"
     },
     {
-      "id": 4,
-      "nom": "New Balance 990v5",
+      "id": 3,
+      "nom": "img/imghombre3.jpg",
       "descripcio": "Zapatillas de running clásicas con soporte adicional.",
       "preu": 175.00,
       "imatge": "img/img10.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
     },
     {
-      "id": 5,
+      "id": 4,
       "nom": "Reebok Classic Leather",
       "descripcio": "Zapatillas retro casuales hechas de cuero.",
       "preu": 90.00,
-      "imatge": "img/img6.jpg",
+      "imatge": "img/imgmujer2.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "mujer"
     },
     {
-      "id": 6,
+      "id": 5,
       "nom": "Asics Gel-Nimbus 23",
       "descripcio": "Zapatillas con amortiguación de gel para largas distancias.",
       "preu": 160.00,
-      "imatge": "img/img5.jpg",
+      "imatge": "img/imghombre4.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
     },
     {
-      "id": 7,
+      "id": 6,
       "nom": "Vans Old Skool",
       "descripcio": "Zapatillas casuales de skate con el clásico diseño de Vans.",
       "preu": 65.00,
-      "imatge": "img/img11.jpg",
+      "imatge": "img/imgniño1.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "niño"
     },
     {
-      "id": 8,
+      "id": 7,
       "nom": "Converse Chuck Taylor",
       "descripcio": "Las icónicas zapatillas de lona de perfil alto.",
       "preu": 55.00,
-      "imatge": "img/img14.jpg",
+      "imatge": "img/imgniño2.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "niño"
     },
     {
-      "id": 9,
+      "id": 8,
       "nom": "Salomon Speedcross 5",
       "descripcio": "Zapatillas de trail running con gran agarre para terrenos irregulares.",
       "preu": 140.00,
-      "imatge": "img/img3.jpg",
+      "imatge": "img/imghombre5.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
     },
     {
-      "id": 10,
+      "id": 9,
       "nom": "Mizuno Wave Rider 24",
       "descripcio": "Zapatillas con una mezcla perfecta de amortiguación y soporte.",
       "preu": 130.00,
-      "imatge": "img/img12.jpg",
+      "imatge": "img/imghombre6.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
     },
     {
-      "id": 11,
+      "id": 10,
       "nom": "Under Armour HOVR Phantom",
       "descripcio": "Zapatillas de running con gran amortiguación y estilo moderno.",
       "preu": 110.00,
-      "imatge": "img/img1.jpg",
+      "imatge": "img/imgmujer3.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "mujer"
     },
     {
-      "id": 12,
+      "id": 11,
       "nom": "Saucony Kinvara 12",
       "descripcio": "Zapatillas ligeras para carreras rápidas y entrenamientos.",
       "preu": 125.00,
-      "imatge": "img/img13.jpg",
+      "imatge": "img/imghombre7.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
-      "updated_at": "2024-10-10"
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
+    },
+    {
+      "id": 12,
+      "nom": "Nike React Infinity Run",
+      "descripcio": "Zapatillas diseñadas para la comodidad y el soporte en cada paso.",
+      "preu": 160.00,
+      "imatge": "img/imghombre8.jpg",
+      "actiu": false,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
+    },
+    {
+      "id": 13,
+      "nom": "Adidas NMD_R1",
+      "descripcio": "Zapatillas urbanas con un diseño moderno y cómodo.",
+      "preu": 140.00,
+      "imatge": "img/imgmujer4.jpg",
+      "actiu": false,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10",
+      "genero": "mujer"
+    },
+    {
+      "id": 14,
+      "nom": "Puma RS-X",
+      "descripcio": "Zapatillas con un estilo retro y tecnología moderna.",
+      "preu": 110.00,
+      "imatge": "img/imghombre9.jpg",
+      "actiu": false,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
+    },
+    {
+      "id": 15,
+      "nom": "New Balance Fresh Foam 1080",
+      "descripcio": "Zapatillas con amortiguación Fresh Foam para una carrera suave.",
+      "preu": 160.00,
+      "imatge": "img/imghombre10.jpg",
+      "actiu": false,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
+    },
+    {
+      "id": 16,
+      "nom": "Reebok Zig Kinetica",
+      "descripcio": "Zapatillas de estilo urbano con gran comodidad.",
+      "preu": 130.00,
+      "imatge": "img/imgmujer5.jpg",
+      "actiu": false,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10",
+      "genero": "mujer"
+    },
+    {
+      "id": 17,
+      "nom": "Asics Gel-Kayano 27",
+      "descripcio": "Zapatillas de running estables para soporte en largas distancias.",
+      "preu": 180.00,
+      "imatge": "img/imghombre11.jpg",
+      "actiu": false,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
+    },
+    {
+      "id": 18,
+      "nom": "Salomon XA Pro 3D",
+      "descripcio": "Zapatillas de trail para una tracción excepcional.",
+      "preu": 150.00,
+      "imatge": "img/imghombre12.jpg",
+      "actiu": false,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10",
+      "genero": "hombre"
+    },
+    {
+      "id": 19,
+      "nom": "Nike Air Zoom Pegasus",
+      "descripcio": "Zapatillas de running versátiles y duraderas.",
+      "preu": 130.00,
+      "imatge": "img/imgmujer6.jpg",
+      "actiu": false,
+      "created_at": "2024-10-10",
+      "updated_at": "2024-10-10",
+      "genero": "mujer"
     }
   ]
 }
