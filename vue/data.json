@@ -26,7 +26,7 @@
       "descripcio": "Zapatillas ligeras y cómodas para correr.",
       "preu": 120.00,
       "imatge": "img/img15.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     },
@@ -36,7 +36,7 @@
       "descripcio": "Zapatillas de alto rendimiento para largas distancias.",
       "preu": 150.00,
       "imatge": "img/img7.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     },
@@ -46,7 +46,7 @@
       "descripcio": "Zapatillas casuales con un toque retro.",
       "preu": 85.00,
       "imatge": "img/img2.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     },
@@ -56,7 +56,7 @@
       "descripcio": "Zapatillas de running clásicas con soporte adicional.",
       "preu": 175.00,
       "imatge": "img/img10.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     },
@@ -66,7 +66,7 @@
       "descripcio": "Zapatillas retro casuales hechas de cuero.",
       "preu": 90.00,
       "imatge": "img/img6.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     },
@@ -76,7 +76,7 @@
       "descripcio": "Zapatillas con amortiguación de gel para largas distancias.",
       "preu": 160.00,
       "imatge": "img/img5.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     },
@@ -86,7 +86,7 @@
       "descripcio": "Zapatillas casuales de skate con el clásico diseño de Vans.",
       "preu": 65.00,
       "imatge": "img/img11.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     },
@@ -96,7 +96,7 @@
       "descripcio": "Las icónicas zapatillas de lona de perfil alto.",
       "preu": 55.00,
       "imatge": "img/img14.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     },
@@ -106,7 +106,7 @@
       "descripcio": "Zapatillas de trail running con gran agarre para terrenos irregulares.",
       "preu": 140.00,
       "imatge": "img/img3.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     },
@@ -116,7 +116,7 @@
       "descripcio": "Zapatillas con una mezcla perfecta de amortiguación y soporte.",
       "preu": 130.00,
       "imatge": "img/img12.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     },
@@ -126,7 +126,7 @@
       "descripcio": "Zapatillas de running con gran amortiguación y estilo moderno.",
       "preu": 110.00,
       "imatge": "img/img1.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     },
@@ -136,7 +136,7 @@
       "descripcio": "Zapatillas ligeras para carreras rápidas y entrenamientos.",
       "preu": 125.00,
       "imatge": "img/img13.jpg",
-      "actiu": true,
+      "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10"
     }
