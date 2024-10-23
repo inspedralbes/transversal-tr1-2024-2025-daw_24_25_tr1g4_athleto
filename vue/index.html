@@ -71,16 +71,19 @@
                
                <img :src="actual.imatge">
                 {{ actual.nom }} {{ actual.preu }}€
-               
+                
             </div>
 
             </div>
             <div v-else>
-            
-                <div @click="mostrar(actual.id)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index" v-if="genero==actual.genero">
-                   
+                
+                <div v-for="(actual, index) in llista.zapatillas" :key="index" 
+                @click="mostrar(actual.id)" class="zapatos" 
+                v-if="genero===actual.genero">
+
                     <img :src="actual.imatge">
                      {{ actual.nom }} {{ actual.preu }}€
+                     {{actual.genero}} {{genero}}
                    
                  </div>
 
