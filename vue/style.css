@@ -1,0 +1,134 @@
+    /* Estilos generales */
+body {
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Estilos del navbar */
+.navbar {
+    background-color: #333;
+    padding: 15px;
+}
+
+/* Estilos de los items del menú principal */
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+}
+
+.menu-item {
+    position: relative;
+    margin: 0 20px;
+}
+/* Estilos para los iconos (lupa y carrito) */
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    position: absolute;
+    right: 30px;
+    top: 23px;
+}
+
+.icons a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    margin-left: 20px;
+    transition: color 0.3s;
+  
+}
+
+
+
+.menu-item a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 20px;
+    display: block;
+    transition: color 0.3s;
+}
+
+.menu-item a:hover {
+    color: #b312f3;
+}
+
+/* Estilos del submenú (desplegable) */
+.submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: #444;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+}
+
+.submenu li {
+    margin: 0;
+    padding: 0;
+}
+
+.submenu a {
+    padding: 10px 20px;
+    color: white;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.submenu a:hover {
+    background-color: #f39c12;
+}
+
+/* Mostrar submenú al pasar el ratón por encima */
+.menu-item:hover .submenu {
+    display: block;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+    }
+
+    .menu-item {
+        margin: 10px 0;
+    }
+
+    .submenu {
+        top: 35px;
+        left: 0;
+        right: 0;
+    }
+}
+.zapatos{
+
+    background-color: white;
+    
+    height: 250px;
+    width: 200px;
+    margin: 30px;
+    border-radius: 5px;
+    display: inline-block;
+    
+}
+img{
+    height: 200px;
+    width: 200px;
+    
+}
+
+#appVue{
+   text-align: center;
+}

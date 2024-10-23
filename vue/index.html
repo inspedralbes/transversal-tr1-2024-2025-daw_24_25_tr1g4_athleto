@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inici</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="menu">
+            <li class="menu-item">
+                <a href="#">Hombres</a>
+                <ul class="submenu">
+                    <li><a href="#">Deporte</a></li>
+                    <li><a href="#">Calzado</a></li>
+                    <li><a href="#">Accesorios</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#">Mujer</a>
+                <ul class="submenu">
+                    <li><a href="#">Deporte</a></li>
+                    <li><a href="#">Calzado</a></li>
+                    <li><a href="#">Accesorios</a></li>
+                </ul>
+            </li>
+           
+            <li class="menu-item">
+                <a href="#">Niño</a>
+                <ul class="submenu">
+                    <li><a href="#">Deporte</a></li>
+                    <li><a href="#">Calzado</a></li>
+                    <li><a href="#">Juguetes</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="#">Ofertas</a>
+            </li>
+        </ul>
+
+    <div class="icons">
+            <a href="#" class="search-icon">🔍</a>
+            <a href="#" class="cart-icon">🛒</a>
+            </div>
+    </nav>
+
+    <div id="objetos">
+
+
+    </div>
+
+
+    <div id="appVue">
+            
+            <div class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
+               
+               <a href=""> <img :src="actual.imagen"></a>
+                {{ actual.nombre }} {{ actual.precio }}
+               
+            </div>
+      
+
+    </div>
+
+
+    
+       
+    <script type="module" src="funtion.js"></script>
+</body>
+</html>
