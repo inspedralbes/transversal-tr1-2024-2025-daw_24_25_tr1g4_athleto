@@ -55,10 +55,10 @@
     },
     {
       "id": 3,
-      "nom": "img/imghombre3.jpg",
+      "nom": "New balance 990v5",
       "descripcio": "Zapatillas de running clásicas con soporte adicional.",
       "preu": 175.00,
-      "imatge": "img/img10.jpg",
+      "imatge": "img/imghombre3.jpg",
       "actiu": false,
       "created_at": "2024-10-10",
       "updated_at": "2024-10-10",

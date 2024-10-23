@@ -194,7 +194,7 @@ img {
     padding: 20px;
     display: flex;  /* Utilizamos Flexbox para alinear los elementos a los lados */
     gap: 20px;  /* Espacio entre la imagen y el texto */
- 
+    position: relative;
 }
 
 
@@ -271,4 +271,12 @@ img {
 .add-to-cart-btn:hover {
     background-color: #27ae60;
     transform: translateY(-5px);
+}
+
+#boto-cancelar{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 25px;
+    right: 25px;
 }

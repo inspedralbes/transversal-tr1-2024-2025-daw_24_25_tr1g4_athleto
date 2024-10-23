@@ -43,13 +43,12 @@
 
     <div class="icons">
             <a href="#" class="search-icon">🔍</a>
-            <a href="#" class="cart-icon">🛒</a>
+            <!--no va ya que esta fuera de el div con id="appVue, al menos eso creo-->
+            <button class="cart-icon" @click="alternarCestella()">🛒</button>
+            <div @click="alternarCestella()">🛒</div>
+            <!--<a href="#" class="cart-icon" @click="alternarCestella()">🛒</a>-->
             </div>
     </nav>
-
-    
-
-
 
     <div id="appVue">
         <div v-if="visiblePort">  
@@ -57,7 +56,6 @@
             <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" class="card">
                 
             </div>
-
         </div>
         </div>
 
@@ -67,7 +65,7 @@
 
             <div v-if="genero=='all'">
               
-            <div @click="mostrar(actual.id)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
+            <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
                
                <img :src="actual.imatge">
                 {{ actual.nom }} {{ actual.preu }}€
@@ -77,15 +75,12 @@
             </div>
             <div v-else>
             
-                <div @click="mostrar(actual.id)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index" v-if="genero==actual.genero">
+                <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index" v-if="genero==actual.genero">
                    
                     <img :src="actual.imatge">
                      {{ actual.nom }} {{ actual.preu }}€
                    
                  </div>
-
-
-
 
             </div>
       
@@ -96,6 +91,7 @@
 
             <div class="product-container">
                 <div class="product-card">
+                    <img @click="mostrarProductes()" src="./img/cancelar.png" alt="Tornar enrere" id="boto-cancelar">
                     <div class="product-left">
                     <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
                     </div>
@@ -110,13 +106,7 @@
                     </div>
                 </div>
             </div>
-            
-          
-          
-          
-
         </div>
-      
 
 
     </div>
@@ -124,6 +114,6 @@
 
 
        
-    <script type="module" src="./js/funtion.js"></script>
+    <script type="module" src="./js/function.js"></script>
 </body>
 </html>
