@@ -10,7 +10,7 @@
         "nombre": "Zapatilla Urban Style",
         "talla": 40,
         "precio": "59.99 €",
-        "imagen": "img/img2.jpg"
+        "imagen": "img/img14.jpg"
       },
       {
         "nombre": "Zapatilla Casual Comfort",
@@ -22,7 +22,7 @@
         "nombre": "Zapatilla Sport Max",
         "talla": 43,
         "precio": "89.99 €",
-        "imagen": "img/img4.jpg"
+        "imagen": "img/img12.jpg"
       },
       {
         "nombre": "Zapatilla Trail Runner",
@@ -34,7 +34,7 @@
         "nombre": "Zapatilla Streetwear",
         "talla": 39,
         "precio": "69.99 €",
-        "imagen": "img/img6.jpg"
+        "imagen": "img/img15.jpg"
       },
       {
         "nombre": "Zapatilla Flex Fit",
@@ -46,7 +46,7 @@
         "nombre": "Zapatilla All-Terrain",
         "talla": 45,
         "precio": "109.99 €",
-        "imagen": "img/img8.jpg"
+        "imagen": "img/img11.jpg"
       },
       {
         "nombre": "Zapatilla Classic Retro",
@@ -58,7 +58,7 @@
         "nombre": "Zapatilla Ultra Boost",
         "talla": 41,
         "precio": "119.99 €",
-        "imagen": "img/img10.jpg"
+        "imagen": "img/img13.jpg"
       }
     ]
 }
