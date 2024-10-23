@@ -54,19 +54,9 @@
     <div id="appVue">
         <div v-if="visiblePort">  
         <div id="portada">
-            <div @click="visibleProd!=visibleProd" class="card">
-                Hombres
+            <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" class="card">
+                Foto
 
-            </div>
-            <div @click="visibleProd!=visibleProd" class="card">
-                Mujeres
-
-            </div>
-            <div @click="visibleProd!=visibleProd" class="card">
-                Niños
-            </div>
-            <div @click="visibleProd!=visibleProd" class="card">
-                Ofertas
             </div>
 
         </div>
