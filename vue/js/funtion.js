@@ -1,5 +1,5 @@
-    import { createApp, ref , reactive} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-
+    import { createApp, ref, onBeforeMount, reactive} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    import { getProductes } from './communicationManager.js';
 
 
     createApp({
@@ -8,22 +8,16 @@
 
     let llista=reactive({zapatillas:[]});
 
-    fetch('./data.json')
-    .then(response => response.json())  
-    .then(data => {
-
-
-    llista.zapatillas=data.productes;
-
-        
-
-
-        })
-
+    onBeforeMount ( async () => {
+        const data = await getProductes();
+        llista.zapatillas=data;
+        console.log(llista.zapatillas)
+    });
+     
     const visibleProd=ref(false);
     const visiblePort=ref(true);
     const visibleActual=ref(false);
-    let genero=ref("niño"); 
+    let genero=ref("all");
     const actual=reactive({nom:"",preu:"",imatge:"",genero:"", })
     function mostrar(data){
 

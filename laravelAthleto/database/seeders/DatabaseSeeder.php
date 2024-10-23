@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $jsonFilePath = database_path('data.json'); // Asegúrate de la ruta correcta
+        $jsonFilePath = public_path('data.json'); // Asegúrate de la ruta correcta
         $jsonData = File::get($jsonFilePath); // Usar File para obtener el contenido del archivo
         $data = json_decode($jsonData, true); // Decodificar el JSON a un array
 
