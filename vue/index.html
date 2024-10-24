@@ -8,6 +8,7 @@
     
 </head>
 <body>
+    <div id="appVue">
     <nav class="navbar">
         <ul class="menu">
             <li class="menu-item">
@@ -44,15 +45,15 @@
     <div class="icons">
             <a href="#" class="search-icon">🔍</a>
             <!--no va ya que esta fuera de el div con id="appVue, al menos eso creo-->
-            <a href="#" class="cart-icon" @click="alternarCestella()">🛒</a>
+            <a href="#" class="cart-icon" @click="visibleCar=!visibleCar">🛒</a>
             </div>
     </nav>
 
-    <div id="appVue">
+   
         <div v-if="visiblePort">  
         <div id="portada">
             <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" class="card">
-                
+                PORTADA
             </div>
         </div>
         </div>
@@ -71,16 +72,7 @@
             </div>
 
             </div>
-            <div v-else>
-            
-                <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index" v-if="genero==actual.genero">
-                   
-                    <img :src="actual.imatge">
-                     {{ actual.nom }} {{ actual.preu }}€
-                   
-                 </div>
-
-            </div>
+          
       
         </div>    
 
@@ -105,6 +97,34 @@
                 </div>
             </div>
         </div>
+
+
+
+       <!-- Carrito Deslizante -->
+    <div id="cart" class="cart" v-if="visibleCar">
+        <div class="cart-header">
+            <h2>Carrito de Compras</h2>
+            <button id="close-cart" class="close-cart" @click="visibleCar=!visibleCar">X</button>
+        </div>
+        <div class="cart-content">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                
+            </table>
+        </div>
+        <div class="cart-footer">
+            <h3>Total del carrito: <span>$50.00</span></h3>
+        
+            <button class="checkout-btn">Finalizar compra</button>
+        </div>
+    </div>
 
 
     </div>

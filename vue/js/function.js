@@ -2,6 +2,9 @@
     import { getProductes } from './communicationManager.js';
 
 
+
+
+
     createApp({
 
     setup() {
@@ -11,13 +14,14 @@
     onBeforeMount ( async () => {
         const data = await getProductes();
         llista.zapatillas=data;
-        console.log(llista.zapatillas)
+       
     });
      
     const visibleProd=ref(false);
     const visiblePort=ref(true);
     const visibleActual=ref(false);
-    const cestaVisible=ref(false);
+    const visibleCar=ref(false);
+   
     let genero=ref("all");
     const actual=reactive({nom:"",preu:"",imatge:"",genero:"", })
 
@@ -26,7 +30,8 @@
         actual.preu=llista.zapatillas[data].preu;
         actual.imatge=llista.zapatillas[data].imatge;
         actual.descripcio=llista.zapatillas[data].descripcio;
-        console.log(actual)
+        actual.genero=llista.zapatillas[data].genero;
+        console.log(actual.genero)
         visibleActual.value=true;
         visibleProd.value=false;
     }
@@ -43,7 +48,7 @@
 
     return {
 
-        llista, visibleProd, visiblePort, visibleActual, cestaVisible, mostrarProducte, mostrarProductes, alternarCestella, actual, genero 
+        llista, visibleProd, visiblePort, visibleActual,visibleCar  , mostrarProducte, mostrarProductes, alternarCestella, actual, genero 
             
             }
 
