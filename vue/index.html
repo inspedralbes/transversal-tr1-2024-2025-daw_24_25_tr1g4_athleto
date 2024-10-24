@@ -51,9 +51,9 @@
 
    
         <div v-if="visiblePort">  
-        <div id="portada">
-            <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" class="card">
-                PORTADA
+        <div id="portada" >
+            <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" >
+                <img  class="card" src="./img/imgPortada.jpg">
             </div>
         </div>
         </div>
@@ -100,7 +100,7 @@
 
 
 
-       <!-- Carrito Deslizante -->
+       <!-- Carrito  -->
     <div id="cart" class="cart" v-if="visibleCar">
         <div class="cart-header">
             <h2>Carrito de Compras</h2>
