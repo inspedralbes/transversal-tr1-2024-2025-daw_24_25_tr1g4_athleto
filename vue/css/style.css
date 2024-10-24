@@ -230,7 +230,7 @@ img {
 
 .product-price {
     font-size: 24px;
-    color: #E94E77;
+    color: #C82333;
     margin-bottom: 15px;
 }
 
@@ -252,24 +252,24 @@ img {
 }
 
 .buy-now-btn {
-    background-color: #E94E77;
+    background-color: #FF6F30;
     color: white;
     
 }
 
 .buy-now-btn:hover {
-    background-color: #c43b5e;
+    background-color: #E65C23;
     transform: translateY(-5px);
 }
 
 .add-to-cart-btn {
-    background-color: #2ecc71;
+    background-color: #28A745;
     color: white;
     
 }
 
 .add-to-cart-btn:hover {
-    background-color: #27ae60;
+    background-color: #218838;
     transform: translateY(-5px);
 }
 
@@ -283,6 +283,15 @@ img {
 
 /*Carrito*/
 
+.fonsOscur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
 
 .cart-button {
     position: absolute;
@@ -314,37 +323,30 @@ img {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.cart button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: 5px;
-}
-
-.cart button:hover {
-    background-color: #0056b3;
-}
-
 /* Estilos del carrito deslizante */
-.cart {
+#cart {
     position: fixed;
     top: 0;
-    right: -100%;
-    width: 350px;
     height: 100%;
     background-color: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    transition: right 0.3s ease;
     z-index: 1000;
     display: flex;
     flex-direction: column;
     right: 0;
+    overflow: hidden;
+    transition-property: width;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
 }
 
+.cart-closed{
+    width: 0;
+}
 
+.cart-open{
+    width: 350px;
+}
 
 .cart-header {
     padding: 1rem;
@@ -358,7 +360,7 @@ img {
 .cart-content {
     flex-grow: 1;
     padding: 1rem;
-    overflow-y: auto;
+    
 }
 
 .cart-footer {
@@ -377,14 +379,15 @@ img {
 }
 
 .checkout-btn {
-    background-color: #28a745;
+    background-color: #C82333;
     color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1rem;
     cursor: pointer;
     font-size: 1rem;
+    border-radius: 5px;
 }
 
 .checkout-btn:hover {
-    background-color: #218838;
+    background-color: #A71C24;
 }

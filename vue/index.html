@@ -1,89 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inici</title>
     <link rel="stylesheet" href="./css/style.css">
-    
+
 </head>
+
 <body>
     <div id="appVue">
-    <nav class="navbar">
-        <ul class="menu">
-            <li class="menu-item">
-                <a href="#">Hombres</a>
-                <ul class="submenu">
-                    <li><a href="#">Deporte</a></li>
-                  <!--  <li><a href="#">Calzado</a></li>
+        <nav class="navbar">
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="#">Hombres</a>
+                    <ul class="submenu">
+                        <li><a href="#">Deporte</a></li>
+                        <!--  <li><a href="#">Calzado</a></li>
                     <li><a href="#">Accesorios</a></li>-->
-                </ul>
-            </li>
-            <li class="menu-item">
-                <a href="#">Mujer</a>
-                <ul class="submenu">
-                    <li><a href="#">Deporte</a></li>
-                   <!--  <li><a href="#">Calzado</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">Mujer</a>
+                    <ul class="submenu">
+                        <li><a href="#">Deporte</a></li>
+                        <!--  <li><a href="#">Calzado</a></li>
                     <li><a href="#">Accesorios</a></li>-->
-                </ul>
-            </li>
-           
-            <li class="menu-item">
-                <a href="#">Niño</a>
-                <ul class="submenu">
-             <li><a href="#">Deporte</a></li>
-                  <!--  <li><a href="#">Calzado</a></li>
-                    <li><a href="#">Juguetes</a></li>-->  
-                </ul>
-            </li>
+                    </ul>
+                </li>
 
-            <li class="menu-item">
-                <a href="#">Ofertas</a>
-            </li>
-        </ul>
+                <li class="menu-item">
+                    <a href="#">Niño</a>
+                    <ul class="submenu">
+                        <li><a href="#">Deporte</a></li>
+                        <!--  <li><a href="#">Calzado</a></li>
+                    <li><a href="#">Juguetes</a></li>-->
+                    </ul>
+                </li>
 
-    <div class="icons">
-            <a href="#" class="search-icon">🔍</a>
-            <!--no va ya que esta fuera de el div con id="appVue, al menos eso creo-->
-            <a href="#" class="cart-icon" @click="visibleCar=!visibleCar">🛒</a>
+                <li class="menu-item">
+                    <a href="#">Ofertas</a>
+                </li>
+            </ul>
+
+            <div class="icons">
+                <a href="#" class="search-icon">🔍</a>
+                <!--no va ya que esta fuera de el div con id="appVue, al menos eso creo-->
+                <a href="#" class="cart-icon" @click="alternarCestella()">🛒</a>
             </div>
-    </nav>
+        </nav>
 
-   
-        <div v-if="visiblePort">  
-        <div id="portada" >
-            <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" >
-                <img  class="card" src="./img/imgPortada.jpg">
+        <div v-if="visiblePort">
+            <div id="portada">
+                <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort">
+                    <img class="card" src="./img/imgPortada.jpg">
+                </div>
             </div>
         </div>
-        </div>
 
 
-      
+
         <div class="contentZapatos" v-if="visibleProd">
 
             <div v-if="genero=='all'">
-              
-            <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
-               
-               <img :src="actual.imatge">
-                {{ actual.nom }} {{ actual.preu }}€
-               
-            </div>
+
+                <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
+
+                    <img :src="actual.imatge">
+                    {{ actual.nom }} {{ actual.preu }}€
+
+                </div>
 
             </div>
-          
-      
-        </div>    
 
-       
+
+        </div>
+
+
         <div v-if="visibleActual">
 
             <div class="product-container">
                 <div class="product-card">
                     <img @click="mostrarProductes()" src="./img/cancelar.png" alt="Tornar enrere" id="boto-cancelar">
                     <div class="product-left">
-                    <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
+                        <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
                     </div>
                     <div class="product-right">
                         <h2 class="product-title"> {{ actual.nom }}</h2>
@@ -91,7 +92,7 @@
                         <p class="product-price">{{actual.preu}}€</p>
                         <div class="product-buttons">
                             <button class="buy-now-btn">Comprar ahora</button>
-                            <button class="add-to-cart-btn">Añadir al carrito</button>
+                            <button class="add-to-cart-btn" @click="afegirProducte()">Añadir al carrito</button>
                         </div>
                     </div>
                 </div>
@@ -100,38 +101,46 @@
 
 
 
-       <!-- Carrito  -->
-    <div id="cart" class="cart" v-if="visibleCar">
-        <div class="cart-header">
-            <h2>Carrito de Compras</h2>
-            <button id="close-cart" class="close-cart" @click="visibleCar=!visibleCar">X</button>
+        <div v-if="visibleCar" class="fonsOscur" @click="alternarCestella()"></div>
+        <!-- Carrito  -->
+        <div id="cart" :class="{ 'cart-open': visibleCar, 'cart-closed': !visibleCar }">
+            <div class="cart-header">
+                <h2>Carrito de Compras</h2>
+                <button id="close-cart" class="close-cart" @click="alternarCestella()">X</button>
+            </div>
+            <div class="cart-content">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Preu</th>
+                            <th>Imatge</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(producte, index) in carList" :key="index">
+                            <td>{{ producte.nom }}</td>
+                            <!--<td>{{ producte.descripcio }}</td>-->
+                            <td>{{ producte.preu }}</td>
+                            <td><img :src="producte.imatge" alt="Imagen de producto" width="75" height="75"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cart-footer">
+                <h3>Total del carrito: <span>{{preuCar}} €</span></h3>
+
+                <button class="checkout-btn">Comprar</button>
+            </div>
         </div>
-        <div class="cart-content">
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                
-            </table>
-        </div>
-        <div class="cart-footer">
-            <h3>Total del carrito: <span>$50.00</span></h3>
-        
-            <button class="checkout-btn">Finalizar compra</button>
-        </div>
+
+
     </div>
 
 
-    </div>
 
 
-
-       
     <script type="module" src="./js/function.js"></script>
 </body>
+
 </html>
