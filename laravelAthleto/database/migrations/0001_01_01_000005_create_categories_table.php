@@ -7,22 +7,23 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Ejecuta la migración para crear la tabla 'categories'.
      */
     public function up(): void
     {
+        // Crea la tabla 'categories' con columnas
         Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom');
-            $table->timestamps();
+            $table->id(); 
+            $table->string('nom'); 
+            $table->timestamps(); 
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    
+     
     public function down(): void
     {
+        // Elimina la tabla 'categories' si existe
         Schema::dropIfExists('categories');
     }
 };

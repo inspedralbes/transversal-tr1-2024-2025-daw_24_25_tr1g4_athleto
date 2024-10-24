@@ -7,26 +7,25 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Ejecuta la migración para crear la tabla 'productes'.
      */
     public function up(): void
     {
+        // Tabla 'productes' con las siguientes columnas
         Schema::create('productes', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom');
-            $table->string('descripcio');
-            $table->decimal('preu');
-            $table->string('imatge');
-            $table->boolean('actiu')->default(false);
-            $table->timestamps();
+            $table->id(); 
+            $table->string('nom'); 
+            $table->string('descripcio'); 
+            $table->decimal('preu'); 
+            $table->string('imatge'); 
+            $table->boolean('actiu')->default(false); 
+            $table->timestamps(); 
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
+        // Elimina la tabla 'productes' si existe
         Schema::dropIfExists('productes');
     }
 };

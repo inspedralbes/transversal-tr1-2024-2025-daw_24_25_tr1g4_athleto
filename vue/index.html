@@ -1,102 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inici</title>
-    <link rel="stylesheet" href="./css/style.css">
-    
+   
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Inici</title> 
+    <link rel="stylesheet" href="./css/style.css"> 
 </head>
+
 <body>
+    <!-- Barra de navegación principal -->
     <nav class="navbar">
+        <!-- Menú principal -->
         <ul class="menu">
+            <!-- Sección Hombres -->
             <li class="menu-item">
-                <a href="#">Hombres</a>
-                <ul class="submenu">
+                <a href="#">Hombres</a> 
+                <ul class="submenu"> 
                     <li><a href="#">Deporte</a></li>
-                  <!--  <li><a href="#">Calzado</a></li>
-                    <li><a href="#">Accesorios</a></li>-->
-                </ul>
-            </li>
-            <li class="menu-item">
-                <a href="#">Mujer</a>
-                <ul class="submenu">
-                    <li><a href="#">Deporte</a></li>
-                   <!--  <li><a href="#">Calzado</a></li>
-                    <li><a href="#">Accesorios</a></li>-->
-                </ul>
-            </li>
-           
-            <li class="menu-item">
-                <a href="#">Niño</a>
-                <ul class="submenu">
-             <li><a href="#">Deporte</a></li>
-                  <!--  <li><a href="#">Calzado</a></li>
-                    <li><a href="#">Juguetes</a></li>-->  
+                    <!-- <li><a href="#">Calzado</a></li>
+                    <li><a href="#">Accesorios</a></li> -->
                 </ul>
             </li>
 
+            <!-- Sección Mujeres -->
             <li class="menu-item">
-                <a href="#">Ofertas</a>
+                <a href="#">Mujer</a> 
+                <ul class="submenu"> 
+                    <li><a href="#">Deporte</a></li>
+                    <!-- <li><a href="#">Calzado</a></li>
+                    <li><a href="#">Accesorios</a></li> -->
+                </ul>
+            </li>
+
+            <!-- Sección Niño -->
+            <li class="menu-item">
+                <a href="#">Niño</a> 
+                <ul class="submenu"> 
+                    <li><a href="#">Deporte</a></li>
+                    <!-- <li><a href="#">Calzado</a></li>
+                    <li><a href="#">Juguetes</a></li> -->
+                </ul>
+            </li>
+
+            <!-- Sección Ofertas -->
+            <li class="menu-item">
+                <a href="#">Ofertas</a> 
             </li>
         </ul>
 
-    <div class="icons">
-            <a href="#" class="search-icon">🔍</a>
-            <!--no va ya que esta fuera de el div con id="appVue, al menos eso creo-->
+        <!-- Iconos de búsqueda y carrito -->
+        <div class="icons">
+            <a href="#" class="search-icon">🔍</a> 
             <a href="#" class="cart-icon" @click="alternarCestella()">🛒</a>
-            </div>
+        </div>
     </nav>
 
+    <!-- Sección principal controlada por Vue.js -->
     <div id="appVue">
+        <!-- Si visiblePort es verdadero, muestra la portada -->
         <div v-if="visiblePort">  
-        <div id="portada">
-            <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" class="card">
-                
+            <div id="portada">
+                <!-- Al hacer clic, alterna entre productos visibles y la portada -->
+                <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" class="card">
+                </div>
             </div>
         </div>
-        </div>
 
-
-      
+        <!-- Contenido de productos mostrado cuando visibleProd es verdadero -->
         <div class="contentZapatos" v-if="visibleProd">
 
+            <!-- Si género es 'all', muestra todos los productos -->
             <div v-if="genero=='all'">
-              
-            <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
-               
-               <img :src="actual.imatge">
-                {{ actual.nom }} {{ actual.preu }}€
-               
-            </div>
-
-            </div>
-            <div v-else>
-            
-                <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index" v-if="genero==actual.genero">
-                   
+                <!-- Bucle que recorre la lista de zapatillas y muestra -->
+                <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
+                    <!-- Detalles del producto -->
                     <img :src="actual.imatge">
-                     {{ actual.nom }} {{ actual.preu }}€
-                   
-                 </div>
-
+                    {{ actual.nom }} {{ actual.preu }}€ 
+                </div>
             </div>
-      
+
+            <!-- Si el género es diferente de 'all', muestra los productos por género -->
+            <div v-else>
+                <!-- Filtra los productos por el género seleccionado -->
+                <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index" v-if="genero==actual.genero">
+                    <img :src="actual.imatge">
+                    {{ actual.nom }} {{ actual.preu }}€
+                </div>
+            </div>
+
         </div>    
 
-       
+        <!-- Vista del producto individual cuando es verdadero -->
         <div v-if="visibleActual">
-
             <div class="product-container">
                 <div class="product-card">
+                    <!-- Botón para regresar a la vista anterior -->
                     <img @click="mostrarProductes()" src="./img/cancelar.png" alt="Tornar enrere" id="boto-cancelar">
                     <div class="product-left">
-                    <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
+                        <!-- Imagen del producto seleccionado -->
+                        <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
                     </div>
                     <div class="product-right">
+                        <!-- Información del producto seleccionado -->
                         <h2 class="product-title"> {{ actual.nom }}</h2>
                         <p class="product-description">{{actual.descripcio}}</p>
                         <p class="product-price">{{actual.preu}}€</p>
+                        <!-- Botones para comprar o añadir al carrito -->
                         <div class="product-buttons">
                             <button class="buy-now-btn">Comprar ahora</button>
                             <button class="add-to-cart-btn">Añadir al carrito</button>
@@ -106,12 +116,9 @@
             </div>
         </div>
 
-
-    </div>
-
-
-
-       
+    </div> 
+    
+    <!--JavaScript principal -->
     <script type="module" src="./js/function.js"></script>
 </body>
 </html>
