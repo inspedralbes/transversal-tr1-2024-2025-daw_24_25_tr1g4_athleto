@@ -20,10 +20,6 @@ createApp({
       llista.zapatillas = data;
       // Mostrar datos obtenidos en la consola
       console.log(llista.zapatillas);
-      onBeforeMount(async () => {
-        const data = await getProductes();
-        llista.zapatillas = data;
-
       });
 
       // Propiedades reactivas que controlan la visibilidad de diferentes secciones

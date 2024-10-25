@@ -25,7 +25,7 @@
                     <li><a href="#">Accesorios</a></li>-->
                     </ul>
                 </li>
-                 <!-- Sección Mujeres -->
+                <!-- Sección Mujeres -->
                 <li class="menu-item">
                     <a href="#">Mujer</a>
                     <ul class="submenu">
@@ -75,8 +75,9 @@
 
             <!-- Si género es 'all', muestra todos los productos -->
             <div v-if="genero=='all'">
-<!-- Bucle que recorre la lista de zapatillas y muestra -->
-                <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas" :key="index">
+                <!-- Bucle que recorre la lista de zapatillas y muestra -->
+                <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas"
+                    :key="index">
                     <!-- Detalles del producto -->
                     <img :src="actual.imatge">
                     {{ actual.nom }} {{ actual.preu }}€
