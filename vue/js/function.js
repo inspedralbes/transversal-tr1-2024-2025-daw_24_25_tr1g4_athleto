@@ -19,7 +19,6 @@ createApp({
       // Guardar los productos obtenidos
       llista.zapatillas = data;
       // Mostrar datos obtenidos en la consola
-      console.log(llista.zapatillas);
       });
 
       // Propiedades reactivas que controlan la visibilidad de diferentes secciones
@@ -30,7 +29,7 @@ createApp({
       const carList = ref([]); // Contiene los productos dentro del carrito
       const preuCar = ref(0); // Precio del carrito
       let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
-      const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", }); // `actual` almacena la información del producto seleccionado
+      const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
 
       // Función que se ejecuta cuando se selecciona un producto de la lista
       function mostrarProducte(data) {
@@ -40,7 +39,6 @@ createApp({
         actual.imatge = llista.zapatillas[data].imatge;
         actual.descripcio = llista.zapatillas[data].descripcio;
         actual.genero = llista.zapatillas[data].genero;
-        console.log(actual.nom);
         // Muestra el producto seleccionado y oculta la lista de productos
         visibleActual.value = true;
         visibleProd.value = false;
@@ -55,19 +53,46 @@ createApp({
       // Función que alterna la visibilidad del carrito de compras
       function alternarCestella() {
         visibleCar.value = !visibleCar.value;
-        console.log('Cesta alternada:', visibleCar.value);
-        //console.log(cestella.value);
-        //if(cestella.className===cestella.id) cestella.className="cart-obert";
-        //else cestella.className=cestella.id;
+      }
+
+      function trobarProducte(){
+        return carList.value.find(prod => prod.nom==actual.nom);
+
+        //cuando añada las tallas quizas deberia cambiar esta parte y tambien comparar la talla
+        //hacer un with en el controllador para pillar tmb la talla y que seleccione que talla tiene con input, 
+        /*let valor = undefined;
+        carList.value.forEach(productsd=>{
+          console.log(productsd);
+          console.log(actual);
+          if (productsd==actual) {
+            valor=productsd; 
+          }
+        });
+        return valor;*/
       }
 
       //Serveix per afegir el producte actual al carrito, actualitzar el preu i tancar el carrito
       function afegirProducte() {
-        carList.value.push({ ...toRaw(actual) });
+        let hola = trobarProducte();
+        console.log(hola);
+        if (hola) existeixProducte.quantitat++;
+        else carList.value.push({ ...toRaw(actual), quantitat: 1 });
         preuCarrito();
         alternarCestella();
         visibleProd.value=true;
         visibleActual.value=false;
+      }
+
+      function modificarQuantitat(index){
+        if (carList.value[index].quantitat==0) carList.value.splice(index, 1);
+        //añadir else para si la cantidad es mayor al stock
+        
+        preuCarrito();
+      }
+
+      function eliminarProducte(index){
+        carList.value.splice(index, 1);
+        preuCarrito();
       }
 
       //Serveix per actualitzar el preu del carrito segons els productes dins de carList
@@ -75,8 +100,8 @@ createApp({
         preuCar.value = 0;
 
         carList.value.forEach(producte => {
-          console.log(producte);
-          preuCar.value += parseFloat(producte.preu);
+          console.log(producte.quantitat);
+          preuCar.value += parseFloat(producte.preu)*producte.quantitat;
           console.log(preuCar.value);
         });
       }
@@ -95,8 +120,9 @@ createApp({
         mostrarProducte,
         mostrarProductes,
         alternarCestella,
-        preuCarrito,
-        afegirProducte
+        modificarQuantitat,
+        afegirProducte,
+        eliminarProducte
       }
 
 

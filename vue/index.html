@@ -54,17 +54,15 @@
             <!-- Iconos de búsqueda y carrito -->
             <div class="icons">
                 <a href="#" class="search-icon">🔍</a>
-                <a href="#" class="cart-icon" @click="alternarCestella()">🛒</a>
+                <a href="#" class="cart-icon" @click="alternarCestella">🛒</a>
             </div>
         </nav>
 
         <!-- Si visiblePort es verdadero, muestra la portada -->
-        <div v-if="visiblePort">
-            <div id="portada">
-                <!-- Al hacer clic, alterna entre productos visibles y la portada -->
-                <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort">
-                    <img class="card" src="./img/imgPortada.jpg">
-                </div>
+        <div v-if="visiblePort" id="portada">
+            <!-- Al hacer clic, alterna entre productos visibles y la portada -->
+            <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" id="imgLandingPage">
+                <img class="card" src="./img/imgPortada.jpg">
             </div>
         </div>
 
@@ -74,18 +72,18 @@
         <div class="contentZapatos" v-if="visibleProd">
 
             <!-- Si género es 'all', muestra todos los productos -->
-            <div v-if="genero=='all'">
+            <div v-if="genero=='all'" @click="mostrarProducte(index)" v-for="(actual, index) in llista.zapatillas"
+                :key="index" :id="'zapato' + index" class="zapatos">
                 <!-- Bucle que recorre la lista de zapatillas y muestra -->
-                <div @click="mostrarProducte(index)" v-for="(actual, index) in llista.zapatillas" :key="index" :id="'zapato' + index" class="zapatos">
-                    <!-- Detalles del producto -->
+                <!-- Detalles del producto -->
+                <div class="dadesProducte">
                     <img :src="actual.imatge">
-                    {{ actual.nom }} {{ actual.preu }}€
-
+                    <div class="detalles">
+                        <div class="nomProducte">{{ actual.nom }}</div>
+                        <div class="preuProducte">{{ actual.preu }} €</div>
+                    </div>
                 </div>
-
             </div>
-
-
         </div>
 
         <!-- Vista del producto individual cuando es verdadero -->
@@ -106,7 +104,7 @@
                         <!-- Botones para comprar o añadir al carrito -->
                         <div class="product-buttons">
                             <button class="buy-now-btn">Comprar ahora</button>
-                            <button class="add-to-cart-btn" @click="afegirProducte()">Añadir al carrito</button>
+                            <button class="add-to-cart-btn" @click="afegirProducte">Añadir al carrito</button>
                         </div>
                     </div>
                 </div>
@@ -115,43 +113,30 @@
 
 
 
-        <div v-if="visibleCar" class="fonsOscur" @click="alternarCestella()"></div>
+        <div v-if="visibleCar" class="fonsOscur" @click="alternarCestella"></div>
         <!-- Carrito  -->
         <div id="cart" :class="{ 'cart-open': visibleCar, 'cart-closed': !visibleCar }">
             <div class="cart-header">
                 <h2>Carrito</h2>
-                <button id="close-cart" class="close-cart" @click="alternarCestella()">X</button>
+                <button id="close-cart" class="close-cart" @click="alternarCestella">X</button>
             </div>
             <div class="cart-content">
-                <!--<table class="cart-table">
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Preu</th>
-                            <th>Imatge</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(producte, index) in carList" :key="index">
-                            <td>{{ producte.nom }}</td>
-                            <td>{{ producte.preu }}</td>
-                            <td><img :src="producte.imatge" alt="Imagen de producto" width="100" height="100"></td>
-                        </tr>
-                    </tbody>
-                </table>-->
                 <div>
-                <ul style="padding: 0;">
-                    <li v-for="(producte, index) in carList" :key="index" class="producteCar">
-                        <div>
-                            <div><img :src="producte.imatge" alt="Imagen de producto" width="100" height="100"></div>
+                    <ul style="padding: 0;">
+                        <li v-for="(producte, index) in carList" :key="index" class="producteCar">
                             <div>
-                                <div>{{ producte.nom }}</div>
-                                <div>{{ producte.preu }} €</div>
+                                <div><img :src="producte.imatge" alt="Imagen de producto" width="100" height="100">
+                                </div>
+                                <div>
+                                    <div>{{ producte.nom }}</div>
+                                    <div>{{ producte.preu }} €</div>
+                                    <!--<div>{{ producte.quantitat }}</div>-->
+                                    <div><input type="number" v-model="producte.quantitat" @input="modificarQuantitat(index)" class="inputQuantitat"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div><img src="img/basura.png" class="brossaProducte"></div>
-                    </li>
-                </ul>
+                            <div @click="eliminarProducte(index)"><img src="img/basura.png" class="brossaProducte"></div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="cart-footer">
@@ -163,8 +148,6 @@
 
 
     </div>
-
-
 
     <!--JavaScript principal -->
     <script type="module" src="./js/function.js"></script>
