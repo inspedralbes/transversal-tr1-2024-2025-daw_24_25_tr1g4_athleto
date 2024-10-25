@@ -76,8 +76,7 @@
             <!-- Si género es 'all', muestra todos los productos -->
             <div v-if="genero=='all'">
                 <!-- Bucle que recorre la lista de zapatillas y muestra -->
-                <div @click="mostrarProducte(index)" class="zapatos" v-for="(actual, index) in llista.zapatillas"
-                    :key="index">
+                <div @click="mostrarProducte(index)" v-for="(actual, index) in llista.zapatillas" :key="index" :id="'zapato' + index" class="zapatos">
                     <!-- Detalles del producto -->
                     <img :src="actual.imatge">
                     {{ actual.nom }} {{ actual.preu }}€
@@ -120,11 +119,11 @@
         <!-- Carrito  -->
         <div id="cart" :class="{ 'cart-open': visibleCar, 'cart-closed': !visibleCar }">
             <div class="cart-header">
-                <h2>Carrito de Compras</h2>
+                <h2>Carrito</h2>
                 <button id="close-cart" class="close-cart" @click="alternarCestella()">X</button>
             </div>
             <div class="cart-content">
-                <table class="cart-table">
+                <!--<table class="cart-table">
                     <thead>
                         <tr>
                             <th>Producto</th>
@@ -135,12 +134,25 @@
                     <tbody>
                         <tr v-for="(producte, index) in carList" :key="index">
                             <td>{{ producte.nom }}</td>
-                            <!--<td>{{ producte.descripcio }}</td>-->
                             <td>{{ producte.preu }}</td>
-                            <td><img :src="producte.imatge" alt="Imagen de producto" width="75" height="75"></td>
+                            <td><img :src="producte.imatge" alt="Imagen de producto" width="100" height="100"></td>
                         </tr>
                     </tbody>
-                </table>
+                </table>-->
+                <div>
+                <ul>
+                    <li v-for="(producte, index) in carList" :key="index" class="producteCar">
+                        <div>
+                            <div><img :src="producte.imatge" alt="Imagen de producto" width="100" height="100"></div>
+                            <div>
+                                <div>{{ producte.nom }}</div>
+                                <div>{{ producte.preu }} €</div>
+                            </div>
+                        </div>
+                        <div><img src="img/basura.png" class="brossaProducte"></div>
+                    </li>
+                </ul>
+                </div>
             </div>
             <div class="cart-footer">
                 <h3>Total del carrito: <span>{{preuCar}} €</span></h3>

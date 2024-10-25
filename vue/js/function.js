@@ -66,6 +66,8 @@ createApp({
         carList.value.push({ ...toRaw(actual) });
         preuCarrito();
         alternarCestella();
+        visibleProd.value=true;
+        visibleActual.value=false;
       }
 
       //Serveix per actualitzar el preu del carrito segons els productes dins de carList

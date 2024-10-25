@@ -129,10 +129,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
-img {
-    height: 200px;
-    width: 200px;
-}
 .contentZapatos{
     text-align: center;
 }
@@ -360,14 +356,7 @@ img {
 .cart-content {
     flex-grow: 1;
     padding: 1rem;
-    
-}
-
-.cart-footer {
-    padding: 1rem;
-    border-top: 1px solid #ddd;
-    background-color: #f9f9f9;
-    text-align: right;
+    overflow: scroll;
 }
 
 .close-cart {
@@ -390,4 +379,31 @@ img {
 
 .checkout-btn:hover {
     background-color: #A71C24;
+}
+
+.zapatos img{
+    height: 200px;
+    width: 200px;
+}
+
+.producteCar{
+    display: flex;
+    position: relative;
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.cart-footer{
+    padding: 1rem;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+    text-align: right;
+    border-top: 1px dashed rgb(204, 204, 204);
+}
+
+.brossaProducte{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 0;
+    padding-top: 15px;
 }
