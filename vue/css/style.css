@@ -362,6 +362,10 @@ body {
     transition-property: width;
     transition-duration: 0.2s;
     transition-timing-function: linear;
+    white-space: nowrap;
+    /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;
+    /* Oculta el texto que excede el área */
 }
 
 .cart-closed {
@@ -383,8 +387,7 @@ body {
 
 .cart-content {
     flex-grow: 1;
-    padding: 1rem;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .close-cart {
@@ -395,7 +398,7 @@ body {
     cursor: pointer;
 }
 
-.checkout-btn {
+.comprarCarrito {
     background-color: #C82333;
     color: white;
     border: none;
@@ -405,7 +408,7 @@ body {
     border-radius: 5px;
 }
 
-.checkout-btn:hover {
+.comprarCarrito:hover {
     background-color: #A71C24;
 }
 
@@ -419,6 +422,7 @@ body {
     position: relative;
     border-bottom: 1px solid rgb(204, 204, 204);
     margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 .cart-footer {
