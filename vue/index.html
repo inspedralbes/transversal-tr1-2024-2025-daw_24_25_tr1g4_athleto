@@ -56,113 +56,137 @@
             </div>
         </nav>
 
-        <!-- Si visiblePort es verdadero, muestra la portada -->
-        <div v-if="visiblePort" id="portada">
-            <!-- Al hacer clic, alterna entre productos visibles y la portada -->
-            <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" id="imgLandingPage">
-                <img class="card" src="./img/imgPortada.jpg">
-            </div>
-        </div>
-
-
-
-        <!-- Contenido de productos mostrado cuando visibleProd es verdadero -->
-        <div class="contentZapatos" v-if="visibleProd">
-
-            <!-- Si género es 'all', muestra todos los productos -->
-            <div v-if="genero=='all'" @click="mostrarProducte(index)" v-for="(actual, index) in llista.zapatillas"
-                :key="index" :id="'zapato' + index" class="zapatos">
-                <!-- Bucle que recorre la lista de zapatillas y muestra -->
-                <!-- Detalles del producto -->
-                <div class="dadesProducte">
-                    <img :src="actual.imatge">
-                    <div class="detalles">
-                        <div class="nomProducte"><p>{{ actual.nom }}</p></div>
-                        <div class="preuProducte"><p>{{ actual.preu }} €</p></div>
-                    </div>
+        <div id="pagina">
+            <!-- Si visiblePort es verdadero, muestra la portada -->
+            <div v-if="visiblePort" id="portada">
+                <!-- Al hacer clic, alterna entre productos visibles y la portada -->
+                <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" id="imgLandingPage">
+                    <img class="card" src="./img/imgPortada.jpg">
                 </div>
             </div>
-        </div>
 
-        <!-- Vista del producto individual cuando es verdadero -->
-        <div v-if="visibleActual">
-            <div class="product-container">
-                <div class="product-card">
-                    <!-- Botón para regresar a la vista anterior -->
-                    <img @click="mostrarProductes()" src="./img/cancelar.png" alt="Tornar enrere" id="boto-cancelar">
-                    <div class="product-left">
-                        <!-- Imagen del producto seleccionado -->
-                        <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
-                    </div>
-                    <div class="product-right">
-                        <!-- Información del producto seleccionado -->
-                        <h2 class="product-title"> {{ actual.nom }}</h2>
-                        <p class="product-description">{{actual.descripcio}}</p>
-                        <p class="product-price">{{actual.preu}}€</p>
-                        <!-- Botones para comprar o añadir al carrito -->
-                        <div class="product-buttons">
-                            <button class="buy-now-btn">Comprar ahora</button>
-                            <button class="add-to-cart-btn" @click="afegirProducte">Añadir al carrito</button>
+
+
+            <!-- Contenido de productos mostrado cuando visibleProd es verdadero -->
+            <div class="contentZapatos" v-if="visibleProd">
+
+                <!-- Si género es 'all', muestra todos los productos -->
+                <div v-if="genero=='all'" @click="mostrarProducte(index)" v-for="(actual, index) in llista.zapatillas"
+                    :key="index" :id="'zapato' + index" class="zapatos">
+                    <!-- Bucle que recorre la lista de zapatillas y muestra -->
+                    <!-- Detalles del producto -->
+                    <div class="dadesProducte">
+                        <img :src="actual.imatge">
+                        <div class="detalles">
+                            <div class="nomProducte">
+                                <p>{{ actual.nom }}</p>
+                            </div>
+                            <div class="preuProducte">
+                                <p>{{ actual.preu }} €</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-
-
-        <div v-if="visibleCar" class="fonsOscur" @click="alternarCestella"></div>
-        <!-- Carrito  -->
-        <div id="cart" :class="{ 'cart-open': visibleCar, 'cart-closed': !visibleCar }">
-            <div class="cart-header">
-                <h2><p>Carrito</p></h2>
-                <button id="close-cart" class="close-cart" @click="alternarCestella">X</button>
+            <!-- Vista del producto individual cuando es verdadero -->
+            <div v-if="visibleActual">
+                <div class="product-container">
+                    <div class="product-card">
+                        <!-- Botón para regresar a la vista anterior -->
+                        <img @click="mostrarProductes()" src="./img/cancelar.png" alt="Tornar enrere"
+                            id="boto-cancelar">
+                        <div class="product-left">
+                            <!-- Imagen del producto seleccionado -->
+                            <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
+                        </div>
+                        <div class="product-right">
+                            <!-- Información del producto seleccionado -->
+                            <h2 class="product-title"> {{ actual.nom }}</h2>
+                            <p class="product-description">{{actual.descripcio}}</p>
+                            <p class="product-price">{{actual.preu}}€</p>
+                            <!-- Botones para comprar o añadir al carrito -->
+                            <div class="product-buttons">
+                                <button class="buy-now-btn">Comprar ahora</button>
+                                <button class="add-to-cart-btn" @click="afegirProducte">Añadir al carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="cart-content">
-                <div>
-                    <ul style="padding: 0;">
-                        <li v-for="(producte, index) in carList" :key="index" class="producteCar">
-                            <div>
-                                <div><img :src="producte.imatge" alt="Imagen de producto" width="100" height="100">
-                                </div>
+
+
+
+            <div v-if="visibleCar" class="fonsOscur" @click="alternarCestella"></div>
+            <!-- Carrito  -->
+            <div id="cart" :class="{ 'cart-open': visibleCar, 'cart-closed': !visibleCar }">
+                <div class="cart-header">
+                    <h2>
+                        <p>Carrito</p>
+                    </h2>
+                    <button id="close-cart" class="close-cart" @click="alternarCestella">X</button>
+                </div>
+                <div class="cart-content">
+                    <div>
+                        <ul style="padding: 0;">
+                            <li v-for="(producte, index) in carList" :key="index" class="producteCar">
                                 <div>
-                                    <div><p>{{ producte.nom }}</p></div>
-                                    <div><p>{{ producte.preu }} €</p></div>
-                                    <div><input type="number" v-model="producte.quantitat" @input="modificarQuantitat(index)" class="inputQuantitat"></div>
+                                    <div><img :src="producte.imatge" alt="Imagen de producto" class="imatgesCar">
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <p>{{ producte.nom }}</p>
+                                        </div>
+                                        <div>
+                                            <p>{{ producte.preu }} €</p>
+                                        </div>
+                                        <div><input type="number" v-model="producte.quantitat"
+                                                @input="modificarQuantitat(index)" class="inputQuantitat"></div>
+                                    </div>
+                                </div>
+                                <div @click="eliminarProducte(index)"><img src="img/basura.png" class="brossaProducte">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cart-footer">
+                    <h3>Total del carrito: <span>{{preuCompra}} €</span></h3>
+
+                    <button class="comprarCarrito" @click="procesCheckout">Comprar</button>
+                </div>
+            </div>
+
+            <div v-if="visibleCheck" id="checkout">
+                <div class="checkoutContent">
+                    <ul style="padding: 0;" class="checkoutProductes">
+                        <li v-for="(producte, index) in carList" :key="index">
+                            <div class="checkoutProd">
+                                <div><img :src="producte.imatge" alt="Imagen de producto"></div>
+                                <div class="dadesProdCheck">
+                                    <div>
+                                        <h3>{{ producte.nom }}</h3>
+                                    </div>
+                                    <div>
+                                        <p>{{ producte.preu }} €</p>
+                                    </div>
+                                    <div>
+                                        <p>Quantitat: {{ producte.quantitat }}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div @click="eliminarProducte(index)"><img src="img/basura.png" class="brossaProducte"></div>
                         </li>
                     </ul>
                 </div>
+                <div class="checkoutFooter">
+                    <h3>Total carrito: <span>{{ preuCompra }} €</span></h3>
+                    <button class="comprarCarrito" @click="pagament">Comprar</button>
+                </div>
             </div>
-            <div class="cart-footer">
-                <h3>Total del carrito: <span>{{preuCompra}} €</span></h3>
 
-                <button class="comprarCarrito" @click="procesCheckout">Comprar</button>
-            </div>
-        </div>
-
-        <div v-if="visibleCheck" id="checkout">
-            <div>
-                <ul style="padding: 0;">
-                    <li v-for="(producte, index) in carList" :key="index" class="producteCar">
-                        <div>
-                            <div><img :src="producte.imatge" alt="Imagen de producto" width="100" height="100">
-                            </div>
-                            <div>
-                                <div><p>{{ producte.nom }}</p></div>
-                                <div><p>{{ producte.preu }} €</p></div>
-                                <div><p>Quantitat: {{ producte.preu }}</p></div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="cart-footer">
-                <h3>Total del carrito: <span>{{preuCompra}} €</span></h3>
-
-                <button class="comprarCarrito">Comprar</button>
+            <div v-if="visiblePagament" id="pagament">
+                <h3>Fes bizum a 111111111</h3>
+                <button @click="compraFeta">Bizum fet</button>
             </div>
         </div>
     </div>

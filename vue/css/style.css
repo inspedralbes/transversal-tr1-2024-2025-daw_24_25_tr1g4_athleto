@@ -450,3 +450,24 @@ body {
 .inputQuantitat{
     width: 30px;
 }
+
+.imatgesCar{
+    width: 100px;
+    height: 100px;
+}
+
+
+
+#checkout img{
+    width: 200px;
+    height: 200px;
+}
+
+.checkoutProd{
+    display: flex;
+}
+
+.dadesProdCheck{
+    flex-direction: column;
+    font-size: 1em;
+}

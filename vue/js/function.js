@@ -27,6 +27,7 @@ createApp({
       const visibleActual = ref(false); // Controla la visibilidad del detalle de un producto
       const visibleCar = ref(false); // Controla la visibilidad del carrito de compras
       const visibleCheck = ref(false);
+      const visiblePagament = ref(false);
       const carList = ref([]); // Contiene los productos dentro del carrito
       const preuCompra = ref(0); // Preu de la compra
       let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
@@ -112,6 +113,17 @@ createApp({
         visibleProd.value=false;
       }
 
+      function pagament(){
+        visibleCheck.value=false;
+        visiblePagament.value=true;
+      }
+
+      function compraFeta(){
+        alert("Compra feta!!!");
+        visiblePagament.value=false;
+        visiblePort.value=true;
+      }
+
       // Retornamos las variables y funciones 
       return {
         llista,
@@ -124,13 +136,16 @@ createApp({
         actual,
         genero,
         carList,
+        visiblePagament,
         mostrarProducte,
         mostrarProductes,
         alternarCestella,
         modificarQuantitat,
         afegirProducte,
         eliminarProducte,
-        procesCheckout
+        procesCheckout,
+        pagament,
+        compraFeta
       }
 
 
