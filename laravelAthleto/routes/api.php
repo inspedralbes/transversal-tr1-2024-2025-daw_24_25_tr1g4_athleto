@@ -1,7 +1,8 @@
 <?php
 
 // Importa controlador Productes y clases Request y Route.
-use App\Http\Controllers\Productes; 
+use App\Http\Controllers\Productes;
+use App\Http\Controllers\Users;
 use Illuminate\Http\Request;        
 use Illuminate\Support\Facades\Route; 
 
@@ -12,3 +13,4 @@ Route::get('/user', function (Request $request) {
 
 // Ruta para obtener los productos.
 Route::get("/productes", [Productes::class, "getProductes"]);
+Route::post("/buscarMail", [Users::class, "findMail"]);

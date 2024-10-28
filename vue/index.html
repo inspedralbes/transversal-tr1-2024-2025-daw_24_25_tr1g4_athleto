@@ -13,7 +13,7 @@
     <!-- Sección principal controlada por Vue.js -->
     <div id="appVue">
         <!-- Barra de navegación principal -->
-        <nav class="navbar">
+        <nav v-if="!visibleProSes" class="navbar">
             <!-- Menú principal -->
             <ul class="menu">
                 <!-- Sección Hombres -->
@@ -53,10 +53,54 @@
             <div class="icons">
                 <a href="#" class="search-icon">🔍</a>
                 <a href="#" class="cart-icon" @click="alternarCestella">🛒</a>
+                <a href="#" style="font-size: 1em;" @click="mostrarAccionsUsuari">Mi cuenta</a>
             </div>
         </nav>
 
-        <div id="pagina">
+        <div v-if="visibleOpcUsuari" @click="ocultarAccionsUsuari" class="fonsAccioUsu"></div>
+        <div v-if="visibleOpcUsuari" id="accionsUsuari">
+            <div class="contingut">
+                <div id="cancelAccUsu" @click="ocultarAccionsUsuari">✖</div>
+                <div id="enllaços">
+                    <p>Atenció al client</p>
+                    <p>Idioma</p>
+                </div>
+                <button id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ / REGISTRAR-SE</button>
+            </div>
+        </div>
+        <div v-if="visibleProSes" id="compte">
+            <div id="compteHeader"><h1>El meu compte</h1></div>
+            <!--<div v-if="!compteIniciada">-->
+                <div id="compteInfo">
+                    <h4>Registrat totalment GRATIS</h4>
+                    <p>Al registrar-te obtindras:</p>
+                    <ul>
+                        <li>Accés a ofertes exclusives</li>
+                        <li>Podras guardar el carrito i mirar-ho/moficar-ho desde qualsevol lloc</li>
+                        <li>Un descompte del 15% en la primera compra</li>
+                        <li>L'enviament et surt gratis a partir dels 40€</li>
+                        <li>Enviaments a qualsevol lloc</li>
+                    </ul>
+                </div>
+                <div id="compteMail">
+                    <div v-if="!mailEscrit">
+                        <h4>Introdueix el teu correu electrònic</h4>
+                        <input type="email" placeholder="exemple@mail.com" v-model="userMail">
+                        <button @click="verificarMailExisteix">Continuar</button>
+                    </div>
+                    <div v-else>
+                        <div v-if="mailExisteix==1">
+                            <p>El correu electrònic ja existeix.</p>
+                        </div>
+                        <div v-if="mailExisteix==0">
+                            <p>El correu electrònic no existeix.</p>
+                        </div>
+                        <img v-if="!mailExisteix" src="img/carregant.webp" width="200px">
+                    </div>
+                </div>
+            <!--</div>-->
+        </div>
+        <div v-if="!visibleProSes" id="pagina">
             <!-- Si visiblePort es verdadero, muestra la portada -->
             <div v-if="visiblePort" id="portada">
                 <!-- Al hacer clic, alterna entre productos visibles y la portada -->
@@ -141,7 +185,7 @@
                                             <p>{{ producte.preu }} €</p>
                                         </div>
                                         <div><input type="number" v-model="producte.quantitat"
-                                                @input="modificarQuantitat(index)" class="inputQuantitat"></div>
+                                                @input="revisarQuantitat(index)" class="inputQuantitat"></div>
                                     </div>
                                 </div>
                                 <div @click="eliminarProducte(index)"><img src="img/basura.png" class="brossaProducte">

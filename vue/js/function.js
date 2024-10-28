@@ -1,8 +1,5 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes } from './communicationManager.js';
-
-
-
+import { getProductes,  postMail } from './communicationManager.js';
 
 // Creación de la instancia de la aplicación Vue
 createApp({
@@ -28,14 +25,33 @@ createApp({
       const visibleCar = ref(false); // Controla la visibilidad del carrito de compras
       const visibleCheck = ref(false);
       const visiblePagament = ref(false);
+      const visibleOpcUsuari = ref(false);
+      const visibleProSes = ref(false);
+      const mailEscrit = ref(false);
+      const mailExisteix = ref();
+      const userMail = ref("");
       const carList = ref([]); // Contiene los productos dentro del carrito
       const preuCar = ref(0); // Preu del carrito
       const compraList = ref([]); // Conte els productes que es compraran al checkout
       const preuCompra = ref(0); // Preu de la compra
-      const index = ref(null);
       let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
-      //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
       let actual = ref();
+      //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
+
+      function mostrarAccionsUsuari(){
+        visibleOpcUsuari.value=true;
+      }
+
+      function ocultarAccionsUsuari(){
+        visibleOpcUsuari.value=false;
+      }
+      
+      async function verificarMailExisteix(){
+        mailEscrit.value=true;
+
+        const resp=await postMail(userMail.value);
+        mailExisteix.value=resp.user?1:0;
+      }
 
       // Función que se ejecuta cuando se selecciona un producto de la lista
       function mostrarProducte(data) {
@@ -91,7 +107,7 @@ createApp({
         visibleActual.value=false;
       }
 
-      function modificarQuantitat(index){
+      function revisarQuantitat(index){
         if (carList.value[index].quantitat==0) carList.value.splice(index, 1);
         //añadir else para si la cantidad es mayor al stock
         
@@ -147,14 +163,24 @@ createApp({
         obrirCheckout();
       }
 
+      function mostrarProcesSessio(){
+        visibleOpcUsuari.value=false;
+        visibleProSes.value=true;
+      }
+
       // Retornamos las variables y funciones 
       return {
+        userMail,
+        mailEscrit,
+        mailExisteix,
         llista,
         visibleProd,
         visiblePort,
         visibleActual,
         visibleCar,
         visibleCheck,
+        visibleOpcUsuari,
+        visibleProSes,
         preuCar,
         preuCompra,
         actual,
@@ -162,16 +188,20 @@ createApp({
         carList,
         compraList,
         visiblePagament,
+        verificarMailExisteix,
         mostrarProducte,
         mostrarProductes,
         alternarCestella,
-        modificarQuantitat,
+        revisarQuantitat,
         afegirProducte,
         eliminarProducte,
         procesCheckout,
         pagament,
         compraFeta,
-        compraRapida
+        compraRapida,
+        mostrarAccionsUsuari,
+        ocultarAccionsUsuari,
+        mostrarProcesSessio
       }
 
 

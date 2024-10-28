@@ -35,5 +35,13 @@ class DatabaseSeeder extends Seeder
                 'actiu'=> $producte['actiu'],
             ]);
         }
+
+        User::create([
+            'nom'=> "example",
+            'cognom'=> "siuu",
+            'nom_usuari'=> "soyEjemplo",
+            'email'=> "example@example.com",
+            'contrasenya'=> "1234",
+        ]);
     }
 }
