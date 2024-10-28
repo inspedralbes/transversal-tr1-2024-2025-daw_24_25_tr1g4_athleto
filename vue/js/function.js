@@ -124,6 +124,41 @@ createApp({
         visiblePort.value=true;
       }
 
+      // funcionalidad vue buscador
+
+      const searchVisible = ref(false);  // Controla si el campo de búsqueda está visible o no
+    const searchQuery = ref('');       // Almacena la consulta de búsqueda
+    const searchResults = ref([]);     // Almacena los resultados de búsqueda
+
+    // Alterna la visibilidad del campo de búsqueda
+    function toggleSearch() {
+      searchVisible.value = !searchVisible.value;
+    }
+
+    // Ejecuta la búsqueda al presionar Enter
+    async function performSearch() {
+      if (searchQuery.value.trim()) {
+        try {
+          // Realiza la petición al backend para buscar productos
+          const response = await axios.get(`/search`, {
+            params: { query: searchQuery.value },
+          });
+          searchResults.value = response.data; // Guarda los resultados
+        } catch (error) {
+          console.error("Error al buscar productos:", error);
+        }
+      }
+    }
+
+    // Retornar las variables y métodos necesarios para el buscador
+    return {
+      searchVisible,
+      searchQuery,
+      searchResults,
+      toggleSearch,
+      performSearch
+    };
+      
       // Retornamos las variables y funciones 
       return {
         llista,
@@ -149,6 +184,12 @@ createApp({
       }
 
 
+
+      
+
     }
+    
+    
+    
 
     }).mount('#appVue'); // Monta la aplicación en el elemento con id 'appVue'
