@@ -12,3 +12,11 @@ Route::get('/user', function (Request $request) {
 
 // Ruta para obtener los productos.
 Route::get("/productes", [Productes::class, "getProductes"]);
+
+Route::post("/productes/add" ,[Productes::class, "addProductes"] );
+
+Route::post("/productes/edit/{id}" ,[Productes::class, "editProducte"] );
+
+Route::get("/productes/rem/{id}" ,[Productes::class, "remProducte"] );
+
+Route::get("/productes/mostrar/{id}" ,[Productes::class, "mostrarProducte"] ); 
