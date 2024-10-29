@@ -1,9 +1,9 @@
 <?php
 
-// Importa controlador Productes y clases Request y Route.
 use App\Http\Controllers\Productes; 
 use Illuminate\Http\Request;        
 use Illuminate\Support\Facades\Route; 
+use App\Http\Controllers\Categories;
 
 // Ruta para obtener la información del usuario 
 Route::get('/user', function (Request $request) {
@@ -12,3 +12,10 @@ Route::get('/user', function (Request $request) {
 
 // Ruta para obtener los productos.
 Route::get("/productes", [Productes::class, "getProductes"]);
+
+// Rutas para el CRUD de categorías
+Route::get('/categories', [Categories::class, 'index']);//funciona
+Route::get('/categories/mostrar/{id}', [Categories::class, 'show']);//funciona
+Route::post('/categories/guardar', [Categories::class, 'store']); //funciona
+Route::post('/categories/actualizar/{id}', [Categories::class, 'update']); //funciona
+Route::get('/categories/eliminar/{id}', [Categories::class, 'destroy']); //funciona
