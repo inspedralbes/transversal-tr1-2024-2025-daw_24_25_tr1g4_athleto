@@ -1,11 +1,10 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes,  postMail } from './communicationManager.js';
+import { getProductes,  postMail, login } from './communicationManager.js';
 
 // Creación de la instancia de la aplicación Vue
 createApp({
 
   setup() {
-
     // `llista`contiene una lista de productos 
     let llista = reactive({ zapatillas: [] });
 
@@ -28,8 +27,11 @@ createApp({
       const visibleOpcUsuari = ref(false);
       const visibleProSes = ref(false);
       const mailEscrit = ref(false);
+      const showPass = ref(false);
+      const sessioIniciada = ref(false);
       const mailExisteix = ref();
       const userMail = ref("");
+      const userPass = ref("");
       const carList = ref([]); // Contiene los productos dentro del carrito
       const preuCar = ref(0); // Preu del carrito
       const compraList = ref([]); // Conte els productes que es compraran al checkout
@@ -50,7 +52,11 @@ createApp({
         mailEscrit.value=true;
 
         const resp=await postMail(userMail.value);
-        mailExisteix.value=resp.user?1:0;
+        mailExisteix.value=resp.user?1:2;
+      }
+
+      function loginUsuari(){
+        login(userMail, userPass);
       }
 
       // Función que se ejecuta cuando se selecciona un producto de la lista
@@ -157,7 +163,7 @@ createApp({
       }
 
       function compraRapida(){
-        compraList.value=[{...toRaw(actual.value)}];
+        compraList.value=[{...toRaw(actual.value), quantitat: 1}];
         //compraList.value.push({ ...toRaw(actual.value), quantitat: 1 });
         preuCompra.value=actual.value.preu;
         obrirCheckout();
@@ -171,6 +177,7 @@ createApp({
       // Retornamos las variables y funciones 
       return {
         userMail,
+        userPass,
         mailEscrit,
         mailExisteix,
         llista,
@@ -181,6 +188,8 @@ createApp({
         visibleCheck,
         visibleOpcUsuari,
         visibleProSes,
+        sessioIniciada,
+        showPass,
         preuCar,
         preuCompra,
         actual,
@@ -189,6 +198,7 @@ createApp({
         compraList,
         visiblePagament,
         verificarMailExisteix,
+        loginUsuari,
         mostrarProducte,
         mostrarProductes,
         alternarCestella,

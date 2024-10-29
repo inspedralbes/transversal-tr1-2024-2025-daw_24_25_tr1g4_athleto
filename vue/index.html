@@ -53,7 +53,7 @@
             <div class="icons">
                 <a href="#" class="search-icon">🔍</a>
                 <a href="#" class="cart-icon" @click="alternarCestella">🛒</a>
-                <a href="#" style="font-size: 1em;" @click="mostrarAccionsUsuari">Mi cuenta</a>
+                <a href="#" style="font-size: 1em;" @click="mostrarAccionsUsuari">El meu compte</a>
             </div>
         </nav>
 
@@ -65,14 +65,17 @@
                     <p>Atenció al client</p>
                     <p>Idioma</p>
                 </div>
-                <button id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ / REGISTRAR-SE</button>
+                <button v-if="!sessioIniciada" id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ / REGISTRAR-SE</button>
+                <button v-if="sessioIniciada">Dades usuari</button>
             </div>
         </div>
         <div v-if="visibleProSes" id="compte">
-            <div id="compteHeader"><h1>El meu compte</h1></div>
-            <!--<div v-if="!compteIniciada">-->
+            <div id="compteHeader">
+                <h1>El meu compte</h1>
+            </div>
+            <div v-if="!mailExisteix" class="funcioUsuari">
                 <div id="compteInfo">
-                    <h4>Registrat totalment GRATIS</h4>
+                    <h4 style="text-align: center;">Registrat totalment GRATIS</h4>
                     <p>Al registrar-te obtindras:</p>
                     <ul>
                         <li>Accés a ofertes exclusives</li>
@@ -83,22 +86,28 @@
                     </ul>
                 </div>
                 <div id="compteMail">
-                    <div v-if="!mailEscrit">
-                        <h4>Introdueix el teu correu electrònic</h4>
-                        <input type="email" placeholder="exemple@mail.com" v-model="userMail">
+                    <h4>Introdueix el teu correu electrònic</h4>
+                    <div style="text-align: center;">
+                        <input type="email" placeholder="example@example.com" v-model="userMail">
                         <button @click="verificarMailExisteix">Continuar</button>
                     </div>
-                    <div v-else>
-                        <div v-if="mailExisteix==1">
-                            <p>El correu electrònic ja existeix.</p>
-                        </div>
-                        <div v-if="mailExisteix==0">
-                            <p>El correu electrònic no existeix.</p>
-                        </div>
-                        <img v-if="!mailExisteix" src="img/carregant.webp" width="200px">
-                    </div>
                 </div>
-            <!--</div>-->
+            </div>
+            <div v-else class="funcioUsuari">
+                <div v-if="mailExisteix==1">
+                    <h2>Inciar sessió</h2>
+                    <h4>Introdueix la contrasenya</h4>
+                    <div class="passInput">
+                        <input :type="showPass?'text':'password'" v-model="userPass">
+                        <img @mousedown="showPass=true" @mouseup="showPass=false" @mouseleave="showPass=false" src="img/ull.png" class="ullPass">
+                    </div>
+                    <button @click="loginUsuari">Login</button>
+                </div>
+                <div v-if="mailExisteix==2">
+                    <h2>Registre d'usuari</h2>
+                    <h4>Dades de l'usuari</h4>
+                </div>
+            </div>
         </div>
         <div v-if="!visibleProSes" id="pagina">
             <!-- Si visiblePort es verdadero, muestra la portada -->
@@ -138,8 +147,7 @@
                 <div class="product-container">
                     <div class="product-card">
                         <!-- Botón para regresar a la vista anterior -->
-                        <img @click="mostrarProductes" src="./img/cancelar.png" alt="Tornar enrere"
-                            id="boto-cancelar">
+                        <img @click="mostrarProductes" src="./img/cancelar.png" alt="Tornar enrere" id="boto-cancelar">
                         <div class="product-left">
                             <!-- Imagen del producto seleccionado -->
                             <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
