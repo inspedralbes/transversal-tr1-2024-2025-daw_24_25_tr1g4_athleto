@@ -126,41 +126,42 @@ createApp({
 
       // funcionalidad vue buscador
 
-      const searchVisible = ref(false);  // Controla si el campo de búsqueda está visible o no
-    const searchQuery = ref('');       // Almacena la consulta de búsqueda
-    const searchResults = ref([]);     // Almacena los resultados de búsqueda
+      const visibilidad_busqueda = ref(false);  // Controla si el campo de búsqueda está visible o no
+      const consulta_producte = ref('');       // Almacena la consulta de búsqueda
+      const resultat_busqueda = ref([]);     // Almacena los resultados de búsqueda
 
     // Alterna la visibilidad del campo de búsqueda
-    function toggleSearch() {
-      searchVisible.value = !searchVisible.value;
+    function alternar_visibilitat() {
+      visibilidad_busqueda.value = !visibilidad_busqueda.value;
     }
+
 
     // Ejecuta la búsqueda al presionar Enter
-    async function performSearch() {
-      if (searchQuery.value.trim()) {
-        try {
-          // Realiza la petición al backend para buscar productos
-          const response = await axios.get(`/search`, {
-            params: { query: searchQuery.value },
-          });
-          searchResults.value = response.data; // Guarda los resultados
-        } catch (error) {
-          console.error("Error al buscar productos:", error);
-        }
-      }
-    }
+function inicia_busqueda() {
+  if (consulta_producte.value.trim()) {
+    // Filtrar productos basados en la consulta
+    resultat_busqueda.value = llista.zapatillas.filter(producto => 
+      producto.nom.toLowerCase().includes(consulta_producte.value.toLowerCase())
+    );
 
-    // Retornar las variables y métodos necesarios para el buscador
-    return {
-      searchVisible,
-      searchQuery,
-      searchResults,
-      toggleSearch,
-      performSearch
-    };
-      
-      // Retornamos las variables y funciones 
+    // Si no se encuentran resultados
+    if (resultat_busqueda.value.length === 0) {
+      console.log("No se encontraron productos.");
+    } else {
+      console.log(resultat_busqueda.value); // Verifica que los resultados se obtengan correctamente
+    }
+  } else {
+    // Si la consulta está vacía, puedes querer limpiar los resultados de búsqueda
+    resultat_busqueda.value = [];
+  }
+}
+
+
+
+
+  
       return {
+      // Retornamos las variables y funciones 
         llista,
         visibleProd,
         visiblePort,
@@ -180,7 +181,14 @@ createApp({
         eliminarProducte,
         procesCheckout,
         pagament,
-        compraFeta
+        compraFeta,
+
+        // Retornar las variables y métodos necesarios para el buscador
+      searchVisible: visibilidad_busqueda,
+      searchQuery: consulta_producte,
+      searchResults: resultat_busqueda,
+      toggleSearch: alternar_visibilitat,
+      performSearch: inicia_busqueda
       }
 
 

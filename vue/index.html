@@ -192,7 +192,6 @@
 
 
         <!-- html busquedas -->
-    
         <!-- Iconos de búsqueda y carrito -->
         <div class="icons" style="display: flex; align-items: center;">
             <!-- Campo de búsqueda (oculto por defecto) -->
@@ -201,20 +200,18 @@
                   type="text"   
                   v-model="searchQuery" 
                   @keyup.enter="performSearch" 
-                  placeholder="Buscar productos..."
+                  placeholder="Busca productes..."
                 />
             </div>
             <!-- Iconos de búsqueda y carrito -->
             <a href="#" class="search-icon" @click.prevent="toggleSearch">🔍</a>
             <a href="#" class="cart-icon" @click="alternarCestella">🛒</a>
+
+            
         </div>
-      
-        <!-- Mostrar resultados de búsqueda en una lista desplegable -->
-        <div v-if="searchResults.length" class="search-results">
-            <ul>
-                <li v-for="product in searchResults" :key="product.id">{{ producte.nom }}</li>
-            </ul>
-        </div>
+        
+
+
       </div>
     </div>
 
