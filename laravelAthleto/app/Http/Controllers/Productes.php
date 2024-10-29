@@ -11,7 +11,8 @@ class Productes extends Controller
     {
         // Obtiene todos los productos de la base de datos
         $productes = Producte::all();
-        return response()->json($productes); // Devuelve los productos en formato JSON
+      //  return response()->json($productes); // Devuelve los productos en formato JSON
+         return view('prod.index', compact('productes'));
     }
     public function addProductes(Request $request)
     {
@@ -20,6 +21,7 @@ class Productes extends Controller
         return response()->json($producte, 201);
     }
 
+    
     public function mostrarProducte($id)
     {
         $producte = Producte::findOrFail($id);
@@ -33,10 +35,23 @@ class Productes extends Controller
         return response()->json("EDITADO CORRECTAMENTE");
     }
 
+
+    public function crearProductes(){
+        
+        return view('prod.create');
+
+    }
+    public function edit($id)
+    {
+      $prod = Producte::find($id);
+      return view('prod.edit', compact('prod'));
+    }
+
     public function remProducte($id)
     {
         Producte::destroy($id);
-        return response()->json(null, 204);
+
+        Productes::getProductes();
     }
 
 }
