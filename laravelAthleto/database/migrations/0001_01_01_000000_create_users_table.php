@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('cognom');
             $table->string('nom_usuari')->unique();
             $table->string('email')->unique();
-            $table->string('contrasenya');
+            $table->string('password');
             $table->integer('rol')->default(0);
             $table->boolean('actiu')->default(true);
-            $table->string('adreça')->nullable();
+            $table->string('adreca')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

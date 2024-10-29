@@ -8,6 +8,7 @@ use App\Models\Producte;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -41,7 +42,7 @@ class DatabaseSeeder extends Seeder
             'cognom'=> "siuu",
             'nom_usuari'=> "soyEjemplo",
             'email'=> "example@example.com",
-            'contrasenya'=> "1234",
+            'password'=> Hash::make("1234"),
         ]);
     }
 }

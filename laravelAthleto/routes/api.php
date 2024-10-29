@@ -13,4 +13,6 @@ Route::get('/user', function (Request $request) {
 
 // Ruta para obtener los productos.
 Route::get("/productes", [Productes::class, "getProductes"]);
+Route::get("/user", [Users::class, "retornarDadesUsuari"]);
 Route::post("/buscarMail", [Users::class, "findMail"]);
+Route::post("/login", [Users::class, "login"]);
