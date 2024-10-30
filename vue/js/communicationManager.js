@@ -30,11 +30,11 @@ export async function login(email, password){
     const URL=`${laravel.URL}/login`;
     const response = await fetch(URL, {
         method: 'POST',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({email, password}),
-        //credentials: 'include' //me da problemas de cors
     });
 
     if (!response.ok) return "error";
@@ -47,10 +47,10 @@ export async function obtenirDadesUser() {
     const URL = `${laravel.URL}/user`;
     const response = await fetch(URL, {
         method: 'GET',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
         },
-        credentials: 'include', //no va por el cors
     });
 
     if (response.ok) {

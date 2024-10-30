@@ -12,13 +12,7 @@ createApp({
     // Se ejecuta antes del mount(montar)
     onBeforeMount(async () => {
       // Obtenemos los productos 
-      try {
-        dadesUser.value = await obtenirDadesUser();
-        mailEscrit.value = 3;
-        console.log('Datos del usuario:', dadesUser.value);
-      } catch (error) {
-        console.log('No se pudo obtener los datos del usuario:', error.message);
-      }
+      
       const data = await getProductes();
       // Guardar los productos obtenidos
       llista.zapatillas = data;
@@ -76,6 +70,11 @@ createApp({
       document.cookie = `usuari_actiu=${dadesUser.value.usuari.actiu}; path=/; max-age=3600; SameSite=Strict; Secure`;
       document.cookie = `usuari_adreca=${dadesUser.value.usuari.adreca}; path=/; max-age=3600; SameSite=Strict; Secure`;*/
       if (dadesUser.value != "error") mailExisteix.value = 3;
+    }
+
+    async function infoUser() {
+      dadesUser.value=await obtenirDadesUser();
+      console.log(dadesUser.value);
     }
 
     // Función que se ejecuta cuando se selecciona un producto de la lista
@@ -231,7 +230,8 @@ createApp({
       compraRapida,
       mostrarAccionsUsuari,
       ocultarAccionsUsuari,
-      mostrarProcesSessio
+      mostrarProcesSessio,
+      infoUser
     }
 
 
