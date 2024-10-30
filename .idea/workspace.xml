@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e72f784e-7fa4-46ca-b850-72081beabb11" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/laravelAthleto/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravelAthleto/routes/api.php" afterDir="false" />
-    </list>
+    <list default="true" id="e72f784e-7fa4-46ca-b850-72081beabb11" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,7 +142,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "crudCategories",
     "last_opened_file_path": "C:/Users/ishaa/Desktop/transversal-tr1-2024-2025-daw_24_25_tr1g4_athleto",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -177,7 +175,7 @@
       <option name="presentableId" value="Default" />
       <updated>1730186977087</updated>
       <workItem from="1730186979116" duration="24000" />
-      <workItem from="1730187005650" duration="1820000" />
+      <workItem from="1730187005650" duration="2419000" />
     </task>
     <servers />
   </component>
