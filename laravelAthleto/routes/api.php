@@ -12,3 +12,5 @@ Route::get('/user', function (Request $request) {
 
 // Ruta para obtener los productos.
 Route::get("/productes", [Productes::class, "getProductes"]);
+
+ 
