@@ -40,7 +40,8 @@ class Productes extends Controller
     {
         $producte = Producte::findOrFail($id);
         $producte->update($request->all());
-        return response()->json("EDITADO CORRECTAMENTE");
+        return redirect()->route('prod.index')->with('success', 'Producto eliminado con éxito.');
+ 
     }
 
 
