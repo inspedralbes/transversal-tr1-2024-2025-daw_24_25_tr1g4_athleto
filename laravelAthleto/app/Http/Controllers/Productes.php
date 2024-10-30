@@ -7,13 +7,21 @@ use App\Models\Producte;
 
 class Productes extends Controller
 {
-    public function getProductes()
+    public function getProductes1()
     {
         // Obtiene todos los productos de la base de datos
         $productes = Producte::all();
       //  return response()->json($productes); // Devuelve los productos en formato JSON
          return view('prod.index', compact('productes'));
     }
+    public function getProductes()
+    {
+        // Obtiene todos los productos de la base de datos
+        $productes = Producte::all();
+      //  return response()->json($productes); // Devuelve los productos en formato JSON
+        return response()->json($productes);
+    }
+
     public function addProductes(Request $request)
     {
         $producte = Producte::create($request->all());
@@ -51,7 +59,7 @@ class Productes extends Controller
     {
         Producte::destroy($id);
 
-        Productes::getProductes();
+        
     }
 
 }

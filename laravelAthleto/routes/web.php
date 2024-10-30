@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 
 
-Route::get("/productes", [Productes::class, "getProductes"])->name('prod.index');
+Route::get("/productes", [Productes::class, "getProductes1"])->name('prod.index');
 
 Route::get("/productes/crear", [Productes::class, "crearProductes"])->name('prod.create');
 

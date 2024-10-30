@@ -11,14 +11,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum'); 
 
 // Ruta para obtener los productos.
-//Route::get("/productes", [Productes::class, "getProductes"])->name('prod.index');
-
-//Route::post("/productes/add" ,[Productes::class, "addProductes"] )->name('prod.create');
-
-//Route::post("/productes/edit/{id}" ,[Productes::class, "editProducte"] );
-
-//Route::get("/productes/rem/{id}" ,[Productes::class, "remProducte"] );
-
-//Route::get("/productes/mostrar/{id}" ,[Productes::class, "mostrarProducte"] ); 
+Route::get("/productes", [Productes::class, "getProductes"]);
 
  
