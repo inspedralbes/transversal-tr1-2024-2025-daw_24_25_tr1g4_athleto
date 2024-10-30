@@ -12,7 +12,16 @@ createApp({
     // Se ejecuta antes del mount(montar)
     onBeforeMount(async () => {
       // Obtenemos los productos 
-      
+      if (getCookie('access_token')) {
+        dadesUser.value=await obtenirDadesUser(getCookie('access_token'));
+      }//probar las dos
+      /*try {
+        dadesUser.value = await obtenirDadesUser();
+        mailEscrit.value = 3;
+        console.log('Datos del usuario:', dadesUser.value);
+      } catch (error) {
+        console.log('No se pudo obtener los datos del usuario:', error.message);
+      }*/
       const data = await getProductes();
       // Guardar los productos obtenidos
       llista.zapatillas = data;
@@ -42,6 +51,22 @@ createApp({
     let actual = ref();
     //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
 
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
     function mostrarAccionsUsuari() {
       visibleOpcUsuari.value = true;
     }
@@ -58,7 +83,8 @@ createApp({
     }
 
     async function loginUsuari() {
-      dadesUser.value = await login(userMail.value, userPass.value);
+      document.cookie = `access_token=${await login(userMail.value, userPass.value)}; path=/; max-age=900; SameSite=Strict; Secure`;
+      await infoUser();
       console.log(dadesUser.value);
 
       /*document.cookie = `usuari_id=${dadesUser.value.usuari.id}; path=/; max-age=3600; SameSite=Strict; Secure`;
@@ -73,7 +99,7 @@ createApp({
     }
 
     async function infoUser() {
-      dadesUser.value=await obtenirDadesUser();
+      dadesUser.value=await obtenirDadesUser(getCookie('access_token'));
       console.log(dadesUser.value);
     }
 

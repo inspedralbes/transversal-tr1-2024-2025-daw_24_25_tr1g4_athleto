@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 
 class Users extends Controller
 {
@@ -39,47 +39,23 @@ class Users extends Controller
         ]);
 
         if (Auth::attempt($request->only('email', 'password'))) {
-            //dd(auth()->user());
             $user = Auth::user();
-            //dd(Auth::check());
-            $accessToken = $user->createToken('Access Token')->plainTextToken;
-            $cookie = cookie('access_token', $accessToken, 60, '/', null, false, true, false, 'Lax');
-            //Auth::login($user);
-            //$cookie = cookie('access_token', $accessToken, 60, '/', null, true, true, false, 'Lax');//menos estricto con lo del samesite
+            //$accessToken = $user->createToken('Access Token')->plainTextToken;
+            $accessToken = $user->createToken('Access Token', [], Carbon::now()->addMinutes(15))->plainTextToken;
+            //$cookie = cookie('access_token', $accessToken, 60, '/', null, false, true, false, 'Lax');
 
-            //$user->makeHidden(['password']); //no hace falta ya que ya lo tengo en el modelo $hidden
-            //dd(Auth::user());
             return response()->json([
                 'missatge' => 'Inici de sessio exitos',
                 'usuari' => $user,
-                //'access_token'=> $accessToken,    
-            ])->cookie($cookie);
+                'access_token'=> $accessToken,    
+            ]);
+            //])->cookie($cookie);
         }
         return response()->json(['error' => 'Dades incorrectes'], 401);
     }
 
-    public function login2(Request $request)
-    {
-        $credentials = [
-            "email" => $request->email,
-            "password" => $request->password,
-        ];
-
-        $remember = ($request->has('remember') ? true : false);
-
-        if (Auth::attempt($credentials, $remember)) {
-            $request->session()->regenerate();
-        }
-    }
-
-    protected function verificarUsuari()
-    {
-        return Auth::check();
-    }
-
     public function retornarDadesUsuari()
     {   
-        // dd(Auth::user());
         if (!Auth::check()) {
             return response()->json(['error' => 'No autenticado'], 401);
         }

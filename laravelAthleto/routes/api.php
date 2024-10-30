@@ -14,6 +14,6 @@ Route::get('/user', function (Request $request) {
 Route::get("/productes", [Productes::class, "getProductes"]);
 Route::post("/buscarMail", [Users::class, "findMail"]);
 Route::post("/login", action: [Users::class, "login"]);
-//Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::get("/user", [Users::class, "retornarDadesUsuari"]);
-//});
+});

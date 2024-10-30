@@ -1,4 +1,3 @@
-
 const laravel = {URL: "http://localhost:8000/api"}
 
 export async function getProductes() {
@@ -30,7 +29,6 @@ export async function login(email, password){
     const URL=`${laravel.URL}/login`;
     const response = await fetch(URL, {
         method: 'POST',
-        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -40,16 +38,16 @@ export async function login(email, password){
     if (!response.ok) return "error";
     const data = await response.json();
 
-    return data.usuari;
+    return data.access_token;
 }
 
-export async function obtenirDadesUser() {
+export async function obtenirDadesUser(access_token) {
     const URL = `${laravel.URL}/user`;
     const response = await fetch(URL, {
         method: 'GET',
-        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`,
         },
     });
 
