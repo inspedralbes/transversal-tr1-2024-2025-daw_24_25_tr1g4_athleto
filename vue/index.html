@@ -71,18 +71,18 @@
             <div class="contentZapatos" v-if="visibleProd">
 
                 <!-- Si género es 'all', muestra todos los productos -->
-                <div v-if="genero=='all'" @click="mostrarProducte(index)" v-for="(actual, index) in llista.zapatillas"
+                <div v-if="genero=='all'" @click="mostrarProducte(index)" v-for="(prod, index) in llista.zapatillas"
                     :key="index" :id="'zapato' + index" class="zapatos">
                     <!-- Bucle que recorre la lista de zapatillas y muestra -->
                     <!-- Detalles del producto -->
                     <div class="dadesProducte">
-                        <img :src="actual.imatge">
+                        <img :src="prod.imatge">
                         <div class="detalles">
                             <div class="nomProducte">
-                                <p>{{ actual.nom }}</p>
+                                <p>{{ prod.nom }}</p>
                             </div>
                             <div class="preuProducte">
-                                <p>{{ actual.preu }} €</p>
+                                <p>{{ prod.preu }} €</p>
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                 <div class="product-container">
                     <div class="product-card">
                         <!-- Botón para regresar a la vista anterior -->
-                        <img @click="mostrarProductes()" src="./img/cancelar.png" alt="Tornar enrere"
+                        <img @click="mostrarProductes" src="./img/cancelar.png" alt="Tornar enrere"
                             id="boto-cancelar">
                         <div class="product-left">
                             <!-- Imagen del producto seleccionado -->
@@ -107,7 +107,7 @@
                             <p class="product-price">{{actual.preu}}€</p>
                             <!-- Botones para comprar o añadir al carrito -->
                             <div class="product-buttons">
-                                <button class="buy-now-btn">Comprar ahora</button>
+                                <button class="buy-now-btn" @click="compraRapida">Comprar ahora</button>
                                 <button class="add-to-cart-btn" @click="afegirProducte">Añadir al carrito</button>
                             </div>
                         </div>
@@ -151,7 +151,7 @@
                     </div>
                 </div>
                 <div class="cart-footer">
-                    <h3>Total del carrito: <span>{{preuCompra}} €</span></h3>
+                    <h3>Total del carrito: <span>{{ preuCar }} €</span></h3>
 
                     <button class="comprarCarrito" @click="procesCheckout">Comprar</button>
                 </div>
@@ -160,7 +160,7 @@
             <div v-if="visibleCheck" id="checkout">
                 <div class="checkoutContent">
                     <ul style="padding: 0;" class="checkoutProductes">
-                        <li v-for="(producte, index) in carList" :key="index">
+                        <li v-for="(producte, index) in compraList" :key="index">
                             <div class="checkoutProd">
                                 <div><img :src="producte.imatge" alt="Imagen de producto"></div>
                                 <div class="dadesProdCheck">
@@ -181,6 +181,7 @@
                 <div class="checkoutFooter">
                     <h3>Total carrito: <span>{{ preuCompra }} €</span></h3>
                     <button class="comprarCarrito" @click="pagament">Comprar</button>
+                    <button class="cancelarCompra" @click="mostrarProductes">Continuar comprant</button>
                 </div>
             </div>
 

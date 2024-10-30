@@ -412,6 +412,20 @@ body {
     background-color: #A71C24;
 }
 
+.cancelarCompra{
+    background-color: #CCCCCC;
+    color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.cancelarCompra:hover{
+    background-color: #a8a7a7;
+}
+
 .zapatos img {
     height: 200px;
     width: 200px;
@@ -455,8 +469,6 @@ body {
     width: 100px;
     height: 100px;
 }
-
-
 
 #checkout img{
     width: 200px;

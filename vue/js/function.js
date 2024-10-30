@@ -29,18 +29,24 @@ createApp({
       const visibleCheck = ref(false);
       const visiblePagament = ref(false);
       const carList = ref([]); // Contiene los productos dentro del carrito
+      const preuCar = ref(0); // Preu del carrito
+      const compraList = ref([]); // Conte els productes que es compraran al checkout
       const preuCompra = ref(0); // Preu de la compra
+      const index = ref(null);
       let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
-      const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
+      //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
+      let actual = ref();
 
       // Función que se ejecuta cuando se selecciona un producto de la lista
       function mostrarProducte(data) {
-        // Actualiza el objeto `actual` con los detalles del producto seleccionado
-        actual.nom = llista.zapatillas[data].nom;
+        actual.value = llista.zapatillas[data];
+        
+        /*actual.nom = llista.zapatillas[data].nom;
         actual.preu = llista.zapatillas[data].preu;
         actual.imatge = llista.zapatillas[data].imatge;
         actual.descripcio = llista.zapatillas[data].descripcio;
-        actual.genero = llista.zapatillas[data].genero;
+        actual.genero = llista.zapatillas[data].genero;*/
+
         // Muestra el producto seleccionado y oculta la lista de productos
         visibleActual.value = true;
         visibleProd.value = false;
@@ -48,8 +54,9 @@ createApp({
 
       // Función que vuelve a mostrar la lista de productos y oculta el producto actual
       function mostrarProductes() {
-        visibleProd.value = true;
         visibleActual.value = false;
+        visibleCheck.value = false;
+        visibleProd.value = true;
       }
 
       // Función que alterna la visibilidad del carrito de compras
@@ -58,7 +65,7 @@ createApp({
       }
 
       function trobarProducte(){
-        return carList.value.find(prod => prod.nom==actual.nom);//meterle && y comparar size(talla bamba)
+        return carList.value.find(prod => prod.nom==actual.value.nom);//meterle && y comparar size(talla bamba)
 
         //cuando añada las tallas quizas deberia cambiar esta parte y tambien comparar la talla
         //hacer un with en el controllador para pillar tmb la talla y que seleccione que talla tiene con input, 
@@ -77,7 +84,7 @@ createApp({
       function afegirProducte() {
         let producte = trobarProducte();
         if (producte) producte.quantitat++;
-        else carList.value.push({ ...toRaw(actual), quantitat: 1 });
+        else carList.value.push({ ...toRaw(actual.value), quantitat: 1 });
         preuCarrito();
         alternarCestella();
         visibleProd.value=true;
@@ -98,19 +105,19 @@ createApp({
 
       //Serveix per actualitzar el preu del carrito segons els productes dins de carList
       function preuCarrito() {
-        preuCompra.value = 0;
+        preuCar.value = 0;
 
         carList.value.forEach(producte => {
           console.log(producte.quantitat);
-          preuCompra.value += parseFloat(producte.preu)*producte.quantitat;
-          console.log(preuCompra.value);
+          preuCar.value += parseFloat(producte.preu)*producte.quantitat;
+          console.log(preuCar.value);
         });
       }
 
       function procesCheckout(){
-        visibleCheck.value=true;
-        visibleCar.value=false;
-        visibleProd.value=false;
+        compraList.value=carList.value;
+        preuCompra.value=preuCar.value;
+        obrirCheckout();
       }
 
       function pagament(){
@@ -124,6 +131,22 @@ createApp({
         visiblePort.value=true;
       }
 
+
+      function obrirCheckout(){
+        visibleCheck.value=true;
+        visiblePort.value=false;
+        visibleActual.value=false;
+        visibleCar.value=false;
+        visibleProd.value=false;
+      }
+
+      function compraRapida(){
+        compraList.value=[{...toRaw(actual.value)}];
+        //compraList.value.push({ ...toRaw(actual.value), quantitat: 1 });
+        preuCompra.value=actual.value.preu;
+        obrirCheckout();
+      }
+
       // Retornamos las variables y funciones 
       return {
         llista,
@@ -132,10 +155,12 @@ createApp({
         visibleActual,
         visibleCar,
         visibleCheck,
+        preuCar,
         preuCompra,
         actual,
         genero,
         carList,
+        compraList,
         visiblePagament,
         mostrarProducte,
         mostrarProductes,
@@ -145,7 +170,8 @@ createApp({
         eliminarProducte,
         procesCheckout,
         pagament,
-        compraFeta
+        compraFeta,
+        compraRapida
       }
 
 
