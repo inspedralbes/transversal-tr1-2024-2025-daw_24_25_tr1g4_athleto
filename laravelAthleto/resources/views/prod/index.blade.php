@@ -40,7 +40,7 @@ integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6
                     <form action="{{ route('prod.destroy', $post->id) }}" method="get">
                       @csrf
                       
-                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                      <button type="submit" class="btn btn-danger btn-sm" href={{ route('prod.index') }}>Delete</button>
                     </form>
                 </div>
               </div>

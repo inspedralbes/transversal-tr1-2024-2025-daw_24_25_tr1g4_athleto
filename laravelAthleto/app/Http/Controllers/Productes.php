@@ -26,7 +26,7 @@ class Productes extends Controller
     {
         $producte = Producte::create($request->all());
 
-        return response()->json($producte, 201);
+        return redirect()->route('prod.index')->with('success', 'Producto eliminado con éxito.');
     }
 
     
@@ -58,6 +58,7 @@ class Productes extends Controller
     public function remProducte($id)
     {
         Producte::destroy($id);
+        return redirect()->route('prod.index')->with('success', 'Producto eliminado con éxito.');
 
         
     }
