@@ -7,7 +7,7 @@ use App\Models\Producte;
 
 class Productes extends Controller
 {
-    public function getProductes1()
+    public function getProductesAdmin()
     {
         // Obtiene todos los productos de la base de datos
         $productes = Producte::all();

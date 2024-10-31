@@ -40,7 +40,7 @@ integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6
         <a class="btn mt-3 btn-primary" href={{ route('prod.index') }}>
         Volver 
       </a> 
-        <button type="submit" class="btn mt-3 btn-primary"  >Update Post</button>
+        <button type="submit" class="btn mt-3 btn-primary">Update Post</button>
       </form>
     </div>
   </div>

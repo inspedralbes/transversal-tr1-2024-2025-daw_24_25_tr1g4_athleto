@@ -32,7 +32,7 @@ integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6
           <label for="imatge">imatge</label>
           <input type="text" class="form-control" id="imatge" name="imatge" required>
         </div>
-        <a class="btn btn-primary" href={{ route('prod.index') }}>Volver </a>
+        <a class="btn btn-primary" href={{ route('prod.index') }}>Volver</a>
         
         <button type="submit" class="btn btn-primary">Create Post</button>
       </form>

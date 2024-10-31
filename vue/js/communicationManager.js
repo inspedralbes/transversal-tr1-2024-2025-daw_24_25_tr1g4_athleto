@@ -9,7 +9,6 @@ export async function getProductes() {
 }
 
 export async function postMail(correu) {
-    console.log(correu);
     const URL=`${laravel.URL}/buscarMail`;
     const response = await fetch(URL, {
         method: 'POST',
