@@ -11,17 +11,12 @@ createApp({
     const mailExisteix = ref();
     // Se ejecuta antes del mount(montar)
     onBeforeMount(async () => {
-      // Obtenemos los productos 
+      //obtenim les dades si hi ha l'access token a les cookies
       if (getCookie('access_token')) {
         dadesUser.value=await obtenirDadesUser(getCookie('access_token'));
-      }//probar las dos
-      /*try {
-        dadesUser.value = await obtenirDadesUser();
-        mailEscrit.value = 3;
-        console.log('Datos del usuario:', dadesUser.value);
-      } catch (error) {
-        console.log('No se pudo obtener los datos del usuario:', error.message);
-      }*/
+        mailExisteix.value=3;
+      }
+      // Obtenemos los productos 
       const data = await getProductes();
       // Guardar los productos obtenidos
       llista.zapatillas = data;
@@ -40,7 +35,6 @@ createApp({
     const visibleProSes = ref(false);
     const mailEscrit = ref(false);
     const showPass = ref(false);
-    const sessioIniciada = ref(false);
     const userMail = ref("");
     const userPass = ref("");
     const carList = ref([]); // Contiene los productos dentro del carrito
@@ -67,12 +61,21 @@ createApp({
       return "";
     }
 
+    function titulo(){
+      return dadesUser.value?dadesUser.value.nom:"Iniciar sessió";
+    }
+
     function mostrarAccionsUsuari() {
       visibleOpcUsuari.value = true;
     }
 
     function ocultarAccionsUsuari() {
       visibleOpcUsuari.value = false;
+    }
+
+    function mostrarDadesUsuari(){
+      visibleOpcUsuari.value = false;
+      visibleProSes.value=true;
     }
 
     async function verificarMailExisteix() {
@@ -83,9 +86,14 @@ createApp({
     }
 
     async function loginUsuari() {
-      document.cookie = `access_token=${await login(userMail.value, userPass.value)}; path=/; max-age=900; SameSite=Strict; Secure`;
-      await infoUser();
-      console.log(dadesUser.value);
+      try{
+        const accessToken= await login(userMail.value, userPass.value);
+        document.cookie = `access_token=${accessToken}; path=/; max-age=900; SameSite=Strict; Secure`;
+        await infoUser();
+      }catch(error){
+        console.log("error iniciant sessió"); 
+        dadesUser.value="error";
+      }
 
       /*document.cookie = `usuari_id=${dadesUser.value.usuari.id}; path=/; max-age=3600; SameSite=Strict; Secure`;
       document.cookie = `usuari_nom=${dadesUser.value.usuari.nom}; path=/; max-age=3600; SameSite=Strict; Secure`;
@@ -95,7 +103,23 @@ createApp({
       document.cookie = `usuari_rol=${dadesUser.value.usuari.rol}; path=/; max-age=3600; SameSite=Strict; Secure`;
       document.cookie = `usuari_actiu=${dadesUser.value.usuari.actiu}; path=/; max-age=3600; SameSite=Strict; Secure`;
       document.cookie = `usuari_adreca=${dadesUser.value.usuari.adreca}; path=/; max-age=3600; SameSite=Strict; Secure`;*/
-      if (dadesUser.value != "error") mailExisteix.value = 3;
+      if (dadesUser.value!="error") mailExisteix.value = 3;
+    }
+
+    function cancelarFuncioUsuari(){
+      mailExisteix.value=null;
+      userPass.value ="";
+    }
+
+    function mostrarLandingPage(){
+      visiblePort.value=true;
+      visibleProd.value=false;
+      visibleActual.value=false;
+      visibleCar.value=false;
+      visibleCheck.value=false;
+      visiblePagament.value=false;
+      visibleOpcUsuari.value=false;
+      visibleProSes.value=false;
     }
 
     async function infoUser() {
@@ -233,7 +257,6 @@ createApp({
       visibleCheck,
       visibleOpcUsuari,
       visibleProSes,
-      sessioIniciada,
       showPass,
       preuCar,
       preuCompra,
@@ -242,8 +265,12 @@ createApp({
       carList,
       compraList,
       visiblePagament,
+      mostrarLandingPage,
+      cancelarFuncioUsuari,
       verificarMailExisteix,
+      titulo,
       loginUsuari,
+      mostrarDadesUsuari,
       mostrarProducte,
       mostrarProductes,
       alternarCestella,

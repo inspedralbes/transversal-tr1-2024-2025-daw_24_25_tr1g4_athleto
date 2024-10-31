@@ -296,7 +296,7 @@ body {
     transform: translateY(-5px);
 }
 
-#boto-cancelar {
+#buto-cancelar {
     width: 30px;
     height: 30px;
     position: absolute;
@@ -508,6 +508,15 @@ body {
 }
 
 #butoAccUsu{
+    cursor: pointer;
+    width: 100%;    
+    padding: 15px 5px;
+    background-color: #251c1c;
+    color: white;
+    margin-top: 10px;
+}
+
+#butoDadesUsuari{
     cursor: pointer;
     width: 100%;    
     padding: 15px 5px;

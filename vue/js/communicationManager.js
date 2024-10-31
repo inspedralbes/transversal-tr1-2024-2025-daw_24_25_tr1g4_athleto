@@ -35,7 +35,7 @@ export async function login(email, password){
         body: JSON.stringify({email, password}),
     });
 
-    if (!response.ok) return "error";
+    if (!response.ok) throw new Error("Login failed");
     const data = await response.json();
 
     return data.access_token;
