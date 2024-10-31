@@ -16,6 +16,9 @@
         <nav class="navbar">
             <!-- Menú principal -->
             <ul class="menu">
+                <li class="menu-item">
+                    <a href="#" @click="mostrarLandingPage">Athleto</a>
+                </li>
                 <!-- Sección Hombres -->
                 <li class="menu-item">
                     <a href="#">Hombres</a>
@@ -53,10 +56,70 @@
             <div class="icons">
                 <a href="#" class="search-icon">🔍</a>
                 <a href="#" class="cart-icon" @click="alternarCestella">🛒</a>
+                <a href="#" style="font-size: 1em;" @click="mostrarAccionsUsuari">{{ titulo() }}</a>
             </div>
         </nav>
 
-        <div id="pagina">
+        <div v-if="visibleOpcUsuari" @click="ocultarAccionsUsuari" class="fonsAccioUsu"></div>
+        <div v-if="visibleOpcUsuari" id="accionsUsuari">
+            <div class="contingut">
+                <div id="cancelAccUsu" @click="ocultarAccionsUsuari">✖</div>
+                <div id="enllaços">
+                    <p>Atenció al client</p>
+                    <p>Idioma</p>
+                </div>
+                <button v-if="!dadesUser" id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ / REGISTRAR-SE</button>
+                <button v-else id="butoDadesUsuari" @click="mostrarDadesUsuari">Dades usuari</button>
+            </div>
+        </div>
+        <div v-if="visibleProSes" id="compte">
+            <div id="compteHeader">
+                <h1>Les teves dades</h1>
+            </div>
+            <div v-if="!mailExisteix" class="funcioUsuari">
+                <div id="compteInfo">
+                    <h4 style="text-align: center;">Registrat totalment GRATIS</h4>
+                    <p>Al registrar-te obtindras:</p>
+                    <ul>
+                        <li>Accés a ofertes exclusives</li>
+                        <li>Podras guardar el carrito i mirar-ho/moficar-ho desde qualsevol lloc</li>
+                        <li>Un descompte del 15% en la primera compra</li>
+                        <li>L'enviament et surt gratis a partir dels 40€</li>
+                        <li>Enviaments a qualsevol lloc</li>
+                    </ul>
+                </div>
+                <div id="compteMail">
+                    <h4>Introdueix el teu correu electrònic</h4>
+                    <div style="text-align: center;">
+                        <input type="email" placeholder="example@example.com" v-model="userMail">
+                        <button @click="verificarMailExisteix">Continuar</button>
+                        <button @click="visibleProSes=false;userMail='';">Cancel·lar</button>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="funcioUsuari">
+                <div v-if="mailExisteix==1">
+                    <h2>Inciar sessió</h2>
+                    <h4>Introdueix la contrasenya</h4>
+                    <div class="passInput">
+                        <input :type="showPass?'text':'password'" v-model="userPass">
+                        <img @mousedown="showPass=true" @mouseup="showPass=false" @mouseleave="showPass=false" src="img/ull.png" class="ullPass">
+                    </div>
+                    <button @click="loginUsuari">Login</button>
+                    <p v-if="dadesUser=='error'">Credencials incorrectes</p>
+                </div>
+                <div v-if="mailExisteix==2">
+                    <h2>Registre d'usuari</h2>
+                    <h4>Dades de l'usuari</h4>
+                </div>
+                <div v-if="mailExisteix==3">
+                    <p>Dades usuari</p><!--Aqui hay que poner datos del perfil etc...-->
+                    <button @click="infoUser">porfavor</button>
+                </div>
+                <button @click="cancelarFuncioUsuari" v-if="mailExisteix!=3">Torna rere</button>
+            </div>
+        </div>
+        <div v-if="!visibleProSes" id="pagina">
             <!-- Si visiblePort es verdadero, muestra la portada -->
             <div v-if="visiblePort" id="portada">
                 <!-- Al hacer clic, alterna entre productos visibles y la portada -->
@@ -94,8 +157,7 @@
                 <div class="product-container">
                     <div class="product-card">
                         <!-- Botón para regresar a la vista anterior -->
-                        <img @click="mostrarProductes" src="./img/cancelar.png" alt="Tornar enrere"
-                            id="boto-cancelar">
+                        <img @click="mostrarProductes" src="./img/cancelar.png" alt="Tornar enrere" id="buto-cancelar">
                         <div class="product-left">
                             <!-- Imagen del producto seleccionado -->
                             <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
@@ -141,7 +203,7 @@
                                             <p>{{ producte.preu }} €</p>
                                         </div>
                                         <div><input type="number" v-model="producte.quantitat"
-                                                @input="modificarQuantitat(index)" class="inputQuantitat"></div>
+                                                @input="revisarQuantitat(index)" class="inputQuantitat"></div>
                                     </div>
                                 </div>
                                 <div @click="eliminarProducte(index)"><img src="img/basura.png" class="brossaProducte">

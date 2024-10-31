@@ -8,6 +8,7 @@ use App\Models\Producte;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,5 +36,13 @@ class DatabaseSeeder extends Seeder
                 'actiu'=> $producte['actiu'],
             ]);
         }
+
+        User::create([
+            'nom'=> "example",
+            'cognom'=> "siuu",
+            'nom_usuari'=> "soyEjemplo",
+            'email'=> "example@example.com",
+            'password'=> Hash::make("1234"),
+        ]);
     }
 }
