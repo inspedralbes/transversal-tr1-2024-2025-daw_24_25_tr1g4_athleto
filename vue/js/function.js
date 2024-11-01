@@ -6,7 +6,7 @@ createApp({
 
   setup() {
     // `llista`contiene una lista de productos 
-    let llista = reactive({ zapatillas: [] });
+    const llista = reactive({ zapatillas: [] });
     const dadesUser = ref();
     const mailExisteix = ref();
     // Se ejecuta antes del mount(montar)
@@ -14,6 +14,7 @@ createApp({
       //obtenim les dades si hi ha l'access token a les cookies
       if (getCookie('access_token')) {
         dadesUser.value=await obtenirDadesUser(getCookie('access_token'));
+        console.log(dadesUser.value);
         mailExisteix.value=3;
       }
       // Obtenemos los productos 
@@ -33,14 +34,10 @@ createApp({
     const visiblePagament = ref(false);
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
-    const mailEscrit = ref(false);
+    const user = reactive({mail: "",pass: ""});
+    const carrito = reactive({list: [], preu: 0});
+    const compra = reactive({list: [], preu: 0});
     const showPass = ref(false);
-    const userMail = ref("");
-    const userPass = ref("");
-    const carList = ref([]); // Contiene los productos dentro del carrito
-    const preuCar = ref(0); // Preu del carrito
-    const compraList = ref([]); // Conte els productes que es compraran al checkout
-    const preuCompra = ref(0); // Preu de la compra
     let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
     let actual = ref();
     //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
@@ -79,15 +76,13 @@ createApp({
     }
 
     async function verificarMailExisteix() {
-      mailEscrit.value = true;
-
-      const resp = await postMail(userMail.value);
+      const resp = await postMail(user.mail);
       mailExisteix.value = resp.user ? 1 : 2;
     }
 
     async function loginUsuari() {
       try{
-        const accessToken= await login(userMail.value, userPass.value);
+        const accessToken= await login(user.mail, user.pass);
         document.cookie = `access_token=${accessToken}; path=/; max-age=900; SameSite=Strict; Secure`;
         await infoUser();
       }catch(error){
@@ -108,7 +103,8 @@ createApp({
 
     function cancelarFuncioUsuari(){
       mailExisteix.value=null;
-      userPass.value ="";
+      user.pass ="";
+      dadesUser.value=undefined;
     }
 
     function mostrarLandingPage(){
@@ -155,12 +151,12 @@ createApp({
     }
 
     function trobarProducte() {
-      return carList.value.find(prod => prod.nom == actual.value.nom);//meterle && y comparar size(talla bamba)
+      return carrito.list.find(prod => prod.nom == actual.value.nom);//meterle && y comparar size(talla bamba)
 
       //cuando añada las tallas quizas deberia cambiar esta parte y tambien comparar la talla
       //hacer un with en el controllador para pillar tmb la talla y que seleccione que talla tiene con input, 
       /*let valor = undefined;
-      carList.value.forEach(productsd=>{
+      carrito.list.forEach(productsd=>{
         console.log(productsd);
         console.log(actual);
         if (productsd==actual) {
@@ -174,61 +170,59 @@ createApp({
     function afegirProducte() {
       let producte = trobarProducte();
       if (producte) producte.quantitat++;
-      else carList.value.push({ ...toRaw(actual.value), quantitat: 1 });
-      preuCarrito();
+      else carrito.list.push({ ...toRaw(actual.value), quantitat: 1 });
+      actualitzarPreuCarrito();
       alternarCestella();
       visibleProd.value = true;
       visibleActual.value = false;
     }
 
     function revisarQuantitat(index) {
-      if (carList.value[index].quantitat == 0) eliminarProducte(index);
+      if (carrito.list[index].quantitat == 0) eliminarProducte(index);
       //añadir else para si la cantidad es mayor al stock
 
-      preuCarrito();
+      actualitzarPreuCarrito();
     }
 
     function revisarQuantitatCompra(index) {
-      if (compraList.value[index].quantitat == 0) eliminarProducteCompra(index);
+      if (compra.list[index].quantitat == 0) eliminarProducteCompra(index);
       //añadir else para si la cantidad es mayor al stock
 
       actualitzarPreuCompra();
     }
 
     function eliminarProducte(index) {
-      carList.value.splice(index, 1);
-      preuCarrito();
+      carrito.list.splice(index, 1);
+      actualitzarPreuCarrito();
     }
 
     function eliminarProducteCompra(index) {
-      compraList.value.splice(index, 1);
+      compra.list.splice(index, 1);
       actualitzarPreuCompra();
     }
 
     //Serveix per actualitzar el preu del carrito segons els productes dins de carList
-    function preuCarrito() {
-      preuCar.value = 0;
+    function actualitzarPreuCarrito() {
+      carrito.preu = 0;
 
-      carList.value.forEach(producte => {
-        preuCar.value += parseFloat(producte.preu) * producte.quantitat;
+      carrito.list.forEach(producte => {
+        carrito.preu += parseFloat(producte.preu) * producte.quantitat;
       });
     }
 
     function actualitzarPreuCompra(){
-      preuCompra.value = 0;
+      compra.preu = 0;
 
-      compraList.value.forEach(producte => {
-        console.log(producte.quantitat);
-        preuCompra.value += parseFloat(producte.preu) * producte.quantitat;
-        console.log(preuCompra.value);
+      compra.list.forEach(producte => {
+        compra.preu += parseFloat(producte.preu) * producte.quantitat;
       });
     }
 
 
 
     function procesCheckout() {
-      compraList.value = carList.value.map(product => ({ ...product }));
-      preuCompra.value = preuCar.value;
+      compra.list = carrito.list.map(product => ({ ...product }));
+      compra.preu = carrito.preu;
       obrirCheckout();
     }
 
@@ -245,9 +239,10 @@ createApp({
     }
 
     function actualitzarCarritoCompra(){
-      compraList.value.forEach(producte => {
-        carList.value.splice(carList.value.findIndex(prod => prod.id==producte.id), 1);
+      compra.list.forEach(producte => {
+        carrito.list.splice(carrito.list.findIndex(prod => prod.id==producte.id), 1);
       });
+      actualitzarPreuCarrito();
     }
 
 
@@ -260,9 +255,9 @@ createApp({
     }
 
     function compraRapida() {
-      compraList.value = [{ ...toRaw(actual.value), quantitat: 1 }];
-      //compraList.value.push({ ...toRaw(actual.value), quantitat: 1 });
-      preuCompra.value = actual.value.preu;
+      compra.list = [{ ...toRaw(actual.value), quantitat: 1 }];
+      //compra.list.push({ ...toRaw(actual.value), quantitat: 1 });
+      compra.preu = actual.value.preu;
       obrirCheckout();
     }
 
@@ -273,12 +268,6 @@ createApp({
 
     // Retornamos las variables y funciones 
     return {
-      userMail,
-      userPass,
-      dadesUser,
-      mailEscrit,
-      mailExisteix,
-      llista,
       visibleProd,
       visiblePort,
       visibleActual,
@@ -286,14 +275,16 @@ createApp({
       visibleCheck,
       visibleOpcUsuari,
       visibleProSes,
+      visiblePagament,
+      user,
+      carrito,
+      compra,
+      dadesUser,
+      mailExisteix,
+      llista,
       showPass,
-      preuCar,
-      preuCompra,
       actual,
       genero,
-      carList,
-      compraList,
-      visiblePagament,
       mostrarLandingPage,
       cancelarFuncioUsuari,
       verificarMailExisteix,

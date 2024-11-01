@@ -92,9 +92,9 @@
                 <div id="compteMail">
                     <h4>Introdueix el teu correu electrònic</h4>
                     <div style="text-align: center;">
-                        <input type="email" placeholder="example@example.com" v-model="userMail">
+                        <input type="email" placeholder="example@example.com" v-model="user.mail">
                         <button @click="verificarMailExisteix">Continuar</button>
-                        <button @click="visibleProSes=false;userMail='';">Cancel·lar</button>
+                        <button @click="visibleProSes=false;user.mail='';">Cancel·lar</button>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                     <h2>Inciar sessió</h2>
                     <h4>Introdueix la contrasenya</h4>
                     <div class="passInput">
-                        <input :type="showPass?'text':'password'" v-model="userPass">
+                        <input :type="showPass?'text':'password'" v-model="user.pass">
                         <img @mousedown="showPass=true" @mouseup="showPass=false" @mouseleave="showPass=false"
                             src="img/ull.png" class="ullPass">
                     </div>
@@ -193,7 +193,7 @@
                 <div class="cart-content">
                     <div>
                         <ul style="padding: 0;">
-                            <li v-for="(producte, index) in carList" :key="index" class="producteCar">
+                            <li v-for="(producte, index) in carrito.list" :key="index" class="producteCar">
                                 <div>
                                     <div><img :src="producte.imatge" alt="Imagen de producto" class="imatgesCar">
                                     </div>
@@ -213,17 +213,17 @@
                     </div>
                 </div>
                 <div class="cart-footer">
-                    <h3>Total del carrito: <span>{{ preuCar }} €</span></h3>
+                    <h3>Total del carrito: <span>{{ carrito.preu }} €</span></h3>
 
                     <button class="comprarCarrito" @click="procesCheckout">Comprar</button>
                 </div>
             </div>
 
             <div v-if="visibleCheck" id="checkout">
-                <div v-if="compraList.length>0">
+                <div v-if="compra.list.length>0">
                     <div class="checkoutContent">
                         <ul style="padding: 0;" class="checkoutProductes">
-                            <li v-for="(producte, index) in compraList" :key="index">
+                            <li v-for="(producte, index) in compra.list" :key="index">
                                 <div class="checkoutProd">
                                     <div><img :src="producte.imatge" alt="Imagen de producto"></div>
                                     <div class="dadesProdCheck">
@@ -241,7 +241,7 @@
                         </ul>
                     </div>
                     <div class="checkoutFooter">
-                        <h3>Total carrito: <span>{{ preuCompra }} €</span></h3>
+                        <h3>Total carrito: <span>{{ compra.preu }} €</span></h3>
                         <button class="comprarCarrito" @click="pagament">Comprar</button>
                         <button class="cancelarCompra" @click="mostrarProductes">Continuar comprant</button>
                     </div>
