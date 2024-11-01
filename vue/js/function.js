@@ -239,7 +239,7 @@ createApp({
 
     function compraFeta() {
       actualitzarCarritoCompra();
-      alert("Compra feta, s'ha actualitzar el carrito!!!");
+      alert("Compra feta, s'ha actualitzat el carrito!!!");
       visiblePagament.value = false;
       visiblePort.value = true;
     }
