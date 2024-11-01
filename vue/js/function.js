@@ -198,7 +198,9 @@ createApp({
       preuCar.value = 0;
 
       carList.value.forEach(producte => {
+        console.log(producte.quantitat);
         preuCar.value += parseFloat(producte.preu) * producte.quantitat;
+        console.log(preuCar.value);
       });
     }
 

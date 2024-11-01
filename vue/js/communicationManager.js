@@ -50,10 +50,8 @@ export async function obtenirDadesUser(access_token) {
         },
     });
 
-    if (response.ok) {
-        const data = await response.json();
-        return data.usuari;
-    } else {
-        throw new Error('No autenticado');
-    }
+    if (!response.ok) throw new Error("No autenticado");
+    const data = await response.json();
+    
+    return data.usuari;
 }
