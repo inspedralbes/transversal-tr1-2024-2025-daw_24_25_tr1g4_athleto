@@ -182,10 +182,17 @@ createApp({
     }
 
     function revisarQuantitat(index) {
-      if (carList.value[index].quantitat == 0) carList.value.splice(index, 1);
+      if (carList.value[index].quantitat == 0) eliminarProducte(index);
       //añadir else para si la cantidad es mayor al stock
 
       preuCarrito();
+    }
+
+    function revisarQuantitatCompra(index) {
+      if (compraList.value[index].quantitat == 0) eliminarProducteCompra(index);
+      //añadir else para si la cantidad es mayor al stock
+
+      actualitzarPreuCompra();
     }
 
     function eliminarProducte(index) {
@@ -193,19 +200,34 @@ createApp({
       preuCarrito();
     }
 
+    function eliminarProducteCompra(index) {
+      compraList.value.splice(index, 1);
+      actualitzarPreuCompra();
+    }
+
     //Serveix per actualitzar el preu del carrito segons els productes dins de carList
     function preuCarrito() {
       preuCar.value = 0;
 
       carList.value.forEach(producte => {
-        console.log(producte.quantitat);
         preuCar.value += parseFloat(producte.preu) * producte.quantitat;
-        console.log(preuCar.value);
       });
     }
 
+    function actualitzarPreuCompra(){
+      preuCompra.value = 0;
+
+      compraList.value.forEach(producte => {
+        console.log(producte.quantitat);
+        preuCompra.value += parseFloat(producte.preu) * producte.quantitat;
+        console.log(preuCompra.value);
+      });
+    }
+
+
+
     function procesCheckout() {
-      compraList.value = carList.value;
+      compraList.value = carList.value.map(product => ({ ...product }));
       preuCompra.value = preuCar.value;
       obrirCheckout();
     }
@@ -216,9 +238,16 @@ createApp({
     }
 
     function compraFeta() {
-      alert("Compra feta!!!");
+      actualitzarCarritoCompra();
+      alert("Compra feta, s'ha actualitzar el carrito!!!");
       visiblePagament.value = false;
       visiblePort.value = true;
+    }
+
+    function actualitzarCarritoCompra(){
+      compraList.value.forEach(producte => {
+        carList.value.splice(carList.value.findIndex(prod => prod.id==producte.id), 1);
+      });
     }
 
 
@@ -275,8 +304,10 @@ createApp({
       mostrarProductes,
       alternarCestella,
       revisarQuantitat,
+      revisarQuantitatCompra,
       afegirProducte,
       eliminarProducte,
+      eliminarProducteCompra,
       procesCheckout,
       pagament,
       compraFeta,

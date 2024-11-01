@@ -460,6 +460,11 @@ body {
     padding-top: 15px;
 }
 
+.brossaProducteCheck{
+    width: 30px;
+    height: 30px;
+}
+
 #imgLandingPage {
     display: flex;
     align-items: center;
@@ -475,7 +480,7 @@ body {
     height: 100px;
 }
 
-#checkout img{
+#checkout>img{
     width: 200px;
     height: 200px;
 }
