@@ -110,9 +110,15 @@
                     <button @click="loginUsuari">Login</button>
                     <p v-if="dadesUser=='error'">Credencials incorrectes</p>
                 </div>
-                <div v-if="mailExisteix==2">
+                <div v-if="mailExisteix==2" id="seccioRegistre">
                     <h2>Registre d'usuari</h2>
-                    <h4>Dades de l'usuari</h4>
+                    <p>Otorga les seguents dades</p>
+                    <input type="text" placeholder="Nom" v-model="user.nom" style="margin-right: 10px;">
+                    <input type="text" placeholder="Cognoms" v-model="user.cognom">
+                    <br>
+                    <input type="text" placeholder="Nom usuari" v-model="user.nomUsuari" @blur="verificarNomUnic">
+                    <br>
+                    <input type="text" placeholder="Contrasenya" v-model="user.pass">
                 </div>
                 <div v-if="mailExisteix==3">
                     <p>Dades usuari</p><!--Aqui hay que poner datos del perfil etc...-->

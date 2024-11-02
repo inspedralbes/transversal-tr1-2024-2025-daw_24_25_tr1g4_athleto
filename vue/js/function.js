@@ -1,5 +1,5 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes, postMail, login, obtenirDadesUser } from './communicationManager.js';
+import { getProductes, postMail, login, obtenirDadesUser, postNomUsuari } from './communicationManager.js';
 
 // Creación de la instancia de la aplicación Vue
 createApp({
@@ -34,10 +34,11 @@ createApp({
     const visiblePagament = ref(false);
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
-    const user = reactive({mail: "",pass: ""});
+    const user = reactive({nom: "", cognoms: "", nomUsuari: "", mail: "", pass: ""});
     const carrito = reactive({list: [], preu: 0});
     const compra = reactive({list: [], preu: 0});
     const showPass = ref(false);
+    const nomUsuariUnic =ref(0);
     let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
     let actual = ref();
     //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
@@ -105,6 +106,11 @@ createApp({
       mailExisteix.value=null;
       user.pass ="";
       dadesUser.value=undefined;
+    }
+
+    async function verificarNomUnic(){
+      const resp = await postNomUsuari(user.nomUsuari);
+      nomUsuariUnic.value = resp.ok ? true : false;
     }
 
     function mostrarLandingPage(){
@@ -218,8 +224,6 @@ createApp({
       });
     }
 
-
-
     function procesCheckout() {
       compra.list = carrito.list.map(product => ({ ...product }));
       compra.preu = carrito.preu;
@@ -290,6 +294,7 @@ createApp({
       verificarMailExisteix,
       titulo,
       loginUsuari,
+      verificarNomUnic,
       mostrarDadesUsuari,
       mostrarProducte,
       mostrarProductes,
