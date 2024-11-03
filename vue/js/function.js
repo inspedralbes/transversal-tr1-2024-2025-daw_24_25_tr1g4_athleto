@@ -101,11 +101,8 @@ createApp({
 
     async function registrarUsuari() {
       try {
-        console.log(user);
         const resp = await register(user);
-        console.log("creo");
         if (resp.registrat) {
-          console.log("creat");
           await loginUsuari(user.mail, user.pass);
         }
       } catch (error) {

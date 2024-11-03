@@ -120,6 +120,7 @@
                     <p v-if="nomExisteix" style="color: red;">El nom ja existeix</p>
                     <br>
                     <input type="text" placeholder="Contrasenya" v-model="user.pass">
+                    <br>
                     <button @click="registrarUsuari">Registrar-te</button>
                 </div>
                 <div v-if="mailExisteix==3">
