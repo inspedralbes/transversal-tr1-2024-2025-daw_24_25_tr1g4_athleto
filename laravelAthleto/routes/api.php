@@ -11,9 +11,11 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum'); 
 
 // Ruta para obtener los productos.
-Route::get("/productes", [Productes::class, "getProductes"]);
-Route::post("/buscarMail", [Users::class, "findMail"]);
+Route::get("/productes", action: [Productes::class, "getProductes"]);
+Route::post("/buscarMail", action: [Users::class, "findMail"]);
+Route::post("/register", action: [Users::class, "register"]);
 Route::post("/login", action: [Users::class, "login"]);
+Route::post("/username", action: [Users::class, "findName"]);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get("/user", [Users::class, "retornarDadesUsuari"]);
 });

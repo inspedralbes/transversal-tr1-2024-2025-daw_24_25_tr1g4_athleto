@@ -615,3 +615,18 @@ body {
     transform: translateY(-50%);
     cursor: pointer;
 }
+
+#seccioRegistre{
+    text-align: center;
+}
+
+#seccioRegistre input{
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.nomUsuariInvalid{
+    border: 2px solid red;
+}
