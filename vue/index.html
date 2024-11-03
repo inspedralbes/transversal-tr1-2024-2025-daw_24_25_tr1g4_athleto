@@ -24,8 +24,8 @@
                     <a href="#">Hombres</a>
                     <ul class="submenu">
                         <li><a href="#">Deporte</a></li>
-                        <!--  <li><a href="#">Calzado</a></li>
-                    <li><a href="#">Accesorios</a></li>-->
+                        <li><a href="#">Casual</a></li>
+                        <li><a href="#">Running</a></li> 
                     </ul>
                 </li>
                 <!-- Sección Mujeres -->
@@ -33,8 +33,8 @@
                     <a href="#">Mujer</a>
                     <ul class="submenu">
                         <li><a href="#">Deporte</a></li>
-                        <!--  <li><a href="#">Calzado</a></li>
-                    <li><a href="#">Accesorios</a></li>-->
+                        <li><a href="#">Casual</a></li>
+                        <li><a href="#">Running</a></li> 
                     </ul>
                 </li>
 
@@ -43,8 +43,8 @@
                     <a href="#">Niño</a>
                     <ul class="submenu">
                         <li><a href="#">Deporte</a></li>
-                        <!--  <li><a href="#">Calzado</a></li>
-                    <li><a href="#">Juguetes</a></li>-->
+                        <li><a href="#">Casual</a></li>
+                        <li><a href="#">Running</a></li> 
                     </ul>
                 </li>
 
@@ -135,8 +135,8 @@
             <!-- Contenido de productos mostrado cuando visibleProd es verdadero -->
             <div class="contentZapatos" v-if="visibleProd">
 
-                <!-- Si género es 'all', muestra todos los productos -->
-                <div v-if="genero=='all'" @click="mostrarProducte(index)" v-for="(prod, index) in llista.zapatillas"
+                
+                <div  @click="mostrarProducte(index)" v-for="(prod, index) in llista.zapatillas"
                     :key="index" :id="'zapato' + index" class="zapatos">
                     <!-- Bucle que recorre la lista de zapatillas y muestra -->
                     <!-- Detalles del producto -->

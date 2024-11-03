@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
                 'actiu'=> $producte['actiu'],
             ]);
         }
+        
         foreach ($data['cat_prod'] as $key => $producte) {
             Cat_prod::create([
                 'id'=> $producte['id'],

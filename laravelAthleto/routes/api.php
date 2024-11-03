@@ -17,3 +17,6 @@ Route::post("/login", action: [Users::class, "login"]);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get("/user", [Users::class, "retornarDadesUsuari"]);
 });
+
+
+Route::get('/categorias', [Productes::class, 'getProductesByCategories']);

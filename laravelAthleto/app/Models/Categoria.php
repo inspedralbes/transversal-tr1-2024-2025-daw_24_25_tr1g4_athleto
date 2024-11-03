@@ -16,4 +16,10 @@ class Categoria extends Model
     protected $fillable = [
         'nom',
     ];
+
+
+    public function productes()
+    {
+        return $this->belongsToMany(Producte::class, 'cat_prod', 'id_categoria', 'id_producte');
+    }
 }

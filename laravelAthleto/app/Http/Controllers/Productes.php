@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producte;
-
+use App\Models\Categoria;
+use Illuminate\Support\Facades\DB;
 class Productes extends Controller
 {
     public function getProductesAdmin()
@@ -14,6 +15,8 @@ class Productes extends Controller
       //  return response()->json($productes); // Devuelve los productos en formato JSON
          return view('prod.index', compact('productes'));
     }
+
+    
     public function getProductes()
     {
         // Obtiene todos los productos de la base de datos
@@ -62,6 +65,26 @@ class Productes extends Controller
         return redirect()->route('prod.index')->with('success', 'Producto eliminado con éxito.');
 
         
+    }
+
+
+
+    public function getProductesByCategories(Request $request)
+    {
+       // Obtener los IDs de las categorías desde la consulta
+       $ids_categoria = $request->query('ids');
+  
+
+       // Obtener los productos que pertenecen a ambas categorías
+       $productes = DB::table('productes')
+           ->join('cat_prod', 'productes.id', '=', 'cat_prod.id_producte')
+           ->whereIn('cat_prod.id_categoria', $ids_categoria)
+           ->groupBy('productes.id')
+           ->havingRaw('COUNT(DISTINCT cat_prod.id_categoria) = 2') // Asegura que tenga ambas categorías
+           ->select('productes.*')
+           ->get();
+
+       return response()->json($productes);
     }
 
 }
