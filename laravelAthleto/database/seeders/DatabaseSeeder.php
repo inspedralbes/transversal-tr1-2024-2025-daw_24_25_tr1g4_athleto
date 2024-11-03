@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cat_prod;
 use App\Models\User;
 use App\Models\Categoria;
 use App\Models\Producte;
@@ -34,6 +35,14 @@ class DatabaseSeeder extends Seeder
                 'preu'=> $producte['preu'],
                 'imatge'=> $producte['imatge'],
                 'actiu'=> $producte['actiu'],
+            ]);
+        }
+        foreach ($data['cat_prod'] as $key => $producte) {
+            Cat_prod::create([
+                'id'=> $producte['id'],
+                'id_producte'=> $producte['id_producte'],
+                'id_categoria'=> $producte['id_categoria'],
+                
             ]);
         }
 
