@@ -35,7 +35,7 @@ createApp({
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
     const user = reactive({nom: "", cognom: "", nomUsuari: "", mail: "", pass: ""});
-    const carrito = reactive({list: [], preu: 0});
+    const carrito = reactive({list: [], productesComprar: [], preu: 0});
     const compra = reactive({list: [], preu: 0});
     const showPass = ref(false);
     const nomExisteix = ref(false);
@@ -223,7 +223,7 @@ createApp({
     function afegirProducte() {
       let producte = trobarProducte();
       if (producte) producte.quantitat++;
-      else carrito.list.push({ ...toRaw(actual.value), quantitat: 1 });
+      else carrito.list.push({ ...toRaw(actual.value), quantitat: 1});
       actualitzarPreuCarrito();
       alternarCestella();
       visibleProd.value = true;
@@ -257,8 +257,12 @@ createApp({
     //Serveix per actualitzar el preu del carrito segons els productes dins de carList
     function actualitzarPreuCarrito() {
       carrito.preu = 0;
+      let car;
 
-      carrito.list.forEach(producte => {
+      if (carrito.productesComprar.length>0) car = carrito.productesComprar;
+      else car = carrito.list;
+      
+      car.forEach(producte => {
         carrito.preu += parseFloat(producte.preu) * producte.quantitat;
       });
     }
@@ -272,7 +276,8 @@ createApp({
     }
 
     function procesCheckout() {
-      compra.list = carrito.list.map(product => ({ ...product }));
+      if (carrito.productesComprar.length>0) compra.list = carrito.productesComprar.map(product => ({ ...product }));
+      else compra.list = carrito.list.map(product => ({ ...product }));
       compra.preu = carrito.preu;
       obrirCheckout();
     }
@@ -353,6 +358,7 @@ createApp({
       revisarQuantitatCompra,
       afegirProducte,
       eliminarProducte,
+      actualitzarPreuCarrito,
       eliminarProducteCompra,
       procesCheckout,
       pagament,

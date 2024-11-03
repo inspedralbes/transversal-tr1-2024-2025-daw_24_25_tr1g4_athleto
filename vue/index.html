@@ -213,7 +213,8 @@
                                         <div>
                                             <p>{{ producte.preu }} €</p>
                                         </div>
-                                        <div><input type="number" v-model="producte.quantitat" @input="revisarQuantitat(index)" class="inputQuantitat"></div>
+                                        <input type="number" v-model="producte.quantitat" @input="revisarQuantitat(index)" class="inputQuantitat">
+                                        <input type="checkbox" v-model="carrito.productesComprar" :value="producte" @change="actualitzarPreuCarrito">   
                                     </div>
                                 </div>
                                 <div @click="eliminarProducte(index)"><img src="img/basura.png" class="brossaProducte"></div>
