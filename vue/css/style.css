@@ -530,11 +530,15 @@ body {
     margin-top: 10px;
 }
 
-#enllaços{
+.enllaços{
+    margin-top: 3em;
+}
+
+.enllaçosIniciat{
     margin-top: 1em;
 }
 
-#enllaços p{
+.enllaços p{
     cursor: pointer;
     border-bottom: 1px solid rgb(182, 176, 176);
 }

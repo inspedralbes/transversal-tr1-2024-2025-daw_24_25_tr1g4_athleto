@@ -64,10 +64,10 @@
         <div v-if="visibleOpcUsuari" id="accionsUsuari">
             <div class="contingut">
                 <div id="cancelAccUsu" @click="ocultarAccionsUsuari">✖</div>
-                <div id="enllaços">
+                <div class="enllaços" :class="{ 'enllaçosIniciat': dadesUser }">
                     <p>Atenció al client</p>
                     <p>Idioma</p>
-                    <p @click="logout">Logout</p>
+                    <p @click="logout" v-if="dadesUser">Logout</p>
                 </div>
                 <button v-if="!dadesUser" id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ / REGISTRAR-SE</button>
                 <button v-else id="butoDadesUsuari" @click="mostrarDadesUsuari">Dades usuari</button>
