@@ -67,9 +67,9 @@
                 <div id="enllaços">
                     <p>Atenció al client</p>
                     <p>Idioma</p>
+                    <p @click="logout">Logout</p>
                 </div>
-                <button v-if="!dadesUser" id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ /
-                    REGISTRAR-SE</button>
+                <button v-if="!dadesUser" id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ / REGISTRAR-SE</button>
                 <button v-else id="butoDadesUsuari" @click="mostrarDadesUsuari">Dades usuari</button>
             </div>
         </div>
@@ -127,7 +127,7 @@
                     <p>Dades usuari</p><!--Aqui hay que poner datos del perfil etc...-->
                     <button @click="infoUser">Obtenir dades user(consola)</button><!--este boton podria ser para guardar la informacion-->
                 </div>
-                <button @click="cancelarFuncioUsuari" v-if="mailExisteix!=3">Torna rere</button>
+                <button @click="esborrarDades" v-if="mailExisteix!=3">Torna rere</button>
             </div>
         </div>
         <div v-if="!visibleProSes" id="pagina">

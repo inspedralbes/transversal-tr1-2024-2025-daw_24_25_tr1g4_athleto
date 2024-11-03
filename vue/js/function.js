@@ -78,7 +78,7 @@ createApp({
     }
 
     function titulo(){
-      return dadesUser.value?dadesUser.value.nom:"Iniciar sessió";
+      return dadesUser.value?dadesUser.value.nom_usuari:"Iniciar sessió";
     }
 
     function mostrarAccionsUsuari() {
@@ -129,11 +129,27 @@ createApp({
       document.cookie = `usuari_actiu=${dadesUser.value.usuari.actiu}; path=/; max-age=3600; SameSite=Strict; Secure`;
       document.cookie = `usuari_adreca=${dadesUser.value.usuari.adreca}; path=/; max-age=3600; SameSite=Strict; Secure`;*/
       if (dadesUser.value!="error") mailExisteix.value = 3;
+      user.pass = "";
     }
 
-    function cancelarFuncioUsuari(){
+    function logout(){
+      document.cookie = `access_token=; max-age=0; path=/;`;
+      esborrarDades();
+      user.mail = "";
+      carrito.list = [];
+      carrito.preu = 0;
+      compra.list = [];
+      compra.preu = 0;
+      mostrarLandingPage();
+      //si se puede recargar solo hay que borrar la cookie y ya
+    }
+
+    function esborrarDades(){
       mailExisteix.value=null;
-      user.pass ="";
+      user.nom = "";
+      user.cognom = "";
+      user.nomUsuari = "";
+      user.pass = "";
       dadesUser.value=undefined;
     }
 
@@ -322,11 +338,12 @@ createApp({
       actual,
       genero,
       mostrarLandingPage,
-      cancelarFuncioUsuari,
+      esborrarDades,
       verificarMailExisteix,
       titulo,
-      loginUsuari,
       registrarUsuari,
+      loginUsuari,
+      logout,
       verificarNomUnic,
       mostrarDadesUsuari,
       mostrarProducte,
