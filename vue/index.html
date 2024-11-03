@@ -114,15 +114,17 @@
                     <h2>Registre d'usuari</h2>
                     <p>Otorga les seguents dades</p>
                     <input type="text" placeholder="Nom" v-model="user.nom" style="margin-right: 10px;">
-                    <input type="text" placeholder="Cognoms" v-model="user.cognom">
+                    <input type="text" placeholder="Cognom" v-model="user.cognom">
                     <br>
-                    <input type="text" placeholder="Nom usuari" v-model="user.nomUsuari" @blur="verificarNomUnic">
+                    <input type="text" placeholder="Nom usuari" v-model="user.nomUsuari" @blur="verificarNomUnic" :class="{ 'nomUsuariInvalid': nomExisteix }">
+                    <p v-if="nomExisteix" style="color: red;">El nom ja existeix</p>
                     <br>
                     <input type="text" placeholder="Contrasenya" v-model="user.pass">
+                    <button @click="registrarUsuari">Registrar-te</button>
                 </div>
                 <div v-if="mailExisteix==3">
                     <p>Dades usuari</p><!--Aqui hay que poner datos del perfil etc...-->
-                    <button @click="infoUser">porfavor</button>
+                    <button @click="infoUser">Obtenir dades user(consola)</button><!--este boton podria ser para guardar la informacion-->
                 </div>
                 <button @click="cancelarFuncioUsuari" v-if="mailExisteix!=3">Torna rere</button>
             </div>

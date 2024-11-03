@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 class Users extends Controller
 {
@@ -29,6 +28,49 @@ class Users extends Controller
                 'missatge' => 'Usuario no encontrado.',
             ], 404);
         }
+    }
+
+    public function findName(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string'
+        ]);
+        
+        $user = User::where('nom_usuari', $request->input('username'))->first();
+
+        if ($user) {
+            return response()->json([
+                'existeix' => true,
+            ], 200);
+        } else{
+            return response()->json([
+                'existeix' => false,
+            ], 200);
+        }
+    }
+
+    public function register(Request $request)
+    {
+        //dd($request->all());
+        $request->validate([
+            'nom' => 'required|string',
+            'cognom' => 'required|string',
+            'nom_usuari' => 'required|string|unique:usuaris,nom_usuari',
+            'email' => 'required|email|unique:usuaris,email',
+            'password' => 'required|string',
+        ]);
+
+        User::create([
+            'nom' => $request->input('nom'),
+            'cognom' => $request->input('cognom'),
+            'nom_usuari' => $request->input('nom_usuari'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+
+        return response()->json([
+            'registrat' => true,
+        ], 201);
     }
 
     public function login(Request $request)
@@ -53,7 +95,7 @@ class Users extends Controller
         }
         return response()->json(['error' => 'Dades incorrectes'], 401);
     }
-
+    
     public function retornarDadesUsuari()
     {   
         if (!Auth::check()) {

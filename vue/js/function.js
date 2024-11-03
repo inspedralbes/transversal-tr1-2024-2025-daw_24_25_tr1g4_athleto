@@ -1,5 +1,5 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes, postMail, login, obtenirDadesUser, postNomUsuari } from './communicationManager.js';
+import { getProductes, postMail, register, login, obtenirDadesUser, postNomUsuari } from './communicationManager.js';
 
 // Creación de la instancia de la aplicación Vue
 createApp({
@@ -34,11 +34,11 @@ createApp({
     const visiblePagament = ref(false);
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
-    const user = reactive({nom: "", cognoms: "", nomUsuari: "", mail: "", pass: ""});
+    const user = reactive({nom: "", cognom: "", nomUsuari: "", mail: "", pass: ""});
     const carrito = reactive({list: [], preu: 0});
     const compra = reactive({list: [], preu: 0});
     const showPass = ref(false);
-    const nomUsuariUnic =ref(0);
+    const nomExisteix = ref(false);
     let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
     let actual = ref();
     //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
@@ -81,6 +81,20 @@ createApp({
       mailExisteix.value = resp.user ? 1 : 2;
     }
 
+    async function registrarUsuari() {
+      try {
+        console.log(user);
+        const resp = await register(user);
+        console.log("creo");
+        if (resp.registrat) {
+          console.log("creat");
+          await loginUsuari(user.mail, user.pass);
+        }
+      } catch (error) {
+        console.log("error registrant usuari");
+      }
+    }
+
     async function loginUsuari() {
       try{
         const accessToken= await login(user.mail, user.pass);
@@ -109,8 +123,10 @@ createApp({
     }
 
     async function verificarNomUnic(){
-      const resp = await postNomUsuari(user.nomUsuari);
-      nomUsuariUnic.value = resp.ok ? true : false;
+      if (user.nomUsuari!='') {
+        const resp = await postNomUsuari(user.nomUsuari);
+        nomExisteix.value = resp;
+      }
     }
 
     function mostrarLandingPage(){
@@ -285,6 +301,7 @@ createApp({
       compra,
       dadesUser,
       mailExisteix,
+      nomExisteix,
       llista,
       showPass,
       actual,
@@ -294,6 +311,7 @@ createApp({
       verificarMailExisteix,
       titulo,
       loginUsuari,
+      registrarUsuari,
       verificarNomUnic,
       mostrarDadesUsuari,
       mostrarProducte,
