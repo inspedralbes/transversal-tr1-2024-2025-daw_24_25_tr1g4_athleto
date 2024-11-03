@@ -8,6 +8,23 @@ export async function getProductes() {
     return data;
 }
 
+
+export async function getProductesFiltre(param) {
+    const URL=`${laravel.URL}/categoria/${param}`;
+    const response = await fetch(URL);
+    const data = await response.json();
+    
+    return data;
+}
+
+export async function getProductesFiltre2(id1,id2) {
+    const URL=`${laravel.URL}/categorias??ids[]=${id1}&ids[]=${id2}`;
+    const response = await fetch(URL);
+    const data = await response.json();
+    
+    return data;
+}
+
 export async function postMail(correu) {
     const URL=`${laravel.URL}/buscarMail`;
     const response = await fetch(URL, {
@@ -22,6 +39,12 @@ export async function postMail(correu) {
 
     return data;
 }
+
+
+
+
+
+
 
 export async function login(email, password){
     ///console.log({email, password});

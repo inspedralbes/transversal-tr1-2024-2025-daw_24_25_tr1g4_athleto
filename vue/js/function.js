@@ -1,5 +1,5 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes, postMail, login, obtenirDadesUser } from './communicationManager.js';
+import { getProductes, postMail, login, obtenirDadesUser,getProductesFiltre,getProductesFiltre2 } from './communicationManager.js';
 
 // Creación de la instancia de la aplicación Vue
 createApp({
@@ -44,6 +44,24 @@ createApp({
     let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
     let actual = ref();
     //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
+
+   async function filtrar(param){
+       // Obtenemos los productos 
+       const data = await getProductesFiltre(param);
+       // Guardar los productos obtenidos
+       llista.zapatillas = data;
+      
+
+    }
+    
+    async  function filtrar2(id1,id2){
+     // Obtenemos los productos 
+   const data = await getProductesFiltre2(id1,id2);
+    // Guardar los productos obtenidos
+    llista.zapatillas = data;
+ 
+    }
+
 
     function getCookie(cname) {
       let name = cname + "=";
@@ -315,7 +333,9 @@ createApp({
       mostrarAccionsUsuari,
       ocultarAccionsUsuari,
       mostrarProcesSessio,
-      infoUser
+      infoUser,
+      filtrar,
+      filtrar2,
     }
 
 

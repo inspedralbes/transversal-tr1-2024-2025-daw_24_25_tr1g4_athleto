@@ -86,5 +86,21 @@ class Productes extends Controller
 
        return response()->json($productes);
     }
+    
+
+    public function getProductesByCategory($id_categoria)
+    {
+        // Validar que la categoría existe
+        $categoria = Categoria::find($id_categoria);
+       
+
+        // Obtener los productos que pertenecen a la categoría especificada
+        $productes = Producte::join('cat_prod', 'productes.id', '=', 'cat_prod.id_producte')
+            ->where('cat_prod.id_categoria', $id_categoria)
+            ->select('productes.*')
+            ->get();
+
+        return response()->json($productes);
+    }
 
 }
