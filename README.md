@@ -7,6 +7,6 @@
   * Ya es poden veure els productes fent fetch a la api de laravel (s'obtenen de la BBDD).
   * En proces de l'adminer i carrito de la compra
 * Adreça web de la documentació phpdoc: -
-* Adreça web del projecte desplegat: -
+* Adreça web del projecte desplegat: [Enllaç a pro](http://tr1g4.daw.inspedralbes.cat/)
 * /vue/css /vue/js /vue/img
 * ?

@@ -19,7 +19,6 @@ createApp({
       // Guardar los productos obtenidos
       llista.zapatillas = data;
       // Mostrar datos obtenidos en la consola
-      console.log(llista.zapatillas);
       });
 
       // Propiedades reactivas que controlan la visibilidad de diferentes secciones
@@ -27,20 +26,27 @@ createApp({
       const visiblePort = ref(true); // Controla la visibilidad de la portada
       const visibleActual = ref(false); // Controla la visibilidad del detalle de un producto
       const visibleCar = ref(false); // Controla la visibilidad del carrito de compras
+      const visibleCheck = ref(false);
+      const visiblePagament = ref(false);
       const carList = ref([]); // Contiene los productos dentro del carrito
-      const preuCar = ref(0); // Precio del carrito
+      const preuCar = ref(0); // Preu del carrito
+      const compraList = ref([]); // Conte els productes que es compraran al checkout
+      const preuCompra = ref(0); // Preu de la compra
+      const index = ref(null);
       let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
-      const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", }); // `actual` almacena la información del producto seleccionado
+      //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
+      let actual = ref();
 
       // Función que se ejecuta cuando se selecciona un producto de la lista
       function mostrarProducte(data) {
-        // Actualiza el objeto `actual` con los detalles del producto seleccionado
-        actual.nom = llista.zapatillas[data].nom;
+        actual.value = llista.zapatillas[data];
+        
+        /*actual.nom = llista.zapatillas[data].nom;
         actual.preu = llista.zapatillas[data].preu;
         actual.imatge = llista.zapatillas[data].imatge;
         actual.descripcio = llista.zapatillas[data].descripcio;
-        actual.genero = llista.zapatillas[data].genero;
-        console.log(actual.nom);
+        actual.genero = llista.zapatillas[data].genero;*/
+
         // Muestra el producto seleccionado y oculta la lista de productos
         visibleActual.value = true;
         visibleProd.value = false;
@@ -48,24 +54,53 @@ createApp({
 
       // Función que vuelve a mostrar la lista de productos y oculta el producto actual
       function mostrarProductes() {
-        visibleProd.value = true;
         visibleActual.value = false;
+        visibleCheck.value = false;
+        visibleProd.value = true;
       }
 
       // Función que alterna la visibilidad del carrito de compras
       function alternarCestella() {
         visibleCar.value = !visibleCar.value;
-        console.log('Cesta alternada:', visibleCar.value);
-        //console.log(cestella.value);
-        //if(cestella.className===cestella.id) cestella.className="cart-obert";
-        //else cestella.className=cestella.id;
+      }
+
+      function trobarProducte(){
+        return carList.value.find(prod => prod.nom==actual.value.nom);//meterle && y comparar size(talla bamba)
+
+        //cuando añada las tallas quizas deberia cambiar esta parte y tambien comparar la talla
+        //hacer un with en el controllador para pillar tmb la talla y que seleccione que talla tiene con input, 
+        /*let valor = undefined;
+        carList.value.forEach(productsd=>{
+          console.log(productsd);
+          console.log(actual);
+          if (productsd==actual) {
+            valor=productsd; 
+          }
+        });
+        return valor;*/
       }
 
       //Serveix per afegir el producte actual al carrito, actualitzar el preu i tancar el carrito
       function afegirProducte() {
-        carList.value.push({ ...toRaw(actual) });
+        let producte = trobarProducte();
+        if (producte) producte.quantitat++;
+        else carList.value.push({ ...toRaw(actual.value), quantitat: 1 });
         preuCarrito();
         alternarCestella();
+        visibleProd.value=true;
+        visibleActual.value=false;
+      }
+
+      function modificarQuantitat(index){
+        if (carList.value[index].quantitat==0) carList.value.splice(index, 1);
+        //añadir else para si la cantidad es mayor al stock
+        
+        preuCarrito();
+      }
+
+      function eliminarProducte(index){
+        carList.value.splice(index, 1);
+        preuCarrito();
       }
 
       //Serveix per actualitzar el preu del carrito segons els productes dins de carList
@@ -73,10 +108,43 @@ createApp({
         preuCar.value = 0;
 
         carList.value.forEach(producte => {
-          console.log(producte);
-          preuCar.value += parseFloat(producte.preu);
+          console.log(producte.quantitat);
+          preuCar.value += parseFloat(producte.preu)*producte.quantitat;
           console.log(preuCar.value);
         });
+      }
+
+      function procesCheckout(){
+        compraList.value=carList.value;
+        preuCompra.value=preuCar.value;
+        obrirCheckout();
+      }
+
+      function pagament(){
+        visibleCheck.value=false;
+        visiblePagament.value=true;
+      }
+
+      function compraFeta(){
+        alert("Compra feta!!!");
+        visiblePagament.value=false;
+        visiblePort.value=true;
+      }
+
+
+      function obrirCheckout(){
+        visibleCheck.value=true;
+        visiblePort.value=false;
+        visibleActual.value=false;
+        visibleCar.value=false;
+        visibleProd.value=false;
+      }
+
+      function compraRapida(){
+        compraList.value=[{...toRaw(actual.value)}];
+        //compraList.value.push({ ...toRaw(actual.value), quantitat: 1 });
+        preuCompra.value=actual.value.preu;
+        obrirCheckout();
       }
 
       // Retornamos las variables y funciones 
@@ -86,15 +154,24 @@ createApp({
         visiblePort,
         visibleActual,
         visibleCar,
+        visibleCheck,
         preuCar,
+        preuCompra,
         actual,
         genero,
         carList,
+        compraList,
+        visiblePagament,
         mostrarProducte,
         mostrarProductes,
         alternarCestella,
-        preuCarrito,
-        afegirProducte
+        modificarQuantitat,
+        afegirProducte,
+        eliminarProducte,
+        procesCheckout,
+        pagament,
+        compraFeta,
+        compraRapida
       }
 
 
