@@ -1,7 +1,13 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\Productes; 
 use Illuminate\Http\Request;        
+=======
+// Importa controlador Productes y clases Request y Route.
+use App\Http\Controllers\Productes;
+use App\Http\Controllers\Users;
+>>>>>>> dev
 use Illuminate\Support\Facades\Route; 
 use App\Http\Controllers\Categories;
 use App\Http\Controllers\PostController;
@@ -13,6 +19,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum'); 
 
 // Ruta para obtener los productos.
+<<<<<<< HEAD
 Route::get("/productes", [Productes::class, "getProductes"]);
 
 // Rutas para el CRUD de categorías
@@ -23,3 +30,19 @@ Route::post('/categories/actualizar/{id}', [Categories::class, 'update']); //fun
 Route::get('/categories/eliminar/{id}', [Categories::class, 'destroy']); //funciona
 
 
+=======
+Route::get("/productes", action: [Productes::class, "getProductes"]);
+Route::post("/buscarMail", action: [Users::class, "findMail"]);
+Route::post("/register", action: [Users::class, "register"]);
+Route::post("/login", action: [Users::class, "login"]);
+Route::post("/username", action: [Users::class, "findName"]);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get("/user", [Users::class, "retornarDadesUsuari"]);
+});
+
+
+Route::get('/categorias', [Productes::class, 'getProductesByCategories']);
+
+
+Route::get('/categoria/{id_categoria}', [Productes::class, 'getProductesByCategory']);
+>>>>>>> dev

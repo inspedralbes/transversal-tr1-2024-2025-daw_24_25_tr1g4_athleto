@@ -2,12 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cat_prod;
 use App\Models\User;
 use App\Models\Categoria;
 use App\Models\Producte;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,5 +37,22 @@ class DatabaseSeeder extends Seeder
                 'actiu'=> $producte['actiu'],
             ]);
         }
+        
+        foreach ($data['cat_prod'] as $key => $producte) {
+            Cat_prod::create([
+                'id'=> $producte['id'],
+                'id_producte'=> $producte['id_producte'],
+                'id_categoria'=> $producte['id_categoria'],
+                
+            ]);
+        }
+
+        User::create([
+            'nom'=> "example",
+            'cognom'=> "siuu",
+            'nom_usuari'=> "soyEjemplo",
+            'email'=> "example@example.com",
+            'password'=> Hash::make("1234"),
+        ]);
     }
 }
