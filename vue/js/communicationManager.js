@@ -88,18 +88,35 @@ export async function obtenirDadesUser(access_token) {
     return data.usuari;
 }
 
-export async function postNomUsuari(username) {
+export async function postNomUsuari(username, email) {
     const URL = `${laravel.URL}/username`;
     const response = await fetch(URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({username}),
+        body: JSON.stringify({username, email}),
     });
 
     if (!response.ok) throw new Error("Error en la comprovacio");
 
     const data = await response.json();
     return data.existeix;
+}
+
+export async function actualitzarDadesUsuari(dades, access_token, idUser) {
+    const URL=`${laravel.URL}/actualitzar`;
+    const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`,
+        },
+        body: JSON.stringify({nom: dades.nom, cognom: dades.cognom, nom_usuari: dades.nomUsuari, email: dades.mail, adreca: dades.adreca, id: idUser}),
+    });
+
+    if (!response.ok) throw new Error("Update failed");
+    const data = await response.json();
+
+    return data;
 }

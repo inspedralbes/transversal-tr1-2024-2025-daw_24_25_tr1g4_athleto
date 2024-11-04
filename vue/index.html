@@ -20,6 +20,7 @@
                     <a href="#" @click="mostrarLandingPage">Athleto</a>
                 </li>
                 <!-- Sección Hombres -->
+                <li class="menu-item"><a href="#" @click="obtenirProductes">Productes</a></li>
                 <li class="menu-item">
                     <a @click="filtrar(4)">Hombres</a>
                     <ul class="submenu">
@@ -47,9 +48,6 @@
                         <li><a @click="filtrar2(6,1)">Running</a></li> 
                     </ul>
                 </li>
-
-                <!-- Sección Ofertas -->
-                <li class="menu-item"><a href="#">Ofertas</a></li>
             </ul>
 
             <!-- Iconos de búsqueda y carrito -->
@@ -75,7 +73,7 @@
         </div>
         <div v-if="visibleProSes" id="compte">
             <div id="compteHeader">
-                <h1>Les teves dades</h1>
+                <h1>Seccio usuari</h1>
             </div>
             <div v-if="!mailExisteix" class="funcioUsuari">
                 <div id="compteInfo">
@@ -123,9 +121,32 @@
                     <br>
                     <button @click="registrarUsuari">Registrar-te</button>
                 </div>
-                <div v-if="mailExisteix==3">
-                    <p>Dades usuari</p><!--Aqui hay que poner datos del perfil etc...-->
+                <div v-if="mailExisteix==3" style="text-align: center;">
                     <button @click="infoUser">Obtenir dades user(consola)</button><!--este boton podria ser para guardar la informacion-->
+                    <br>
+                    <button @click="butoMostrarDades">Modificar dades</button>
+                    <button @click="butoActualitzarContrasenya">Modificar contrasenya</button>
+                    <button @click="butoMostrarHistorial">Historial de compres</button>
+                    <div v-if="mostrarDades">
+                        <p>Nom</p>
+                        <input type="text" v-model="user.nom"><br>
+                        <p>Cognom</p>
+                        <input type="text" v-model="user.cognom"><br>
+                        <p>Nom usuari</p>
+                        <input type="text" v-model="user.nomUsuari" @blur="verificarNomUnic" :class="{ 'nomUsuariInvalid': nomExisteix }">
+                        <p v-if="nomExisteix" style="color: red;">El nom ja existeix</p><br>
+                        <p>Mail usuari</p>
+                        <input type="text" v-model="user.mail" readonly><br>
+                        <p>Adreça</p>
+                        <input type="text" v-model="user.adreca"><br>
+                        <button @click="actualitzarDades">Guardar</button>
+                    </div>
+                    <div v-if="mostrarHistorial">
+                        <p>Historial de compres</p>
+                    </div>
+                    <div v-if="mostrarActCont">
+                        <p></p>
+                    </div>
                 </div>
                 <button @click="esborrarDades" v-if="mailExisteix!=3">Torna rere</button>
             </div>

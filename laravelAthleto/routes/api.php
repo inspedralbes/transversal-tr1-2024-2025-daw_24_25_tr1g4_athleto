@@ -22,6 +22,7 @@ Route::post("/login", action: [Users::class, "login"]);
 Route::post("/username", action: [Users::class, "findName"]);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get("/user", [Users::class, "retornarDadesUsuari"]);
+    Route::post("/actualitzar", action: [Users::class, "update"]);
 });
 
 

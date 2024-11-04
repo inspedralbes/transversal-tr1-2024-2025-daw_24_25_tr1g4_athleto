@@ -33,10 +33,13 @@ class Users extends Controller
     public function findName(Request $request)
     {
         $request->validate([
-            'username' => 'required|string'
+            'username' => 'required|string',
+            'email' => 'required|email'
         ]);
-        
-        $user = User::where('nom_usuari', $request->input('username'))->first();
+    
+        $user = User::where('nom_usuari', $request->input('username'))
+                    ->where('email', '!=', $request->input('email'))
+                    ->first();
 
         if ($user) {
             return response()->json([
@@ -104,5 +107,38 @@ class Users extends Controller
 
         $usuari = Auth::user();
         return response()->json(['usuari' => $usuari], 200);
+    }
+
+    public function update(Request $request)
+    {
+        $id = $request->input('id');
+        //dd($id);
+        $request->validate([
+            'nom' => 'required|string',
+            'cognom' => 'required|string',
+            'nom_usuari' => 'required|string|unique:usuaris,nom_usuari,' . $id,
+            'email' => 'required|email|unique:usuaris,email,' . $id,
+            'adreca' => 'required|string',
+        ]);
+        
+        //dd($request->all());
+        if (!Auth::check()) {
+            return response()->json(['error' => 'No autenticado'], 401);
+        }
+        
+        $usuari = Auth::user();
+        //dd($usuari);
+        $usuari -> nom = $request->input('nom');
+        $usuari -> cognom = $request->input('cognom');
+        $usuari -> nom_usuari = $request->input('nom_usuari');
+        $usuari -> adreca = $request->input('adreca');
+
+        $usuari -> save();
+
+        return response()->json([
+            'actualitzat' => true,
+            'missatge' => 'Usuari actualitzat correctament',
+            'usuari' => $usuari,
+        ]);
     }
 }
