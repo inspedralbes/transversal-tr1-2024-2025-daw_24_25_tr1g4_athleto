@@ -13,7 +13,7 @@
     <div class="container-fluid">
       <a class="navbar-brand h1" href="{{ route('categories.index') }}">CRUDCategories</a>
       <div class="justify-end">
-        <a class="btn btn-sm btn-success" href="{{ route('categories.create') }}">Add Category</a>
+        <a class="btn btn-sm btn-success" href="{{ route('categories.create') }}">Afegir Categoria</a>
       </div>
     </div>
   </nav>
@@ -26,18 +26,18 @@
               <h5 class="card-title">{{ $category->nom }}</h5>
             </div>
             <div class="card-body">
-              <p class="card-text">Category ID: {{ $category->id }}</p>
+              <p class="card-text">ID Categoria: {{ $category->id }}</p>
             </div>
             <div class="card-footer">
               <div class="row">
                 <div class="col-sm">
-                  <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                  <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary btn-sm">Editar</a>
                 </div>
                 <div class="col-sm">
                   <form action="{{ route('categories.destroy', $category->id) }}" method="post">
                     @csrf
                     @method('GET')
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                   </form>
                 </div>
               </div>

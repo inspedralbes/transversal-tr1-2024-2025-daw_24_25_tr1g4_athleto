@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Create Category</h1>
+    <h1>Crea Category</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -20,7 +20,7 @@
             <label for="nom">Category nom</label>
             <input type="text" class="form-control" id="nom" name="nom" value="{{ old('nom') }}" required>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary">Crer</button>
     </form>
 </div>
 @endsection

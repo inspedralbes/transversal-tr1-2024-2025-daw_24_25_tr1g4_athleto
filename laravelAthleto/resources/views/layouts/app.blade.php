@@ -16,7 +16,7 @@
                     <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('categories.create') }}">Create Category</a>
+                    <a class="nav-link" href="{{ route('categories.create') }}">Crear Categoria</a>
                 </li>
             </ul>
         </div>
