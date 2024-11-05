@@ -127,34 +127,46 @@ createApp({
       // funcionalidad vue buscador
 
       const visibilidad_busqueda = ref(false);  // Controla si el campo de búsqueda está visible o no
+
       const consulta_producte = ref('');       // Almacena la consulta de búsqueda
       const resultat_busqueda = ref([]);     // Almacena los resultados de búsqueda
 
     // Alterna la visibilidad del campo de búsqueda
     function alternar_visibilitat() {
       visibilidad_busqueda.value = !visibilidad_busqueda.value;
+
     }
 
 
     // Ejecuta la búsqueda al presionar Enter
-function inicia_busqueda() {
-  if (consulta_producte.value.trim()) {
-    // Filtrar productos basados en la consulta
-    resultat_busqueda.value = llista.zapatillas.filter(producto => 
-      producto.nom.toLowerCase().includes(consulta_producte.value.toLowerCase())
-    );
-
-    // Si no se encuentran resultados
-    if (resultat_busqueda.value.length === 0) {
-      console.log("No se encontraron productos.");
-    } else {
-      console.log(resultat_busqueda.value); // Verifica que los resultados se obtengan correctamente
-    }
-  } else {
-    // Si la consulta está vacía, puedes querer limpiar los resultados de búsqueda
-    resultat_busqueda.value = [];
+    function inicia_busqueda() {
+      visibleProd.value = false;
+      // Si la consulta está vacía, limpiar los resultados
+      resultat_busqueda.value = [];
+      // Verifica si la consulta no está vacía
+      if (consulta_producte.value.trim()) {
+          // Filtrar productos basados en la consulta
+          resultat_busqueda.value = llista.zapatillas.filter(producto => 
+              producto.nom.toLowerCase().includes(consulta_producte.value.toLowerCase())
+          );
+  
+          // Establece visibilidad_busqueda a true para mostrar resultados de búsqueda
+          visibilidad_busqueda.value = resultat_busqueda.value.length > 0;  // Mostrar solo si hay resultados
+  
+          // Log para verificar los resultados
+          if (resultat_busqueda.value.length === 0) {
+              console.log("No se encontraron productos.");
+          } else {
+              console.log(resultat_busqueda.value); // Verifica que los resultados se obtengan correctamente
+          }
+      } else {
+          // Si la consulta está vacía, limpiar los resultados
+          resultat_busqueda.value = [];
+          visibleProd.value = false;  // Ocultar resultados si no hay consulta
+      }
   }
-}
+
+  
 
 
 
@@ -184,16 +196,12 @@ function inicia_busqueda() {
         compraFeta,
 
         // Retornar las variables y métodos necesarios para el buscador
-      searchVisible: visibilidad_busqueda,
-      searchQuery: consulta_producte,
-      searchResults: resultat_busqueda,
-      toggleSearch: alternar_visibilitat,
-      performSearch: inicia_busqueda
+      visibilidad_busqueda,
+      consulta_producte,
+      resultat_busqueda,
+      alternar_visibilitat,
+      inicia_busqueda
       }
-
-
-
-      
 
     }
     

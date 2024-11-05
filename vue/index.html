@@ -51,7 +51,7 @@
 
             <!-- Iconos de búsqueda y carrito -->
             <div class="icons">
-                <a href="#" class="search-icon" @click.prevent="toggleSearch">🔍</a>
+                <a href="#" class="search-icon" @click.prevent="alternar_visibilitat">🔍</a>
                 <a href="#" class="cart-icon" @click="alternarCestella">🛒</a>
             </div>
         </nav>
@@ -195,30 +195,48 @@
         <!-- Iconos de búsqueda y carrito -->
         <div class="icons" style="display: flex; align-items: center;">
             <!-- Campo de búsqueda (oculto por defecto) -->
-            <div v-if="searchVisible" class="search-bar" style="margin-right: 10px;">
-                <input 
+            <div v-if="visibilidad_busqueda" class="search-bar" style="margin-right: 10px;">
+                <input class="browseer"
                   type="text"   
-                  v-model="searchQuery" 
-                  @keyup.enter="performSearch" 
+                  v-model="consulta_producte" 
+                  @keyup.enter="inicia_busqueda" 
                   placeholder="Busca productes..."
                 />
             </div>
             <!-- Iconos de búsqueda y carrito -->
-            <a href="#" class="search-icon" @click.prevent="toggleSearch">🔍</a>
+             <a href="#" class="search-icon" @click.prevent="alternar_visibilitat">🔍</a>  <!--icono no funciona corretamente -->
             <a href="#" class="cart-icon" @click="alternarCestella">🛒</a>
 
-            
         </div>
+        <!-- div de resultado de busqueda -->
         
+    <div class="contentbusquedas" v-if="visibilidad_busqueda">
+        <!-- Sección para mostrar resultados de búsqueda -->
+        <div v-if="resultat_busqueda.length > 0" class="resultados-busqueda">
+            <h2>Resultados de búsqueda:</h2>
+            <div 
+            v-for="(producto, index) in resultat_busqueda" 
+            :key="index" 
+            class="producto"
+            @click="mostrarProducte(index)"
+        >   
 
+         
+
+            <img :src="producto.imatge" alt="Imagen del producto" />
+            <p>{{ producto.nom }}</p>
+            <p>{{ producto.preu }} €</p>
+        </div>
+    </div>
+
+    <!-- Si no hay resultados de búsqueda, muestra un mensaje -->
+    <div v-else-if="consulta_producte.length > 0">
+        <h2>No se encontraron resultados para "{{ consulta_producte }}".</h2>
+    </div>
+</div>
 
       </div>
     </div>
-
-    
-      
-    
-    
 
     <!--JavaScript principal -->
     <script type="module" src="./js/function.js"></script>
