@@ -367,6 +367,8 @@ createApp({
       }
       try {
         await actualitzarDadesUsuari(user, getCookie('access_token'), dadesUser.value.id);
+        alert("dades actualitzades");
+        dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
       } catch (error) {
         console.log("error actualitzant les dades");
       }
@@ -376,7 +378,21 @@ createApp({
       mostrarActCont.value=true;
       mostrarHistorial.value = false;
       mostrarDades.value = false;
-      //resetear los inputs user.pass y user.newPass
+      user.pass="";
+      user.newPass="";
+    }
+
+    async function actualitzarPass(){
+      if (!user.pass || !user.newPass) {
+        alert("Els camps no poden estar buits");
+        return;
+      }
+      try {
+        await actualitzarPassword(user.pass, user.newPass);//no existe todavia
+        alert("contrasenya actualitzada");
+      } catch (error) {
+        console.log("Error en actualitzar contrasenya");
+      }
     }
 
     function butoMostrarHistorial() {
@@ -440,6 +456,7 @@ createApp({
       butoMostrarDades,
       actualitzarDades,
       butoActualitzarContrasenya,
+      actualitzarPass,
       butoMostrarHistorial,
     }
 
