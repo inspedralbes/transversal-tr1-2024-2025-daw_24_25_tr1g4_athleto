@@ -16,5 +16,4 @@ class Cat_prod extends Model
         'id_producte',
         'id_categoria',
     ];
-
 }
