@@ -1,5 +1,5 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes, postMail, register, login, obtenirDadesUser, postNomUsuari ,getProductesFiltre, getProductesFiltre2 } from './communicationManager.js';
+import { getProductes,enviarCorreo, postMail, register, login, obtenirDadesUser, postNomUsuari ,getProductesFiltre, getProductesFiltre2 } from './communicationManager.js';
 
 // Creación de la instancia de la aplicación Vue
 createApp({
@@ -285,6 +285,7 @@ createApp({
     function pagament() {
       visibleCheck.value = false;
       visiblePagament.value = true;
+      
     }
 
     function reiniciarProductesComprar(){
@@ -298,6 +299,8 @@ createApp({
       alert("Compra feta, s'ha actualitzat el carrito!!!");
       visiblePagament.value = false;
       visiblePort.value = true;
+
+
     }
 
     function actualitzarCarritoCompra(){
