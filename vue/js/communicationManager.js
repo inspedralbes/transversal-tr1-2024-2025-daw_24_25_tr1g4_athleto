@@ -18,7 +18,7 @@ export async function getProductesFiltre(param) {
 }
 
 export async function getProductesFiltre2(id1,id2) {
-    const URL=`${laravel.URL}/categorias??ids[]=${id1}&ids[]=${id2}`;
+    const URL=`${laravel.URL}/categorias?ids[]=${id1}&ids[]=${id2}`;
     const response = await fetch(URL);
     const data = await response.json();
     
