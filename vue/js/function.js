@@ -1,12 +1,12 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes, postMail, login, obtenirDadesUser } from './communicationManager.js';
+import { getProductes, postMail, register, login, obtenirDadesUser, postNomUsuari ,getProductesFiltre, getProductesFiltre2 } from './communicationManager.js';
 
 // Creación de la instancia de la aplicación Vue
 createApp({
 
   setup() {
     // `llista`contiene una lista de productos 
-    let llista = reactive({ zapatillas: [] });
+    const llista = reactive({ zapatillas: [] });
     const dadesUser = ref();
     const mailExisteix = ref();
     // Se ejecuta antes del mount(montar)
@@ -14,6 +14,7 @@ createApp({
       //obtenim les dades si hi ha l'access token a les cookies
       if (getCookie('access_token')) {
         dadesUser.value=await obtenirDadesUser(getCookie('access_token'));
+        console.log(dadesUser.value);
         mailExisteix.value=3;
       }
       // Obtenemos los productos 
@@ -33,17 +34,32 @@ createApp({
     const visiblePagament = ref(false);
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
-    const mailEscrit = ref(false);
+    const user = reactive({nom: "", cognom: "", nomUsuari: "", mail: "", pass: ""});
+    const carrito = reactive({list: [], productesComprar: [], preu: 0});
+    const compra = reactive({list: [], preu: 0});
     const showPass = ref(false);
-    const userMail = ref("");
-    const userPass = ref("");
-    const carList = ref([]); // Contiene los productos dentro del carrito
-    const preuCar = ref(0); // Preu del carrito
-    const compraList = ref([]); // Conte els productes que es compraran al checkout
-    const preuCompra = ref(0); // Preu de la compra
+    const nomExisteix = ref(false);
     let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
     let actual = ref();
     //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
+
+   async function filtrar(param){
+       // Obtenemos los productos 
+       const data = await getProductesFiltre(param);
+       // Guardar los productos obtenidos
+       llista.zapatillas = data;
+      
+
+    }
+    
+    async  function filtrar2(id1,id2){
+     // Obtenemos los productos 
+   const data = await getProductesFiltre2(id1,id2);
+    // Guardar los productos obtenidos
+    llista.zapatillas = data;
+ 
+    }
+
 
     function getCookie(cname) {
       let name = cname + "=";
@@ -62,7 +78,7 @@ createApp({
     }
 
     function titulo(){
-      return dadesUser.value?dadesUser.value.nom:"Iniciar sessió";
+      return dadesUser.value?dadesUser.value.nom_usuari:"Iniciar sessió";
     }
 
     function mostrarAccionsUsuari() {
@@ -79,15 +95,24 @@ createApp({
     }
 
     async function verificarMailExisteix() {
-      mailEscrit.value = true;
-
-      const resp = await postMail(userMail.value);
+      const resp = await postMail(user.mail);
       mailExisteix.value = resp.user ? 1 : 2;
+    }
+
+    async function registrarUsuari() {
+      try {
+        const resp = await register(user);
+        if (resp.registrat) {
+          await loginUsuari(user.mail, user.pass);
+        }
+      } catch (error) {
+        console.log("error registrant usuari");
+      }
     }
 
     async function loginUsuari() {
       try{
-        const accessToken= await login(userMail.value, userPass.value);
+        const accessToken= await login(user.mail, user.pass);
         document.cookie = `access_token=${accessToken}; path=/; max-age=900; SameSite=Strict; Secure`;
         await infoUser();
       }catch(error){
@@ -104,11 +129,35 @@ createApp({
       document.cookie = `usuari_actiu=${dadesUser.value.usuari.actiu}; path=/; max-age=3600; SameSite=Strict; Secure`;
       document.cookie = `usuari_adreca=${dadesUser.value.usuari.adreca}; path=/; max-age=3600; SameSite=Strict; Secure`;*/
       if (dadesUser.value!="error") mailExisteix.value = 3;
+      user.pass = "";
     }
 
-    function cancelarFuncioUsuari(){
+    function logout(){
+      document.cookie = `access_token=; max-age=0; path=/;`;
+      esborrarDades();
+      user.mail = "";
+      carrito.list = [];
+      carrito.preu = 0;
+      compra.list = [];
+      compra.preu = 0;
+      mostrarLandingPage();
+      //si se puede recargar solo hay que borrar la cookie y ya
+    }
+
+    function esborrarDades(){
       mailExisteix.value=null;
-      userPass.value ="";
+      user.nom = "";
+      user.cognom = "";
+      user.nomUsuari = "";
+      user.pass = "";
+      dadesUser.value=undefined;
+    }
+
+    async function verificarNomUnic(){
+      if (user.nomUsuari!='') {
+        const resp = await postNomUsuari(user.nomUsuari);
+        nomExisteix.value = resp;
+      }
     }
 
     function mostrarLandingPage(){
@@ -155,12 +204,12 @@ createApp({
     }
 
     function trobarProducte() {
-      return carList.value.find(prod => prod.nom == actual.value.nom);//meterle && y comparar size(talla bamba)
+      return carrito.list.find(prod => prod.nom == actual.value.nom);//meterle && y comparar size(talla bamba)
 
       //cuando añada las tallas quizas deberia cambiar esta parte y tambien comparar la talla
       //hacer un with en el controllador para pillar tmb la talla y que seleccione que talla tiene con input, 
       /*let valor = undefined;
-      carList.value.forEach(productsd=>{
+      carrito.list.forEach(productsd=>{
         console.log(productsd);
         console.log(actual);
         if (productsd==actual) {
@@ -174,37 +223,62 @@ createApp({
     function afegirProducte() {
       let producte = trobarProducte();
       if (producte) producte.quantitat++;
-      else carList.value.push({ ...toRaw(actual.value), quantitat: 1 });
-      preuCarrito();
+      else carrito.list.push({ ...toRaw(actual.value), quantitat: 1});
+      actualitzarPreuCarrito();
       alternarCestella();
       visibleProd.value = true;
       visibleActual.value = false;
     }
 
     function revisarQuantitat(index) {
-      if (carList.value[index].quantitat == 0) carList.value.splice(index, 1);
+      if (carrito.list[index].quantitat == 0) eliminarProducte(index);
       //añadir else para si la cantidad es mayor al stock
 
-      preuCarrito();
+      actualitzarPreuCarrito();
+    }
+
+    function revisarQuantitatCompra(index) {
+      if (compra.list[index].quantitat == 0) eliminarProducteCompra(index);
+      //añadir else para si la cantidad es mayor al stock
+
+      actualitzarPreuCompra();
     }
 
     function eliminarProducte(index) {
-      carList.value.splice(index, 1);
-      preuCarrito();
+      carrito.list.splice(index, 1);
+      actualitzarPreuCarrito();
+    }
+
+    function eliminarProducteCompra(index) {
+      compra.list.splice(index, 1);
+      actualitzarPreuCompra();
     }
 
     //Serveix per actualitzar el preu del carrito segons els productes dins de carList
-    function preuCarrito() {
-      preuCar.value = 0;
+    function actualitzarPreuCarrito() {
+      carrito.preu = 0;
+      let car;
 
-      carList.value.forEach(producte => {
-        preuCar.value += parseFloat(producte.preu) * producte.quantitat;
+      if (carrito.productesComprar.length>0) car = carrito.productesComprar;
+      else car = carrito.list;
+      
+      car.forEach(producte => {
+        carrito.preu += parseFloat(producte.preu) * producte.quantitat;
+      });
+    }
+
+    function actualitzarPreuCompra(){
+      compra.preu = 0;
+
+      compra.list.forEach(producte => {
+        compra.preu += parseFloat(producte.preu) * producte.quantitat;
       });
     }
 
     function procesCheckout() {
-      compraList.value = carList.value;
-      preuCompra.value = preuCar.value;
+      if (carrito.productesComprar.length>0) compra.list = carrito.productesComprar.map(product => ({ ...product }));
+      else compra.list = carrito.list.map(product => ({ ...product }));
+      compra.preu = carrito.preu;
       obrirCheckout();
     }
 
@@ -213,10 +287,24 @@ createApp({
       visiblePagament.value = true;
     }
 
+    function reiniciarProductesComprar(){
+      carrito.productesComprar = [];
+    }
+
     function compraFeta() {
-      alert("Compra feta!!!");
+      reiniciarProductesComprar();
+      actualitzarCarritoCompra();
+      actualitzarPreuCarrito();
+      alert("Compra feta, s'ha actualitzat el carrito!!!");
       visiblePagament.value = false;
       visiblePort.value = true;
+    }
+
+    function actualitzarCarritoCompra(){
+      compra.list.forEach(producte => {
+        carrito.list.splice(carrito.list.findIndex(prod => prod.id==producte.id), 1);
+      });
+      actualitzarPreuCarrito();
     }
 
 
@@ -229,9 +317,9 @@ createApp({
     }
 
     function compraRapida() {
-      compraList.value = [{ ...toRaw(actual.value), quantitat: 1 }];
-      //compraList.value.push({ ...toRaw(actual.value), quantitat: 1 });
-      preuCompra.value = actual.value.preu;
+      compra.list = [{ ...toRaw(actual.value), quantitat: 1 }];
+      //compra.list.push({ ...toRaw(actual.value), quantitat: 1 });
+      compra.preu = actual.value.preu;
       obrirCheckout();
     }
 
@@ -242,12 +330,6 @@ createApp({
 
     // Retornamos las variables y funciones 
     return {
-      userMail,
-      userPass,
-      dadesUser,
-      mailEscrit,
-      mailExisteix,
-      llista,
       visibleProd,
       visiblePort,
       visibleActual,
@@ -255,26 +337,35 @@ createApp({
       visibleCheck,
       visibleOpcUsuari,
       visibleProSes,
+      visiblePagament,
+      user,
+      carrito,
+      compra,
+      dadesUser,
+      mailExisteix,
+      nomExisteix,
+      llista,
       showPass,
-      preuCar,
-      preuCompra,
       actual,
       genero,
-      carList,
-      compraList,
-      visiblePagament,
       mostrarLandingPage,
-      cancelarFuncioUsuari,
+      esborrarDades,
       verificarMailExisteix,
       titulo,
+      registrarUsuari,
       loginUsuari,
+      logout,
+      verificarNomUnic,
       mostrarDadesUsuari,
       mostrarProducte,
       mostrarProductes,
       alternarCestella,
       revisarQuantitat,
+      revisarQuantitatCompra,
       afegirProducte,
       eliminarProducte,
+      actualitzarPreuCarrito,
+      eliminarProducteCompra,
       procesCheckout,
       pagament,
       compraFeta,
@@ -282,7 +373,9 @@ createApp({
       mostrarAccionsUsuari,
       ocultarAccionsUsuari,
       mostrarProcesSessio,
-      infoUser
+      infoUser,
+      filtrar,
+      filtrar2,
     }
 
 

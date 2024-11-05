@@ -20,4 +20,9 @@ class Producte extends Model
     protected $casts = [
         'actiu' => 'boolean',
     ];
+
+    public function categorias()
+    {
+        return $this->belongsToMany(Categoria::class, 'cat_prod', 'id_producte', 'id_categoria');
+    }
 }

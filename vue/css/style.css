@@ -460,6 +460,11 @@ body {
     padding-top: 15px;
 }
 
+.brossaProducteCheck{
+    width: 30px;
+    height: 30px;
+}
+
 #imgLandingPage {
     display: flex;
     align-items: center;
@@ -475,7 +480,7 @@ body {
     height: 100px;
 }
 
-#checkout img{
+#checkout>img{
     width: 200px;
     height: 200px;
 }
@@ -525,11 +530,15 @@ body {
     margin-top: 10px;
 }
 
-#enllaços{
+.enllaços{
     margin-top: 3em;
 }
 
-#enllaços p{
+.enllaçosIniciat{
+    margin-top: 1em;
+}
+
+.enllaços p{
     cursor: pointer;
     border-bottom: 1px solid rgb(182, 176, 176);
 }
@@ -609,4 +618,19 @@ body {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
+}
+
+#seccioRegistre{
+    text-align: center;
+}
+
+#seccioRegistre input{
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.nomUsuariInvalid{
+    border: 2px solid red;
 }
