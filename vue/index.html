@@ -64,7 +64,7 @@
                 <div id="cancelAccUsu" @click="ocultarAccionsUsuari">✖</div>
                 <div class="enllaços" :class="{ 'enllaçosIniciat': dadesUser }">
                     <p>Atenció al client</p>
-                    <p>Idioma</p>
+                    <p>Mis pedidos</p>
                     <p @click="logout" v-if="dadesUser">Logout</p>
                 </div>
                 <button v-if="!dadesUser" id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ / REGISTRAR-SE</button>

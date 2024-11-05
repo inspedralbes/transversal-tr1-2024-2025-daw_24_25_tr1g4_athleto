@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 class Users extends Controller
 {
     public function findMail(Request $request)
@@ -85,8 +85,8 @@ class Users extends Controller
 
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
-            $accessToken = $user->createToken('Access Token')->plainTextToken;
-            //$accessToken = $user->createToken('Access Token', [], Carbon::now()->addMinutes(15))->plainTextToken;
+            //$accessToken = $user->createToken('Access Token')->plainTextToken;
+            $accessToken = $user->createToken('Access Token', [], Carbon::now()->addMinutes(15))->plainTextToken;
             //$cookie = cookie('access_token', $accessToken, 60, '/', null, false, true, false, 'Lax');
 
             return response()->json([

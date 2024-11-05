@@ -12,10 +12,14 @@ createApp({
     // Se ejecuta antes del mount(montar)
     onBeforeMount(async () => {
       //obtenim les dades si hi ha l'access token a les cookies
-      if (getCookie('access_token')) {
-        dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
-        console.log(dadesUser.value);
-        mailExisteix.value = 3;
+      try {
+        if (getCookie('access_token')) {
+          dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
+          console.log(dadesUser.value);
+          mailExisteix.value = 3;
+        }
+      } catch (error) {
+        document.cookie = `access_token=; max-age=0; path=/;`;
       }
       // Obtenemos los productos 
       const data = await getProductes();
