@@ -287,8 +287,14 @@ createApp({
       visiblePagament.value = true;
     }
 
+    function reiniciarProductesComprar(){
+      carrito.productesComprar = [];
+    }
+
     function compraFeta() {
+      reiniciarProductesComprar();
       actualitzarCarritoCompra();
+      actualitzarPreuCarrito();
       alert("Compra feta, s'ha actualitzat el carrito!!!");
       visiblePagament.value = false;
       visiblePort.value = true;
