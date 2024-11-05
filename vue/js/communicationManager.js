@@ -9,7 +9,7 @@ export async function getProductes() {
 }
 
 
-export async function enviarCorreo(compra) {
+export async function enviarCorreo(correu) {
     const URL=`${laravel.URL}/buscarMail`;
     const response = await fetch(URL, {
         method: 'POST',
@@ -22,6 +22,22 @@ export async function enviarCorreo(compra) {
     const data = await response.json();
 
     return data;
+}
+
+export async function enviarCompra(compra) {
+    const URL=`${laravel.URL}/compra`;
+
+    console.log(JSON.stringify(compra));
+    const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(compra)
+    });
+
+    const data = await response.json();
+    
 }
 
 

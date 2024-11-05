@@ -21,7 +21,6 @@ return new class extends Migration
                   ->onDelete('cascade'); 
             $table->decimal('preu_total'); 
             $table->string('estat'); 
-            $table->decimal('precio', 8, 2);
             $table->timestamps(); 
         });
     }

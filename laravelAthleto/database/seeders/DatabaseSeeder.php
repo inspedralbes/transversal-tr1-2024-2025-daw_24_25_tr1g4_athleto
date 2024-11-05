@@ -54,5 +54,8 @@ class DatabaseSeeder extends Seeder
             'email'=> "example@example.com",
             'password'=> Hash::make("1234"),
         ]);
+
+
+        
     }
 }

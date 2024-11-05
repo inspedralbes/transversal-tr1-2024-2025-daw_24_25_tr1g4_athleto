@@ -1,5 +1,5 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes,enviarCorreo, postMail, register, login, obtenirDadesUser, postNomUsuari ,getProductesFiltre, getProductesFiltre2 } from './communicationManager.js';
+import { getProductes,enviarCorreo,enviarCompra, postMail, register, login, obtenirDadesUser, postNomUsuari ,getProductesFiltre, getProductesFiltre2 } from './communicationManager.js';
 
 // Creación de la instancia de la aplicación Vue
 createApp({
@@ -48,6 +48,18 @@ createApp({
        const data = await getProductesFiltre(param);
        // Guardar los productos obtenidos
        llista.zapatillas = data;
+
+        let ejemplo=reactive(
+          {
+            id_user:dadesUser.value.id,
+            productes:[] = carrito.list,
+            preu:carrito.preu
+
+          }
+        )
+        
+      console.log(carrito.list);
+      console.log()
       
 
     }
@@ -176,6 +188,7 @@ createApp({
       console.log(dadesUser.value);
     }
 
+
     // Función que se ejecuta cuando se selecciona un producto de la lista
     function mostrarProducte(data) {
       actual.value = llista.zapatillas[data];
@@ -221,6 +234,13 @@ createApp({
 
     //Serveix per afegir el producte actual al carrito, actualitzar el preu i tancar el carrito
     function afegirProducte() {
+      
+      if(dadesUser.value==undefined){
+        alert("Registrate primero")
+
+      }else{
+
+
       let producte = trobarProducte();
       if (producte) producte.quantitat++;
       else carrito.list.push({ ...toRaw(actual.value), quantitat: 1});
@@ -228,6 +248,8 @@ createApp({
       alternarCestella();
       visibleProd.value = true;
       visibleActual.value = false;
+  
+    }
     }
 
     function revisarQuantitat(index) {
@@ -293,12 +315,31 @@ createApp({
     }
 
     function compraFeta() {
+      console.log(carrito)
+
+      let compra=reactive(
+        {
+          id_user:dadesUser.value.id,
+          preu:carrito.preu,
+          productes:[] = carrito.list
+         
+
+        }
+      )
+
+      enviarCompra(compra)
+
+      alert("Compra rebuda!!!");
+      visiblePagament.value = false;
+      visiblePort.value = true;
       reiniciarProductesComprar();
       actualitzarCarritoCompra();
       actualitzarPreuCarrito();
-      alert("Compra feta, s'ha actualitzat el carrito!!!");
-      visiblePagament.value = false;
-      visiblePort.value = true;
+     
+     
+
+
+      
 
 
     }
@@ -320,10 +361,17 @@ createApp({
     }
 
     function compraRapida() {
+
+      if(dadesUser.value==undefined){
+        alert("Registrate primero")
+
+      }else{
+
       compra.list = [{ ...toRaw(actual.value), quantitat: 1 }];
       //compra.list.push({ ...toRaw(actual.value), quantitat: 1 });
       compra.preu = actual.value.preu;
       obrirCheckout();
+    }
     }
 
     function mostrarProcesSessio() {

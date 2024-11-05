@@ -1,7 +1,9 @@
 <?php
 
 // Importa controlador Productes y clases Request y Route.
+use App\Http\Controllers\Compras;
 use App\Http\Controllers\Productes; 
+use App\Models\compra;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Users; 
 use Illuminate\Support\Facades\Route; 
@@ -24,6 +26,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get("/user", [Users::class, "retornarDadesUsuari"]);
 });
 
+
+Route::post('/compra', [Compras::class, 'guardarCompra']);
 
 Route::get('/categorias', [Productes::class, 'getProductesByCategories']);
 
