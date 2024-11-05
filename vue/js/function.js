@@ -34,6 +34,10 @@ createApp({
     const visiblePagament = ref(false);
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
+    let comprar=reactive({ id_user:"",
+      preu:"",
+      productes:[] = ""
+     })
     const user = reactive({nom: "", cognom: "", nomUsuari: "", mail: "", pass: ""});
     const carrito = reactive({list: [], productesComprar: [], preu: 0});
     const compra = reactive({list: [], preu: 0});
@@ -298,9 +302,22 @@ createApp({
     }
 
     function procesCheckout() {
+
+
+     
+
       if (carrito.productesComprar.length>0) compra.list = carrito.productesComprar.map(product => ({ ...product }));
       else compra.list = carrito.list.map(product => ({ ...product }));
       compra.preu = carrito.preu;
+      comprar=reactive(
+        {
+          id_user:dadesUser.value.id,
+          preu:carrito.preu,
+          productes:[] = carrito.list
+         
+
+        }
+      )
       obrirCheckout();
     }
 
@@ -314,20 +331,12 @@ createApp({
       carrito.productesComprar = [];
     }
 
+
+
+
     function compraFeta() {
-      console.log(carrito)
 
-      let compra=reactive(
-        {
-          id_user:dadesUser.value.id,
-          preu:carrito.preu,
-          productes:[] = carrito.list
-         
-
-        }
-      )
-
-      enviarCompra(compra)
+      enviarCompra(comprar)
 
       alert("Compra rebuda!!!");
       visiblePagament.value = false;
@@ -367,10 +376,22 @@ createApp({
 
       }else{
 
+
       compra.list = [{ ...toRaw(actual.value), quantitat: 1 }];
       //compra.list.push({ ...toRaw(actual.value), quantitat: 1 });
-      compra.preu = actual.value.preu;
+      compra.preu = actual.value.preu;   
+      
+      comprar=reactive(
+        {
+          id_user:dadesUser.value.id,
+          preu:compra.preu,
+          productes:[] = compra.list
+         
+
+        }
+      )
       obrirCheckout();
+
     }
     }
 
