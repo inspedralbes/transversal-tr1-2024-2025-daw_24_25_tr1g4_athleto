@@ -44,6 +44,8 @@ createApp({
         // Muestra el producto seleccionado y oculta la lista de productos
         visibleActual.value = true;
         visibleProd.value = false;
+        visibilidad_resultadoBusqueda.value = false;
+
       }
 
       // Función que vuelve a mostrar la lista de productos y oculta el producto actual
@@ -127,7 +129,7 @@ createApp({
       // funcionalidad vue buscador
 
       const visibilidad_busqueda = ref(false);  // Controla si el campo de búsqueda está visible o no
-
+      const visibilidad_resultadoBusqueda = ref(false);
       const consulta_producte = ref('');       // Almacena la consulta de búsqueda
       const resultat_busqueda = ref([]);     // Almacena los resultados de búsqueda
 
@@ -140,6 +142,7 @@ createApp({
 
     // Ejecuta la búsqueda al presionar Enter
     function inicia_busqueda() {
+      visibleActual.value = false;
       visibleProd.value = false;
       // Si la consulta está vacía, limpiar los resultados
       resultat_busqueda.value = [];
@@ -151,7 +154,7 @@ createApp({
           );
   
           // Establece visibilidad_busqueda a true para mostrar resultados de búsqueda
-          visibilidad_busqueda.value = resultat_busqueda.value.length > 0;  // Mostrar solo si hay resultados
+          visibilidad_resultadoBusqueda.value = resultat_busqueda.value.length > 0;  // Mostrar solo si hay resultados
   
           // Log para verificar los resultados
           if (resultat_busqueda.value.length === 0) {
@@ -197,6 +200,7 @@ createApp({
 
         // Retornar las variables y métodos necesarios para el buscador
       visibilidad_busqueda,
+      visibilidad_resultadoBusqueda,
       consulta_producte,
       resultat_busqueda,
       alternar_visibilitat,

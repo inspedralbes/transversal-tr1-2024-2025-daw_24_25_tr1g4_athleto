@@ -210,23 +210,34 @@
         </div>
         <!-- div de resultado de busqueda -->
         
-    <div class="contentbusquedas" v-if="visibilidad_busqueda">
+    <div class="contentZapatos" v-if="visibilidad_resultadoBusqueda">
         <!-- Sección para mostrar resultados de búsqueda -->
         <div v-if="resultat_busqueda.length > 0" class="resultados-busqueda">
             <h2>Resultados de búsqueda:</h2>
             <div 
             v-for="(producto, index) in resultat_busqueda" 
-            :key="index" 
-            class="producto"
+            :key="index" :id="'zapato' + index"
+            class="zapatos" 
+            
             @click="mostrarProducte(index)"
-        >   
+            >   
 
          
 
-            <img :src="producto.imatge" alt="Imagen del producto" />
+        
+                <img :src="producto.imatge">
+                <div class="detalles">
+                    <div >
+                        <p>{{ producto.nom }}</p>
+                    </div>    
+                </div>
+            </div>
+        </div>
+
+            <!-- <img :src="producto.imatge" alt="Imagen del producto" />
             <p>{{ producto.nom }}</p>
             <p>{{ producto.preu }} €</p>
-        </div>
+        </div> -->
     </div>
 
     <!-- Si no hay resultados de búsqueda, muestra un mensaje -->
