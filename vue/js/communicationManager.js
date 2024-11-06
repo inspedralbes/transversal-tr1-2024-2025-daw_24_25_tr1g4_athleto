@@ -105,11 +105,30 @@ export async function login(email, password){
     return data.access_token;
 }
 
+export async function verificarPassUsuari(password, access_token) {
+    const URL=`${laravel.URL}/verificarPass`;
+    const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`,
+        },
+        body: JSON.stringify({password}),
+    });
+ 
+    if (!response.ok) throw new Error("Error verifying");
+    const data = await response.json();
+
+    return data.correcte;
+}
+
 export async function obtenirDadesUser(access_token) {
     const URL = `${laravel.URL}/user`;
     const response = await fetch(URL, {
         method: 'GET',
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${access_token}`,
         },
@@ -121,18 +140,54 @@ export async function obtenirDadesUser(access_token) {
     return data.usuari;
 }
 
-export async function postNomUsuari(username) {
+export async function postNomUsuari(username, email) {
     const URL = `${laravel.URL}/username`;
     const response = await fetch(URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({username}),
+        body: JSON.stringify({username, email}),
     });
 
     if (!response.ok) throw new Error("Error en la comprovacio");
 
     const data = await response.json();
     return data.existeix;
+}
+
+export async function actualitzarDadesUsuari(dades, access_token, idUser) {
+    const URL=`${laravel.URL}/actualitzar`;
+    const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`,
+        },
+        body: JSON.stringify({nom: dades.nom, cognom: dades.cognom, nom_usuari: dades.nomUsuari, email: dades.mail, adreca: dades.adreca, id: idUser}),
+    });
+
+    if (!response.ok) throw new Error("Update failed");
+    const data = await response.json();
+
+    return data;
+}
+
+export async function actualitzarPassword(password, newPassword, access_token) {
+    const URL=`${laravel.URL}/actualitzarPass`;
+    const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`,
+        },
+        body: JSON.stringify({password, newPassword}),
+    });
+
+    if (!response.ok) throw new Error("Update failed");
+    const data = await response.json();
+
+    return data;
 }

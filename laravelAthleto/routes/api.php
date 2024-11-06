@@ -22,7 +22,10 @@ Route::post("/register", action: [Users::class, "register"]);
 Route::post("/login", action: [Users::class, "login"]);
 Route::post("/username", action: [Users::class, "findName"]);
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post("/verificarPass", [Users::class, "verifyPassUser"]);
     Route::get("/user", [Users::class, "retornarDadesUsuari"]);
+    Route::post("/actualitzar", action: [Users::class, "update"]);
+    Route::post("/actualitzarPass", action: [Users::class, "updatePass"]);
 });
 
 

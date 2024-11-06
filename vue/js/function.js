@@ -1,6 +1,6 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes,enviarCorreo,enviarCompra, postMail, register, login, obtenirDadesUser, postNomUsuari ,getProductesFiltre, getProductesFiltre2 } from './communicationManager.js';
-
+import { getProductes, postMail, register, login, obtenirDadesUser, postNomUsuari ,getProductesFiltre, getProductesFiltre2 } from './communicationManager.js';
+import { getProductes, enviarCorreo, enviarCompra, postMail, register, login, obtenirDadesUser, postNomUsuari, getProductesFiltre, getProductesFiltre2, verificarPassUsuari, actualitzarDadesUsuari, actualitzarPassword } from './communicationManager.js';
 // Creación de la instancia de la aplicación Vue
 createApp({
 
@@ -12,10 +12,15 @@ createApp({
     // Se ejecuta antes del mount(montar)
     onBeforeMount(async () => {
       //obtenim les dades si hi ha l'access token a les cookies
-      if (getCookie('access_token')) {
-        dadesUser.value=await obtenirDadesUser(getCookie('access_token'));
-        console.log(dadesUser.value);
-        mailExisteix.value=3;
+      try {
+        if (getCookie('access_token')) {
+          console.log("hola");
+          dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
+          console.log(dadesUser.value);
+          mailExisteix.value = 3;
+        }
+      } catch (error) {
+        logout();
       }
       // Obtenemos los productos 
       const data = await getProductes();
@@ -44,10 +49,7 @@ createApp({
     const visiblePagament = ref(false);
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
-    let comprar=reactive({ id_user:"",
-      preu:"",
-      productes:[] = ""
-     })
+    let comprar=reactive({ id_user:"", preu:"", productes:[] = ""})
     const user = reactive({nom: "", cognom: "", nomUsuari: "", mail: "", pass: ""});
     const carrito = reactive({list: [], productesComprar: [], preu: 0});
     const compra = reactive({list: [], preu: 0});
@@ -113,7 +115,7 @@ createApp({
       let name = cname + "=";
       let decodedCookie = decodeURIComponent(document.cookie);
       let ca = decodedCookie.split(';');
-      for(let i = 0; i <ca.length; i++) {
+      for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
         while (c.charAt(0) == ' ') {
           c = c.substring(1);
@@ -125,8 +127,8 @@ createApp({
       return "";
     }
 
-    function titulo(){
-      return dadesUser.value?dadesUser.value.nom_usuari:"Iniciar sessió";
+    function titulo() {
+      return dadesUser.value ? dadesUser.value.nom_usuari : "Iniciar sessió";
     }
 
     function mostrarAccionsUsuari() {
@@ -137,9 +139,31 @@ createApp({
       visibleOpcUsuari.value = false;
     }
 
-    function mostrarDadesUsuari(){
+    async function mostrarDadesUsuari() {
+      Swal.fire({
+        title: "Introdueix la teva contrasenya",
+        input: "password",
+        showCancelButton: true,
+        confirmButtonText: "Verificar",
+        showLoaderOnConfirm: true,
+        preConfirm: (password) => {
+          return verificarContrasenyaCorrecta(password);
+        }
+      });
       visibleOpcUsuari.value = false;
-      visibleProSes.value=true;
+    }
+    
+    async function verificarContrasenyaCorrecta(password){
+      try {
+        const resp = await verificarPassUsuari(password, getCookie('access_token'));
+        if (resp) {
+          visibleProSes.value = true;
+          mostrarActCont.value=false;
+          mostrarDades.value=false;
+        }else Swal.showValidationMessage(`Contrasenya incorrecta`);
+      } catch (error) {
+        alert("Error verificant");
+      }
     }
 
     async function verificarMailExisteix() {
@@ -159,13 +183,13 @@ createApp({
     }
 
     async function loginUsuari() {
-      try{
-        const accessToken= await login(user.mail, user.pass);
+      try {
+        const accessToken = await login(user.mail, user.pass);
         document.cookie = `access_token=${accessToken}; path=/; max-age=900; SameSite=Strict; Secure`;
         await infoUser();
-      }catch(error){
-        console.log("error iniciant sessió"); 
-        dadesUser.value="error";
+      } catch (error) {
+        console.log("error iniciant sessió");
+        dadesUser.value = "error";
       }
 
       /*document.cookie = `usuari_id=${dadesUser.value.usuari.id}; path=/; max-age=3600; SameSite=Strict; Secure`;
@@ -176,11 +200,11 @@ createApp({
       document.cookie = `usuari_rol=${dadesUser.value.usuari.rol}; path=/; max-age=3600; SameSite=Strict; Secure`;
       document.cookie = `usuari_actiu=${dadesUser.value.usuari.actiu}; path=/; max-age=3600; SameSite=Strict; Secure`;
       document.cookie = `usuari_adreca=${dadesUser.value.usuari.adreca}; path=/; max-age=3600; SameSite=Strict; Secure`;*/
-      if (dadesUser.value!="error") mailExisteix.value = 3;
+      if (dadesUser.value != "error") mailExisteix.value = 3;
       user.pass = "";
     }
 
-    function logout(){
+    function logout() {
       document.cookie = `access_token=; max-age=0; path=/;`;
       esborrarDades();
       user.mail = "";
@@ -189,38 +213,44 @@ createApp({
       compra.list = [];
       compra.preu = 0;
       mostrarLandingPage();
-      //si se puede recargar solo hay que borrar la cookie y ya
     }
 
-    function esborrarDades(){
-      mailExisteix.value=null;
+    function esborrarDades() {
+      mailExisteix.value = null;
       user.nom = "";
       user.cognom = "";
       user.nomUsuari = "";
       user.pass = "";
-      dadesUser.value=undefined;
+      user.newPass = "";
+      dadesUser.value = undefined;
     }
 
-    async function verificarNomUnic(){
-      if (user.nomUsuari!='') {
-        const resp = await postNomUsuari(user.nomUsuari);
+    async function verificarNomUnic() {
+      if (user.nomUsuari != '') {
+        const resp = await postNomUsuari(user.nomUsuari, user.mail);
         nomExisteix.value = resp;
       }
     }
 
-    function mostrarLandingPage(){
-      visiblePort.value=true;
-      visibleProd.value=false;
-      visibleActual.value=false;
-      visibleCar.value=false;
-      visibleCheck.value=false;
-      visiblePagament.value=false;
-      visibleOpcUsuari.value=false;
-      visibleProSes.value=false;
+    function ocultarTot() {
+      visiblePort.value = false;
+      visibleProd.value = false;
+      visibleActual.value = false;
+      visibleCar.value = false;
+      visibleCheck.value = false;
+      visiblePagament.value = false;
+      visibleOpcUsuari.value = false;
+      visibleProSes.value = false;
+      mostrarDades.value = false;
+    }
+
+    function mostrarLandingPage() {
+      ocultarTot();
+      visiblePort.value = true;
     }
 
     async function infoUser() {
-      dadesUser.value=await obtenirDadesUser(getCookie('access_token'));
+      dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
       console.log(dadesUser.value);
     }
 
@@ -279,7 +309,7 @@ createApp({
 
       let producte = trobarProducte();
       if (producte) producte.quantitat++;
-      else carrito.list.push({ ...toRaw(actual.value), quantitat: 1});
+      else carrito.list.push({ ...toRaw(actual.value), quantitat: 1 });
       actualitzarPreuCarrito();
       alternarCestella();
       visibleProd.value = true;
@@ -317,15 +347,15 @@ createApp({
       carrito.preu = 0;
       let car;
 
-      if (carrito.productesComprar.length>0) car = carrito.productesComprar;
+      if (carrito.productesComprar.length > 0) car = carrito.productesComprar;
       else car = carrito.list;
-      
+
       car.forEach(producte => {
         carrito.preu += parseFloat(producte.preu) * producte.quantitat;
       });
     }
 
-    function actualitzarPreuCompra(){
+    function actualitzarPreuCompra() {
       compra.preu = 0;
 
       compra.list.forEach(producte => {
@@ -334,11 +364,7 @@ createApp({
     }
 
     function procesCheckout() {
-
-
-     
-
-      if (carrito.productesComprar.length>0) compra.list = carrito.productesComprar.map(product => ({ ...product }));
+      if (carrito.productesComprar.length > 0) compra.list = carrito.productesComprar.map(product => ({ ...product }));
       else compra.list = carrito.list.map(product => ({ ...product }));
       compra.preu = carrito.preu;
       comprar=reactive(
@@ -359,7 +385,7 @@ createApp({
       
     }
 
-    function reiniciarProductesComprar(){
+    function reiniciarProductesComprar() {
       carrito.productesComprar = [];
     }
 
@@ -385,9 +411,9 @@ createApp({
 
     }
 
-    function actualitzarCarritoCompra(){
+    function actualitzarCarritoCompra() {
       compra.list.forEach(producte => {
-        carrito.list.splice(carrito.list.findIndex(prod => prod.id==producte.id), 1);
+        carrito.list.splice(carrito.list.findIndex(prod => prod.id == producte.id), 1);
       });
       actualitzarPreuCarrito();
     }
@@ -432,6 +458,79 @@ createApp({
       visibleProSes.value = true;
     }
 
+    function butoMostrarDades() {
+      user.nom = dadesUser.value.nom;
+      user.cognom = dadesUser.value.cognom;
+      user.nomUsuari = dadesUser.value.nom_usuari;
+      user.mail = dadesUser.value.email;
+      user.adreca = dadesUser.value.adreca || "";
+      mostrarDades.value = true;
+      mostrarActCont.value = false;
+    }
+
+    async function actualitzarDades(){
+      if (!user.nom || !user.cognom || !user.nomUsuari || !user.mail || !user.adreca) {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
+      try {
+        await actualitzarDadesUsuari(user, getCookie('access_token'), dadesUser.value.id);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+        Toast.fire({
+          icon: "success",
+          title: "Dades actualitzades"
+        });
+        dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
+      } catch (error) {
+        console.log("error actualitzant les dades");
+      }
+    }
+
+    function butoActualitzarContrasenya(){
+      mostrarActCont.value=true;
+      mostrarDades.value = false;
+      user.pass="";
+      user.newPass="";
+    }
+
+    async function actualitzarPass(){
+      if (!user.pass || !user.newPass) {
+        alert("Els camps no poden estar buits");
+        return;
+      }
+      try {
+        const resp = await actualitzarPassword(user.pass, user.newPass, getCookie('access_token'));
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+        if (resp.updated) {
+          Toast.fire({
+            icon: "success",
+            title: "Contrasenya actualitzada"
+          });
+        }else {
+          Toast.fire({
+            icon: "error",
+            title: "Contrasenya incorrecta"
+          });
+        }
+      } catch (error) {
+        console.log("Error en actualitzar contrasenya");
+      }
+    }
+
+    
+
     // Retornamos las variables y funciones 
     return {
       visibleProd,
@@ -452,6 +551,8 @@ createApp({
       showPass,
       actual,
       genero,
+      mostrarDades,
+      mostrarActCont,
       alternarPagina,
       mostrarLandingPage,
       esborrarDades,
@@ -481,6 +582,11 @@ createApp({
       infoUser,
       filtrar,
       filtrar2,
+      butoMostrarDades,
+      verificarContrasenyaCorrecta,
+      actualitzarDades,
+      butoActualitzarContrasenya,
+      actualitzarPass,
     }
 
 
