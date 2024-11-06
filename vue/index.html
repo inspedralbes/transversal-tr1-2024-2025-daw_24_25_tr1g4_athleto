@@ -71,6 +71,14 @@
                 <button v-else id="butoDadesUsuari" @click="mostrarDadesUsuari">Dades usuari</button>
             </div>
         </div>
+        <div v-if="visibleDemanarPass" id="seccioDemanarPass">
+            <div class="passInput">
+                <input :type="showPass?'text':'password'" v-model="user.pass">
+                <img @mousedown="showPass=true" @mouseup="showPass=false" @mouseleave="showPass=false"
+                    src="img/ull.png" class="ullPass">
+            </div>
+            <span @click="verificarContrasenyaCorrecta">Continuar</span>
+        </div>
         <div v-if="visibleProSes" id="compte">
             <div id="compteHeader">
                 <h1>Seccio usuari</h1>
@@ -122,11 +130,8 @@
                     <button @click="registrarUsuari">Registrar-te</button>
                 </div>
                 <div v-if="mailExisteix==3" style="text-align: center;">
-                    <button @click="infoUser">Obtenir dades user(consola)</button><!--este boton podria ser para guardar la informacion-->
-                    <br>
                     <button @click="butoMostrarDades">Modificar dades</button>
                     <button @click="butoActualitzarContrasenya">Modificar contrasenya</button>
-                    <button @click="butoMostrarHistorial">Historial de compres</button>
                     <div v-if="mostrarDades">
                         <p>Nom</p>
                         <input type="text" v-model="user.nom"><br>

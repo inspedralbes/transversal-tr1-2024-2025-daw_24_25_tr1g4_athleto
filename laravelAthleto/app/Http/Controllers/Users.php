@@ -80,7 +80,7 @@ class Users extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|string',
         ]);
 
         if (Auth::attempt($request->only('email', 'password'))) {
@@ -97,6 +97,25 @@ class Users extends Controller
             //])->cookie($cookie);
         }
         return response()->json(['error' => 'Dades incorrectes'], 401);
+    }
+
+    public function verifyPassUser(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string',
+        ]);
+
+        
+        if (!Auth::check()) {
+            return response()->json(['error' => 'No autenticado'], 401);
+        }
+        $usuari = Auth::user();
+        
+        if (Hash::check($request->password, $usuari->password)) {
+            return response()->json(['correcte' => true]);
+        } else {
+            return response()->json(['correcte' => false]);
+        }
     }
     
     public function retornarDadesUsuari()

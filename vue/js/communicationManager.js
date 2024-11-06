@@ -72,6 +72,23 @@ export async function login(email, password){
     return data.access_token;
 }
 
+export async function verificarPassUsuari(password, access_token) {
+    const URL=`${laravel.URL}/verificarPass`;
+    const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${access_token}`,
+        },
+        body: JSON.stringify({password}),
+    });
+
+    if (!response.ok) throw new Error("Error verifying");
+    const data = await response.json();
+
+    return data.correcte;
+}
+
 export async function obtenirDadesUser(access_token) {
     const URL = `${laravel.URL}/user`;
     const response = await fetch(URL, {

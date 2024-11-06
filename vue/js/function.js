@@ -1,5 +1,5 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes, postMail, register, login, obtenirDadesUser, postNomUsuari, getProductesFiltre, getProductesFiltre2, actualitzarDadesUsuari } from './communicationManager.js';
+import { getProductes, postMail, register, login, obtenirDadesUser, postNomUsuari, getProductesFiltre, getProductesFiltre2, verificarPassUsuari, actualitzarDadesUsuari } from './communicationManager.js';
 
 // Creación de la instancia de la aplicación Vue
 createApp({
@@ -14,6 +14,7 @@ createApp({
       //obtenim les dades si hi ha l'access token a les cookies
       try {
         if (getCookie('access_token')) {
+          console.log("hola");
           dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
           console.log(dadesUser.value);
           mailExisteix.value = 3;
@@ -39,6 +40,7 @@ createApp({
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
     const mostrarDades = ref(false);
+    const visibleDemanarPass = ref(false);
     const mostrarActCont = ref(false)
     const mostrarHistorial = ref(false);
     const user = reactive({ nom: "", cognom: "", nomUsuari: "", mail: "", pass: "", newPass: "", adreca: "" });
@@ -108,8 +110,20 @@ createApp({
     }
 
     function mostrarDadesUsuari() {
+      visibleDemanarPass.value=true;
       visibleOpcUsuari.value = false;
-      visibleProSes.value = true;
+    }
+    
+    async function verificarContrasenyaCorrecta(){
+      try {
+        const resp = await verificarPassUsuari(user.pass, getCookie('access_token'));
+        if (resp) {
+          visibleProSes.value = true;
+          visibleDemanarPass.value = false;
+        }else alert("Contrasenya incorrecta");
+      } catch (error) {
+        alert("Error verificant");
+      }
     }
 
     async function verificarMailExisteix() {
@@ -415,6 +429,7 @@ createApp({
       visibleOpcUsuari,
       visibleProSes,
       visiblePagament,
+      visibleDemanarPass,
       user,
       carrito,
       compra,
@@ -458,6 +473,7 @@ createApp({
       filtrar,
       filtrar2,
       butoMostrarDades,
+      verificarContrasenyaCorrecta,
       actualitzarDades,
       butoActualitzarContrasenya,
       actualitzarPass,
