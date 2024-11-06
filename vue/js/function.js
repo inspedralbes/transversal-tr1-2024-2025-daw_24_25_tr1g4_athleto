@@ -91,18 +91,9 @@ createApp({
        const data = await getProductesFiltre(param);
        // Guardar los productos obtenidos
        llista.paginaZapatillas = data;
-
-        let ejemplo=reactive(
-          {
-            id_user:dadesUser.value.id,
-            productes:[] = carrito.list,
-            preu:carrito.preu
-
-          }
-        )
-        
-      console.log(carrito.list);
-      console.log()
+       llista.zapatillas= data;    
+     generarPagina();
+     alternarPagina(1);
       
 
     }
@@ -112,7 +103,9 @@ createApp({
    const data = await getProductesFiltre2(id1,id2);
     // Guardar los productos obtenidos
     llista.paginaZapatillas = data;
- 
+    llista.zapatillas=data;
+    generarPagina();
+    alternarPagina(1);
     }
 
 
@@ -234,7 +227,7 @@ createApp({
 
     // Función que se ejecuta cuando se selecciona un producto de la lista
     function mostrarProducte(data) {
-      actual.value = llista.zapatillas[data];
+      actual.value = llista.paginaZapatillas[data];
 
       /*actual.nom = llista.zapatillas[data].nom;
       actual.preu = llista.zapatillas[data].preu;

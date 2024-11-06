@@ -149,12 +149,14 @@
                     :key="index" :id="'zapato' + index" class="zapatos">
                     <!-- Bucle que recorre la lista de zapatillas y muestra -->
                     <!-- Detalles del producto -->
-                    <div class="dadesProducte">
+                    <div >
                         <img :src="prod.imatge">
-                        <div class="detalles">
+                        <div  >
                             <div class="nomProducte">
                                 <p>{{ prod.nom }} </p>
-                                <p>{{ prod.preu }} </p>
+                                <p>{{ prod.preu }}€ </p>
+                              
+                               
                             </div>
                             
                         </div>
