@@ -7,8 +7,7 @@ use App\Models\compra;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Users; 
 use Illuminate\Support\Facades\Route; 
-use App\Http\Controllers\Categories;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoriesController;
 
 
 // Ruta para obtener la información del usuario 
@@ -35,10 +34,10 @@ Route::get('/categorias', [Productes::class, 'getProductesByCategories']);
 Route::get('/categoria/{id_categoria}', [Productes::class, 'getProductesByCategory']);
 
 // Rutas para el CRUD de categorías
-Route::get('/categories', [Categories::class, 'index']);//funciona
-Route::get('/categories/mostrar/{id}', [Categories::class, 'show']);//funciona
-Route::post('/categories/guardar', [Categories::class, 'store']); //funciona
-Route::post('/categories/actualizar/{id}', [Categories::class, 'update']); //funciona
-Route::get('/categories/eliminar/{id}', [Categories::class, 'destroy']); //funciona
+Route::get('/categories', [CategoriesController::class, 'index']);//funciona
+Route::get('/categories/mostrar/{id}', [CategoriesController::class, 'show']);//funciona
+Route::post('/categories/guardar', [CategoriesController::class, 'store']); //funciona
+Route::post('/categories/actualizar/{id}', [CategoriesController::class, 'update']); //funciona
+Route::get('/categories/eliminar/{id}', [CategoriesController::class, 'destroy']); //funciona
 
 
