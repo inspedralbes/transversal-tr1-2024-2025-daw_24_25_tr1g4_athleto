@@ -132,12 +132,14 @@
         </div>
         <div v-if="!visibleProSes" id="pagina">
             <!-- Si visiblePort es verdadero, muestra la portada -->
-            <div v-if="visiblePort" id="portada">
+            <div v-if="visiblePort">
                 <!-- Al hacer clic, alterna entre productos visibles y la portada -->
                 <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" id="imgLandingPage">
-                    <img class="card" src="./img/imgPortada.jpg">
+              <center>      <img class="card" src="./img/portada.jpg"> 
                 </div>
             </div>
+
+            
 
 
 

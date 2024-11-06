@@ -10,10 +10,10 @@ body {
 .navbar {
     background-color: #273043;
     /* Azul oscuro para el navbar */
-    padding: 15px;
-    width: 700px;
+    padding: 100px;
+    width: 1250px;
     position: sticky;
-    top: 0;
+    font-size: 70px;
 }
 
 /* Estilos de los items del menú principal */
@@ -27,7 +27,8 @@ body {
 
 .menu-item {
     position: relative;
-    margin: 0 20px;
+    margin: right 20px;
+    font-size: 75px;
 }
 
 /* Estilos para los iconos (lupa y carrito) */
@@ -44,7 +45,7 @@ body {
     text-decoration: none;
     color: #eff6ee;
     /* Texto claro para los iconos */
-    font-size: 20px;
+    font-size: 80px;
     margin-left: 20px;
     transition: color 0.3s;
 }
@@ -59,7 +60,7 @@ body {
     color: #eff6ee;
     /* Texto claro en el menú */
     font-weight: bold;
-    font-size: 16px;
+    font-size: 50px;
     padding: 10px 20px;
     display: block;
     transition: color 0.3s;
@@ -129,51 +130,50 @@ body {
 .zapatos {
     background-color: #eff6ee;
     /* Fondo claro para las tarjetas de productos */
-    height: 250px;
-    width: 200px;
+    height: 450px;
+    width: 400px;
     
-    margin: 10px;
+    margin: 20px;
     border-radius: 10px;
     display: grid;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Sombra ligera */
+    align-items: center;
    
 
 }
 
+.preuProducte{
+    font-size: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 .nomProducte {
     white-space: nowrap;
-    /* Evita que el texto se divida en varias líneas */
     overflow: hidden;
-    /* Oculta el texto que excede el área */
     text-overflow: ellipsis;
-    /* Muestra "..." para indicar que hay más texto */
+    font-size: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT',   Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .contentZapatos {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin: 0 35px;
+    margin: 0 55px;
 }
 
 .portada {
-    width: 200px;
-    height: 200px;
-    background-color: rgb(101, 210, 224);
+   background-color: rgb(101, 210, 224);
     display: inline-block;
-    margin: 10px;
     margin-top: 100px;
 }
 
 .card {
     box-sizing: border-box;
-    width: 1500px;
-    height: 400px;
-    background: rgba(141, 54, 54, 0.58);
-    border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
     backdrop-filter: blur(6px);
-
+    position: relative;
+    right: -600px;
+    width: 3500px;
     text-align: center;
     cursor: pointer;
     transition: all 0.5s;
@@ -181,7 +181,6 @@ body {
     user-select: none;
     font-weight: bolder;
     color: black;
-    margin: 50px;
     margin-top: 50px;
 }
 
@@ -207,14 +206,15 @@ body {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 700px;
+    width: 2000px;
     /* Mayor tamaño para acomodar imagen y detalles */
-    padding: 20px;
+    padding: 50px;
     display: flex;
     /* Utilizamos Flexbox para alinear los elementos a los lados */
     gap: 20px;
     /* Espacio entre la imagen y el texto */
     position: relative;
+    right: -500px;
 }
 
 
@@ -233,26 +233,26 @@ body {
 }
 
 .product-image {
-    width: 100%;
+    width: 300px;
     /* La imagen se adapta al ancho del contenedor */
     height: auto;
     border-radius: 10px;
 }
 
 .product-title {
-    font-size: 28px;
-    margin-bottom: 10px;
+    font-size: 50px;
+    margin-bottom: 30px;
     color: #333;
 }
 
 .product-description {
-    font-size: 16px;
+    font-size: 30px;
     color: #777;
     margin-bottom: 20px;
 }
 
 .product-price {
-    font-size: 24px;
+    font-size: 50px;
     color: #C82333;
     margin-bottom: 15px;
 }
@@ -266,10 +266,10 @@ body {
 }
 
 .product-container button {
-    padding: 15px 20px;
+    padding: 15px 200px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     transition: transform 0.3s;
@@ -298,8 +298,8 @@ body {
 }
 
 #buto-cancelar {
-    width: 30px;
-    height: 30px;
+    width: 80px;
+    height: 0px;
     position: absolute;
     top: 25px;
     right: 25px;
@@ -370,6 +370,7 @@ body {
     transition-timing-function: linear;
     white-space: nowrap;
     /* Evita que el texto se divida en varias líneas */
+    font-size: 40px;
     overflow: hidden;
     /* Oculta el texto que excede el área */
 }
@@ -379,7 +380,7 @@ body {
 }
 
 .cart-open {
-    width: 550px;
+    width: 1000px;
 }
 
 .cart-header {
@@ -408,9 +409,9 @@ body {
     background-color: #C82333;
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 20px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 40px;
     border-radius: 5px;
     margin: 10px;
 
@@ -456,16 +457,19 @@ body {
 }
 
 .brossaProducte {
-    width: 16px;
-    height: 16px;
+    width: 50px;
+    height: 50px;
     position: absolute;
     right: 0;
-    padding-top: 15px;
+    padding-top: 10px;
+    padding-right: 50px;
 }
 
 .brossaProducteCheck{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+    padding-top: 30px;
+    
 }
 
 #imgLandingPage {
@@ -475,12 +479,12 @@ body {
 }
 
 .inputQuantitat{
-    width: 30px;
+    width: 100px;
 }
 
 .imatgesCar{
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
 }
 
 #checkout>img{
@@ -490,6 +494,7 @@ body {
 
 .checkoutProd{
     display: flex;
+    font-size: 40px;
 }
 
 .dadesProdCheck{
@@ -637,3 +642,4 @@ body {
 .nomUsuariInvalid{
     border: 2px solid red;
 }
+
