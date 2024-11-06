@@ -472,11 +472,31 @@ body {
     font-size: 1em;
 }
 
+.search-bar{
 
-.browseer {
+    right: 100px;
+    bottom: 610px;
+    position: fixed;
+}
+.browseer{
+    
     height: 25px;
     width: 300px;
     border-radius: 15px;
+}
+
+.detalles {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-width: 100%;
+    overflow: hidden;
+}
+.detalles p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
 }
 
 

@@ -142,27 +142,30 @@ createApp({
 
     // Ejecuta la búsqueda al presionar Enter
     function inicia_busqueda() {
+      //esconde el produc card
       visibleActual.value = false;
+      //esconde los productos para mostrar los
       visibleProd.value = false;
       // Si la consulta está vacía, limpiar los resultados
       resultat_busqueda.value = [];
       // Verifica si la consulta no está vacía
       if (consulta_producte.value.trim()) {
-          // Filtrar productos basados en la consulta
-          resultat_busqueda.value = llista.zapatillas.filter(producto => 
-              producto.nom.toLowerCase().includes(consulta_producte.value.toLowerCase())
-          );
+        // Filtra productos y agrega los campos `idOriginal` y `preu` a cada producto filtrado
+        resultat_busqueda.value = llista.zapatillas
+            .map((producto, index) => ({ 
+                ...producto, 
+                idOriginal: index,  // Índice en llista.zapatillas
+                preu: producto.preu // Precio del producto
+            }))
+            .filter(producto => 
+                producto.nom.toLowerCase().includes(consulta_producte.value.toLowerCase())
+            );
   
           // Establece visibilidad_busqueda a true para mostrar resultados de búsqueda
           visibilidad_resultadoBusqueda.value = resultat_busqueda.value.length > 0;  // Mostrar solo si hay resultados
-  
-          // Log para verificar los resultados
-          if (resultat_busqueda.value.length === 0) {
-              console.log("No se encontraron productos.");
-          } else {
-              console.log(resultat_busqueda.value); // Verifica que los resultados se obtengan correctamente
-          }
-      } else {
+            // Log para verificar los datos filtrados
+        console.log("Resultados de búsqueda:", resultat_busqueda.value);
+        } else {
           // Si la consulta está vacía, limpiar los resultados
           resultat_busqueda.value = [];
           visibleProd.value = false;  // Ocultar resultados si no hay consulta

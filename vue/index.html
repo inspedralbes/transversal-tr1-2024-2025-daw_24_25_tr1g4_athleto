@@ -72,7 +72,7 @@
 
                 <!-- Si género es 'all', muestra todos los productos -->
                 <div v-if="genero=='all'" @click="mostrarProducte(index)" v-for="(actual, index) in llista.zapatillas"
-                    :key="index" :id="'zapato' + index" class="zapatos">
+                    :key="index">
                     <!-- Bucle que recorre la lista de zapatillas y muestra -->
                     <!-- Detalles del producto -->
                     <div class="dadesProducte">
@@ -81,9 +81,9 @@
                             <div class="nomProducte">
                                 <p>{{ actual.nom }}</p>
                             </div>
-                            <div class="preuProducte">
+                              <div class="preuProducte">
                                 <p>{{ actual.preu }} €</p>
-                            </div>
+                            </div>  
                         </div>
                     </div>
                 </div>
@@ -195,41 +195,42 @@
         <!-- Iconos de búsqueda y carrito -->
         <div class="icons" style="display: flex; align-items: center;">
             <!-- Campo de búsqueda (oculto por defecto) -->
-            <div v-if="visibilidad_busqueda" class="search-bar" style="margin-right: 10px;">
+            <div v-if="visibilidad_busqueda" class="search-bar" >
                 <input class="browseer"
                   type="text"   
                   v-model="consulta_producte" 
                   @keyup.enter="inicia_busqueda" 
-                  placeholder="Busca productes..."
+                  placeholder="cerca productes..."
                 />
+                <!-- Iconos de búsqueda y carrito -->
+             
+                <!-- <a href="#" class="search-icon" @click.prevent="alternar_visibilitat">🔍</a> -->  <!--icono no funciona corretamente -->
+                <!--<a href="#" class="cart-icon" @click="alternarCestella">🛒</a> -->
             </div>
-            <!-- Iconos de búsqueda y carrito -->
-             <a href="#" class="search-icon" @click.prevent="alternar_visibilitat">🔍</a>  <!--icono no funciona corretamente -->
-            <a href="#" class="cart-icon" @click="alternarCestella">🛒</a>
-
+            
+            
         </div>
         <!-- div de resultado de busqueda -->
         
-    <div class="contentZapatos" v-if="visibilidad_resultadoBusqueda">
+    <div  v-if="visibilidad_resultadoBusqueda">
+        <h2>Resultados de búsqueda:</h2>
         <!-- Sección para mostrar resultados de búsqueda -->
-        <div v-if="resultat_busqueda.length > 0" class="resultados-busqueda">
-            <h2>Resultados de búsqueda:</h2>
+        <div v-if="resultat_busqueda.length > 0" class="contentZapatos">
+            
             <div 
             v-for="(producto, index) in resultat_busqueda" 
-            :key="index" :id="'zapato' + index"
+            :key="producto.idOriginal" 
             class="zapatos" 
-            
-            @click="mostrarProducte(index)"
+            @click="mostrarProducte(producto.idOriginal)"
             >   
 
          
-
-        
                 <img :src="producto.imatge">
                 <div class="detalles">
-                    <div >
-                        <p>{{ producto.nom }}</p>
-                    </div>    
+                    <div>
+                    <p>{{ producto.nom }}</p>
+                    <p>{{ producto.preu }} €</p> <!-- Mostrar el precio -->
+                </div>    
                 </div>
             </div>
         </div>
@@ -241,11 +242,11 @@
     </div>
 
     <!-- Si no hay resultados de búsqueda, muestra un mensaje -->
-    <div v-else-if="consulta_producte.length > 0">
+     <!-- <div v-else-if="consulta_producte.length > 0">
         <h2>No se encontraron resultados para "{{ consulta_producte }}".</h2>
-    </div>
-</div>
+    </div>  -->
 
+</div>
       </div>
     </div>
 
