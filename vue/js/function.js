@@ -1,5 +1,5 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes, postMail, register, login, obtenirDadesUser, postNomUsuari, getProductesFiltre, getProductesFiltre2, verificarPassUsuari, actualitzarDadesUsuari } from './communicationManager.js';
+import { getProductes, postMail, register, login, obtenirDadesUser, postNomUsuari, getProductesFiltre, getProductesFiltre2, verificarPassUsuari, actualitzarDadesUsuari, actualitzarPassword } from './communicationManager.js';
 
 // Creación de la instancia de la aplicación Vue
 createApp({
@@ -20,7 +20,7 @@ createApp({
           mailExisteix.value = 3;
         }
       } catch (error) {
-        document.cookie = `access_token=; max-age=0; path=/;`;
+        logout();
       }
       // Obtenemos los productos 
       const data = await getProductes();
@@ -40,7 +40,6 @@ createApp({
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
     const mostrarDades = ref(false);
-    const visibleDemanarPass = ref(false);
     const mostrarActCont = ref(false)
     const mostrarHistorial = ref(false);
     const user = reactive({ nom: "", cognom: "", nomUsuari: "", mail: "", pass: "", newPass: "", adreca: "" });
@@ -109,18 +108,28 @@ createApp({
       visibleOpcUsuari.value = false;
     }
 
-    function mostrarDadesUsuari() {
-      visibleDemanarPass.value=true;
+    async function mostrarDadesUsuari() {
+      Swal.fire({
+        title: "Introdueix la teva contrasenya",
+        input: "password",
+        showCancelButton: true,
+        confirmButtonText: "Verificar",
+        showLoaderOnConfirm: true,
+        preConfirm: (password) => {
+          return verificarContrasenyaCorrecta(password);
+        }
+      });
       visibleOpcUsuari.value = false;
     }
     
-    async function verificarContrasenyaCorrecta(){
+    async function verificarContrasenyaCorrecta(password){
       try {
-        const resp = await verificarPassUsuari(user.pass, getCookie('access_token'));
+        const resp = await verificarPassUsuari(password, getCookie('access_token'));
         if (resp) {
           visibleProSes.value = true;
-          visibleDemanarPass.value = false;
-        }else alert("Contrasenya incorrecta");
+          mostrarActCont.value=false;
+          mostrarDades.value=false;
+        }else Swal.showValidationMessage(`Contrasenya incorrecta`);
       } catch (error) {
         alert("Error verificant");
       }
@@ -173,7 +182,6 @@ createApp({
       compra.list = [];
       compra.preu = 0;
       mostrarLandingPage();
-      //si se puede recargar solo hay que borrar la cookie y ya
     }
 
     function esborrarDades() {
@@ -182,6 +190,7 @@ createApp({
       user.cognom = "";
       user.nomUsuari = "";
       user.pass = "";
+      user.newPass = "";
       dadesUser.value = undefined;
     }
 
@@ -385,7 +394,17 @@ createApp({
       }
       try {
         await actualitzarDadesUsuari(user, getCookie('access_token'), dadesUser.value.id);
-        alert("dades actualitzades");
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+        Toast.fire({
+          icon: "success",
+          title: "Dades actualitzades"
+        });
         dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
       } catch (error) {
         console.log("error actualitzant les dades");
@@ -406,8 +425,25 @@ createApp({
         return;
       }
       try {
-        await actualitzarPassword(user.pass, user.newPass);//no existe todavia
-        alert("contrasenya actualitzada");
+        const resp = await actualitzarPassword(user.pass, user.newPass, getCookie('access_token'));
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+        if (resp.updated) {
+          Toast.fire({
+            icon: "success",
+            title: "Contrasenya actualitzada"
+          });
+        }else {
+          Toast.fire({
+            icon: "error",
+            title: "Contrasenya incorrecta"
+          });
+        }
       } catch (error) {
         console.log("Error en actualitzar contrasenya");
       }
@@ -429,7 +465,6 @@ createApp({
       visibleOpcUsuari,
       visibleProSes,
       visiblePagament,
-      visibleDemanarPass,
       user,
       carrito,
       compra,

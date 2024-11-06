@@ -26,16 +26,16 @@
                     <ul class="submenu">
                         <li><a @click="filtrar2(4,3)">Deporte</a></li>
                         <li><a @click="filtrar2(4,2)">Casual</a></li>
-                        <li><a @click="filtrar2(4,1)">Running</a></li> 
+                        <li><a @click="filtrar2(4,1)">Running</a></li>
                     </ul>
                 </li>
                 <!-- Sección Mujeres -->
                 <li class="menu-item">
                     <a @click="filtrar(5)">Mujer</a>
                     <ul class="submenu">
-                        <li><a  @click="filtrar2(5,3)">Deporte</a></li>
-                        <li><a  @click="filtrar2(5,2)">Casual</a></li>
-                        <li><a  @click="filtrar2(5,1)">Running</a></li> 
+                        <li><a @click="filtrar2(5,3)">Deporte</a></li>
+                        <li><a @click="filtrar2(5,2)">Casual</a></li>
+                        <li><a @click="filtrar2(5,1)">Running</a></li>
                     </ul>
                 </li>
 
@@ -45,7 +45,7 @@
                     <ul class="submenu">
                         <li><a @click="filtrar2(6,3)">Deporte</a></li>
                         <li><a @click="filtrar2(6,2)">Casual</a></li>
-                        <li><a @click="filtrar2(6,1)">Running</a></li> 
+                        <li><a @click="filtrar2(6,1)">Running</a></li>
                     </ul>
                 </li>
             </ul>
@@ -67,17 +67,10 @@
                     <p>Mis pedidos</p>
                     <p @click="logout" v-if="dadesUser">Logout</p>
                 </div>
-                <button v-if="!dadesUser" id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ / REGISTRAR-SE</button>
+                <button v-if="!dadesUser" id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ /
+                    REGISTRAR-SE</button>
                 <button v-else id="butoDadesUsuari" @click="mostrarDadesUsuari">Dades usuari</button>
             </div>
-        </div>
-        <div v-if="visibleDemanarPass" id="seccioDemanarPass">
-            <div class="passInput">
-                <input :type="showPass?'text':'password'" v-model="user.pass">
-                <img @mousedown="showPass=true" @mouseup="showPass=false" @mouseleave="showPass=false"
-                    src="img/ull.png" class="ullPass">
-            </div>
-            <span @click="verificarContrasenyaCorrecta">Continuar</span>
         </div>
         <div v-if="visibleProSes" id="compte">
             <div id="compteHeader">
@@ -122,7 +115,8 @@
                     <input type="text" placeholder="Nom" v-model="user.nom" style="margin-right: 10px;">
                     <input type="text" placeholder="Cognom" v-model="user.cognom">
                     <br>
-                    <input type="text" placeholder="Nom usuari" v-model="user.nomUsuari" @blur="verificarNomUnic" :class="{ 'nomUsuariInvalid': nomExisteix }">
+                    <input type="text" placeholder="Nom usuari" v-model="user.nomUsuari" @blur="verificarNomUnic"
+                        :class="{ 'nomUsuariInvalid': nomExisteix }">
                     <p v-if="nomExisteix" style="color: red;">El nom ja existeix</p>
                     <br>
                     <input type="text" placeholder="Contrasenya" v-model="user.pass">
@@ -138,16 +132,14 @@
                         <p>Cognom</p>
                         <input type="text" v-model="user.cognom"><br>
                         <p>Nom usuari</p>
-                        <input type="text" v-model="user.nomUsuari" @blur="verificarNomUnic" :class="{ 'nomUsuariInvalid': nomExisteix }">
+                        <input type="text" v-model="user.nomUsuari" @blur="verificarNomUnic"
+                            :class="{ 'nomUsuariInvalid': nomExisteix }">
                         <p v-if="nomExisteix" style="color: red;">El nom ja existeix</p><br>
                         <p>Mail usuari</p>
                         <input type="text" v-model="user.mail" readonly><br>
                         <p>Adreça</p>
                         <input type="text" v-model="user.adreca"><br>
                         <button @click="actualitzarDades">Guardar</button>
-                    </div>
-                    <div v-if="mostrarHistorial">
-                        <p>Historial de compres</p>
                     </div>
                     <div v-if="mostrarActCont">
                         <p>Contrasenya actual</p>
@@ -172,8 +164,9 @@
             <!-- Si visiblePort es verdadero, muestra la portada -->
             <div v-if="visiblePort" id="portada">
                 <!-- Al hacer clic, alterna entre productos visibles y la portada -->
-                <div @click="visibleProd=!visibleProd,visiblePort=!visiblePort" id="imgLandingPage">
-                    <img class="card" src="./img/imgPortada.jpg">
+                <div id="imgLandingPage">
+                    <img @click="visibleProd=!visibleProd,visiblePort=!visiblePort" class="card"
+                        src="./img/imgPortada.jpg">
                 </div>
             </div>
 
@@ -182,9 +175,9 @@
             <!-- Contenido de productos mostrado cuando visibleProd es verdadero -->
             <div class="contentZapatos" v-if="visibleProd">
 
-                
-                <div  @click="mostrarProducte(index)" v-for="(prod, index) in llista.zapatillas"
-                    :key="index" :id="'zapato' + index" class="zapatos">
+
+                <div @click="mostrarProducte(index)" v-for="(prod, index) in llista.zapatillas" :key="index"
+                    :id="'zapato' + index" class="zapatos">
                     <!-- Bucle que recorre la lista de zapatillas y muestra -->
                     <!-- Detalles del producto -->
                     <div class="dadesProducte">
@@ -251,11 +244,14 @@
                                         <div>
                                             <p>{{ producte.preu }} €</p>
                                         </div>
-                                        <input type="number" v-model="producte.quantitat" @input="revisarQuantitat(index)" class="inputQuantitat">
-                                        <input type="checkbox" v-model="carrito.productesComprar" :value="producte" @change="actualitzarPreuCarrito">   
+                                        <input type="number" v-model="producte.quantitat"
+                                            @input="revisarQuantitat(index)" class="inputQuantitat">
+                                        <input type="checkbox" v-model="carrito.productesComprar" :value="producte"
+                                            @change="actualitzarPreuCarrito">
                                     </div>
                                 </div>
-                                <div @click="eliminarProducte(index)"><img src="img/basura.png" class="brossaProducte"></div>
+                                <div @click="eliminarProducte(index)"><img src="img/basura.png" class="brossaProducte">
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -281,8 +277,10 @@
                                         <div>
                                             <p>{{ producte.preu }} €</p>
                                         </div>
-                                        <div><input type="number" v-model="producte.quantitat" @input="revisarQuantitatCompra(index)" class="inputQuantitat"></div>
-                                        <div @click="eliminarProducteCompra(index)"><img src="img/basura.png" class="brossaProducteCheck"></div>
+                                        <div><input type="number" v-model="producte.quantitat"
+                                                @input="revisarQuantitatCompra(index)" class="inputQuantitat"></div>
+                                        <div @click="eliminarProducteCompra(index)"><img src="img/basura.png"
+                                                class="brossaProducteCheck"></div>
                                     </div>
                                 </div>
                             </li>
@@ -308,6 +306,7 @@
 
     <!--JavaScript principal -->
     <script type="module" src="./js/function.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

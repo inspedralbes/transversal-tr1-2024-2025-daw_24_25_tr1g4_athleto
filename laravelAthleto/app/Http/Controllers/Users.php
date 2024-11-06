@@ -104,11 +104,10 @@ class Users extends Controller
         $request->validate([
             'password' => 'required|string',
         ]);
-
         
-        if (!Auth::check()) {
-            return response()->json(['error' => 'No autenticado'], 401);
-        }
+        // if (!Auth::check()) {
+        //     return response()->json(['error' => 'No autenticado'], 401);
+        // }
         $usuari = Auth::user();
         
         if (Hash::check($request->password, $usuari->password)) {
@@ -120,9 +119,9 @@ class Users extends Controller
     
     public function retornarDadesUsuari()
     {   
-        if (!Auth::check()) {
-            return response()->json(['error' => 'No autenticado'], 401);
-        }
+        // if (!Auth::check()) {
+        //     return response()->json(['error' => 'No autenticado'], 401);
+        // }
 
         $usuari = Auth::user();
         return response()->json(['usuari' => $usuari], 200);
@@ -159,5 +158,23 @@ class Users extends Controller
             'missatge' => 'Usuari actualitzat correctament',
             'usuari' => $usuari,
         ]);
+    }
+
+    public function updatePass(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string',
+        ]);
+
+        $usuari = Auth::user();
+
+        if (Hash::check($request->password, $usuari->password)) {
+            $usuari -> password = $request->input('newPassword');
+            $usuari -> save();
+
+            return response()->json(['updated' => true]);
+        } else {
+            return response()->json(['updated' => false]);
+        }
     }
 }
