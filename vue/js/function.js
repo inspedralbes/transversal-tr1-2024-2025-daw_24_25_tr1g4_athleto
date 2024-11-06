@@ -1,5 +1,4 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes, postMail, register, login, obtenirDadesUser, postNomUsuari ,getProductesFiltre, getProductesFiltre2 } from './communicationManager.js';
 import { getProductes, enviarCorreo, enviarCompra, postMail, register, login, obtenirDadesUser, postNomUsuari, getProductesFiltre, getProductesFiltre2, verificarPassUsuari, actualitzarDadesUsuari, actualitzarPassword } from './communicationManager.js';
 // Creación de la instancia de la aplicación Vue
 createApp({
@@ -14,7 +13,6 @@ createApp({
       //obtenim les dades si hi ha l'access token a les cookies
       try {
         if (getCookie('access_token')) {
-          console.log("hola");
           dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
           console.log(dadesUser.value);
           mailExisteix.value = 3;
@@ -27,7 +25,6 @@ createApp({
       // Guardar los productos obtenidos
       llista.zapatillas = data;
 
-      console.log(llista)
        // paginas totales  
      
       llista.paginaActual=1;
@@ -49,6 +46,8 @@ createApp({
     const visiblePagament = ref(false);
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
+    const mostrarDades = ref(false);
+    const mostrarActCont = ref(false)
     let comprar=reactive({ id_user:"", preu:"", productes:[] = ""})
     const user = reactive({nom: "", cognom: "", nomUsuari: "", mail: "", pass: ""});
     const carrito = reactive({list: [], productesComprar: [], preu: 0});
@@ -74,21 +73,25 @@ createApp({
         
         llista.paginaZapatillas.push(llista.zapatillas[aux-1]);
         aux--;
-        console.log(llista.paginaZapatillas[index].preu)
       }
-
-
-
-     
-
-     
-      
-
-
-
     }
 
-   async function filtrar(param){
+    function mostrarSeccioProductes() {
+      ocultarTot();
+      visibleProd.value = true;
+    }
+
+    async function obtenirProductes() {
+      const data = await getProductes();
+       // Guardar los productos obtenidos
+       llista.paginaZapatillas = data;
+       llista.zapatillas= data;    
+       generarPagina();
+       alternarPagina(1);
+      mostrarSeccioProductes();
+    }
+
+     async function filtrar(param){
        // Obtenemos los productos 
        const data = await getProductesFiltre(param);
        // Guardar los productos obtenidos
@@ -96,11 +99,10 @@ createApp({
        llista.zapatillas= data;    
      generarPagina();
      alternarPagina(1);
-      
-
+     mostrarSeccioProductes();
     }
     
-    async  function filtrar2(id1,id2){
+    async function filtrar2(id1,id2){
      // Obtenemos los productos 
    const data = await getProductesFiltre2(id1,id2);
     // Guardar los productos obtenidos
@@ -108,6 +110,7 @@ createApp({
     llista.zapatillas=data;
     generarPagina();
     alternarPagina(1);
+    mostrarSeccioProductes();
     }
 
 
@@ -553,6 +556,7 @@ createApp({
       genero,
       mostrarDades,
       mostrarActCont,
+      obtenirProductes,
       alternarPagina,
       mostrarLandingPage,
       esborrarDades,
