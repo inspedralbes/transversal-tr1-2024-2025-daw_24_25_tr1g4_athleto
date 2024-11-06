@@ -14,6 +14,33 @@ body {
     position: sticky;
     top: 0;
 }
+.paginas{
+
+    text-align: center;
+    padding-bottom: 100px;  
+    
+
+}
+.paginas_boton{
+    margin: 5px;
+    background-color: #273043;
+    font-size: 15px;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+}
+
+.paginas_boton:hover{
+    background-color: #3a4661;
+
+}
+
+.paginas_boton:active{
+    background-color: #606670;
+}
 
 /* Estilos de los items del menú principal */
 .menu {

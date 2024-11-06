@@ -66,7 +66,7 @@
                 <div id="cancelAccUsu" @click="ocultarAccionsUsuari">✖</div>
                 <div class="enllaços" :class="{ 'enllaçosIniciat': dadesUser }">
                     <p>Atenció al client</p>
-                    <p>Idioma</p>
+                    <p>Les meves comandes</p>
                     <p @click="logout" v-if="dadesUser">Logout</p>
                 </div>
                 <button v-if="!dadesUser" id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ / REGISTRAR-SE</button>
@@ -142,10 +142,10 @@
 
 
             <!-- Contenido de productos mostrado cuando visibleProd es verdadero -->
-            <div class="contentZapatos" v-if="visibleProd">
+        <div v-if="visibleProd">
 
-                
-                <div  @click="mostrarProducte(index)" v-for="(prod, index) in llista.zapatillas"
+            <div class="contentZapatos" >
+                <div  @click="mostrarProducte(index)" v-for="(prod, index) in llista.paginaZapatillas"
                     :key="index" :id="'zapato' + index" class="zapatos">
                     <!-- Bucle que recorre la lista de zapatillas y muestra -->
                     <!-- Detalles del producto -->
@@ -153,15 +153,23 @@
                         <img :src="prod.imatge">
                         <div class="detalles">
                             <div class="nomProducte">
-                                <p>{{ prod.nom }}</p>
+                                <p>{{ prod.nom }} </p>
+                                <p>{{ prod.preu }} </p>
                             </div>
-                            <div class="preuProducte">
-                                <p>{{ prod.preu }} €</p>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
+                <div class="paginas">
+                    <button @click="alternarPagina(n)" class="paginas_boton"  v-for="n in llista.totalPaginas" :key="n">
+                        {{ n }}
+        
+                    </button>
+                </div>
+                
+        </div>
+       
 
             <!-- Vista del producto individual cuando es verdadero -->
             <div v-if="visibleActual">

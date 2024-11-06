@@ -6,7 +6,7 @@ createApp({
 
   setup() {
     // `llista`contiene una lista de productos 
-    const llista = reactive({ zapatillas: [] });
+    const llista = reactive({ zapatillas: [], totalPaginas:"", paginaZapatillas: [] });
     const dadesUser = ref();
     const mailExisteix = ref();
     // Se ejecuta antes del mount(montar)
@@ -22,8 +22,18 @@ createApp({
       // Guardar los productos obtenidos
       llista.zapatillas = data;
 
-      // Mostrar datos obtenidos en la consola
+      console.log(llista)
+       // paginas totales  
+     
+      llista.paginaActual=1;
+      generarPagina();
+      alternarPagina(llista.paginaActual);
+
     });
+
+    function generarPagina(){
+      llista.totalPaginas= Math.ceil(llista.zapatillas.length/6);
+    }
 
     // Propiedades reactivas que controlan la visibilidad de diferentes secciones
     const visibleProd = ref(false); // Controla la visibilidad de la lista de productos
@@ -47,11 +57,40 @@ createApp({
     let actual = ref();
     //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
 
+    function alternarPagina(num){
+      llista.paginaZapatillas=[];
+      const n=6;
+      let bucle=n;
+      let aux=num*bucle;
+      
+      if(num==Math.ceil(llista.zapatillas.length/n)){
+        bucle=llista.zapatillas.length-(aux-n);  
+        aux=llista.zapatillas.length
+      }
+     
+      for (let index = 0; index < bucle; index++) {
+        
+        llista.paginaZapatillas.push(llista.zapatillas[aux-1]);
+        aux--;
+        console.log(llista.paginaZapatillas[index].preu)
+      }
+
+
+
+     
+
+     
+      
+
+
+
+    }
+
    async function filtrar(param){
        // Obtenemos los productos 
        const data = await getProductesFiltre(param);
        // Guardar los productos obtenidos
-       llista.zapatillas = data;
+       llista.paginaZapatillas = data;
 
         let ejemplo=reactive(
           {
@@ -72,7 +111,7 @@ createApp({
      // Obtenemos los productos 
    const data = await getProductesFiltre2(id1,id2);
     // Guardar los productos obtenidos
-    llista.zapatillas = data;
+    llista.paginaZapatillas = data;
  
     }
 
@@ -420,6 +459,7 @@ createApp({
       showPass,
       actual,
       genero,
+      alternarPagina,
       mostrarLandingPage,
       esborrarDades,
       verificarMailExisteix,
