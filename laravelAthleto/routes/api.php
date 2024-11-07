@@ -36,6 +36,10 @@ Route::get('/categorias', [Productes::class, 'getProductesByCategories']);
 
 Route::get('/categoria/{id_categoria}', [Productes::class, 'getProductesByCategory']);
 
+
+Route::get('/mevesComandes/{id}', [Productes::class,'getMevesComandes']);
+
+
 // Rutas para el CRUD de categorías
 Route::get('/categories', [CategoriesController::class, 'index']);//funciona
 Route::get('/categories/mostrar/{id}', [CategoriesController::class, 'show']);//funciona

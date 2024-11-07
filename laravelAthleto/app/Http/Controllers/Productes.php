@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\prod_compras;
 use Illuminate\Http\Request;
 use App\Models\Producte;
 use App\Models\Categoria;
+use App\Models\compra;
 use Illuminate\Support\Facades\DB;
 class Productes extends Controller
 {
@@ -87,7 +89,53 @@ class Productes extends Controller
        return response()->json($productes);
     }
     
+    public function getMevesComandes($id_usuario)
+    {
+      
 
+    $compras = compra::where('id_usuaris', $id_usuario)->get();
+
+    $compra_prod= prod_compras::whereIn('id_compras', $compras->pluck('id'))->get();
+       
+    $productes = Producte::join('prod_compras', 'productes.id', '=', 'prod_compras.id_productes')
+      ->whereIn('prod_compras.id_compras', $compras->pluck('id'))
+        ->select('productes.*')
+          ->get();
+    
+    $detallesCompras=[];      
+    
+
+    foreach ($compras as $compra) {
+        $prod_compra=[];
+
+        foreach ($compra_prod as $compra_pro) {
+            if ($compra_pro['id_compras'] == $compra['id']) {
+                foreach ($productes as $produc) {
+                    if($compra_pro['id_productes']== $produc['id']){
+                        $prod_compra[]=$produc;
+
+                    }
+
+                }
+
+
+    } 
+
+}
+    $detallesCompras[]=[
+        'compra' => $compra,
+        'producto' =>$prod_compra
+
+    ];
+
+    }
+    $compra=[
+        'compras' => $detallesCompras
+    ];
+    
+
+        return response()->json($compra);
+    }
     public function getProductesByCategory($id_categoria)
     {
         // Validar que la categoría existe

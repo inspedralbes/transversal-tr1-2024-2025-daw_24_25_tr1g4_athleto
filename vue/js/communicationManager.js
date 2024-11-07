@@ -37,9 +37,18 @@ export async function enviarCompra(compra) {
     });
 
     const data = await response.json();
-    
+    return data;
 }
 
+
+
+export async function getmevesComandes(param) {
+    const URL=`${laravel.URL}/categoria/${param}`;
+    const response = await fetch(URL);
+    const data = await response.json();
+    
+    return data;
+}
 
 
 export async function getProductesFiltre(param) {

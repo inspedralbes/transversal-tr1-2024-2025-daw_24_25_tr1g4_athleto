@@ -64,7 +64,7 @@
                 <div id="cancelAccUsu" @click="ocultarAccionsUsuari">✖</div>
                 <div class="enllaços" :class="{ 'enllaçosIniciat': dadesUser }">
                     <p>Atenció al client</p>
-                    <p>Les meves comandes</p>
+                    <p @click="mevesComandes">Les meves comandes</p>
                     <p @click="logout" v-if="dadesUser">Logout</p>
                 </div>
                 <button v-if="!dadesUser" id="butoAccUsu" @click="mostrarProcesSessio">INICIAR SESSIÓ /
@@ -169,7 +169,61 @@
                         src="./img/imgPortada.jpg">
                 </div>
             </div>
+        </div>
+        <div v-if="visibleMevesComandes">
+            <div class="mispedidos_container">
+                <h1>Mis Pedidos</h1>
+                <table class="mispedidos_orders-table">
+                  <thead>
+                    <tr>
+                      <th>ID Pedido</th>
+                      <th>Fecha</th>
+                      <th>Total</th>
+                      <th>Estado</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   
+                    <tr>
+                      <td>001</td>
+                      <td>2024-11-01</td>
+                      <td>$20.00</td>
+                      <td><span class="mispedidos_status mispedidos_pending">Pendiente</span></td>
+                      <td><button class="mispedidos_view-button" >Ver</button></td>
+                    </tr>
+                    <tr class="mispedidos_order-details" id="mispedidos_details-001">
+                      <td colspan="5">
+                        <div class="mispedidos_details-content">
+                          <p><strong>Producto:</strong> Producto A</p>
+                          <p><strong>Cantidad:</strong> 2</p>
+                          <p><strong>Subtotal:</strong> $20.00</p>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>002</td>
+                      <td>2024-11-02</td>
+                      <td>$15.00</td>
+                      <td><span class="mispedidos_status mispedidos_shipped">Enviado</span></td>
+                      <td><button class="mispedidos_view-button">Ver</button></td>
+                    </tr>
+                    <tr class="mispedidos_order-details" id="mispedidos_details-002">
+                      <td colspan="5">
+                        <div class="mispedidos_details-content">
+                          <p><strong>Producto:</strong> Producto B</p>
+                          <p><strong>Cantidad:</strong> 1</p>
+                          <p><strong>Subtotal:</strong> $15.00</p>
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- Agrega más filas según sea necesario -->
+                  </tbody>
+                </table>
+              </div>
 
+
+        </div>    
 
 
             <!-- Contenido de productos mostrado cuando visibleProd es verdadero -->

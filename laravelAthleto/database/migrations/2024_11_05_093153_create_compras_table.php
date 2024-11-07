@@ -20,7 +20,7 @@ return new class extends Migration
                   ->on('usuaris')
                   ->onDelete('cascade'); 
             $table->decimal('preu_total'); 
-            $table->string('estat'); 
+            $table->string('estat')->default('pendiente');
             $table->timestamps(); 
         });
     }

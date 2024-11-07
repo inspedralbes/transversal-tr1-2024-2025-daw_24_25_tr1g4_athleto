@@ -1,5 +1,5 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes, enviarCorreo, enviarCompra, postMail, register, login, obtenirDadesUser, postNomUsuari, getProductesFiltre, getProductesFiltre2, verificarPassUsuari, actualitzarDadesUsuari, actualitzarPassword } from './communicationManager.js';
+import { getProductes, enviarCorreo,getmevesComandes, enviarCompra, postMail, register, login, obtenirDadesUser, postNomUsuari, getProductesFiltre, getProductesFiltre2, verificarPassUsuari, actualitzarDadesUsuari, actualitzarPassword } from './communicationManager.js';
 // Creación de la instancia de la aplicación Vue
 createApp({
 
@@ -44,6 +44,7 @@ createApp({
     const visibleCar = ref(false); // Controla la visibilidad del carrito de compras
     const visibleCheck = ref(false);
     const visiblePagament = ref(false);
+    const visibleMevesComandes = ref(false);
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
     const mostrarDades = ref(false);
@@ -57,6 +58,10 @@ createApp({
     let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
     let actual = ref();
     //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
+
+   
+
+
 
     function alternarPagina(num){
       llista.paginaZapatillas=[];
@@ -245,6 +250,7 @@ createApp({
       visibleOpcUsuari.value = false;
       visibleProSes.value = false;
       mostrarDades.value = false;
+      visibleMevesComandes.value=false;
     }
 
     function mostrarLandingPage() {
@@ -302,6 +308,15 @@ createApp({
     }
 
     //Serveix per afegir el producte actual al carrito, actualitzar el preu i tancar el carrito
+    
+    function mevesComandes(){
+      ocultarTot();
+      
+      visibleMevesComandes.value=true;
+      console.log(visibleMevesComandes.value)
+    }
+    
+    
     function afegirProducte() {
       
       if(dadesUser.value==undefined){
@@ -544,6 +559,7 @@ createApp({
       visibleOpcUsuari,
       visibleProSes,
       visiblePagament,
+      visibleMevesComandes,
       user,
       carrito,
       compra,
@@ -591,6 +607,8 @@ createApp({
       actualitzarDades,
       butoActualitzarContrasenya,
       actualitzarPass,
+      ocultarTot,
+      mevesComandes,
     }
 
 

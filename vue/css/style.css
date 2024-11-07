@@ -662,3 +662,90 @@ body {
 .nomUsuariInvalid{
     border: 2px solid red;
 }
+
+
+
+  .mispedidos_container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  
+  .mispedidos_orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .mispedidos_orders-table th, .mispedidos_orders-table td {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  .mispedidos_orders-table thead th {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+    border-top: 2px solid #007BFF;
+    border-bottom: 2px solid #007BFF;
+  }
+  
+  .mispedidos_orders-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .mispedidos_orders-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .mispedidos_view-button {
+    padding: 8px 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .mispedidos_view-button:hover {
+    background-color: #0056b3;
+  }
+  
+   
+  
+  .mispedidos_details-content {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .mispedidos_details-content p {
+    margin: 8px 0;
+    color: #555;
+  }
+  
+  /* Estados de pedido */
+  .mispedidos_status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .mispedidos_status.mispedidos_pending {
+    background-color: #FFA500; /* Naranja para Pendiente */
+  }
+  
+  .mispedidos_status.mispedidos_shipped {
+    background-color: #007BFF; /* Azul para Enviado */
+  }
+  
+  .mispedidos_status.mispedidos_completed {
+    background-color: #28A745; /* Verde para Completado */
+  }

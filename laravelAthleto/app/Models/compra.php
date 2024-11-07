@@ -11,6 +11,7 @@ class compra extends Model
     protected $table = 'compras';
     
     protected $fillable = [
+        'id',
         'id_usuaris',
         'preu_total', 
     ];
