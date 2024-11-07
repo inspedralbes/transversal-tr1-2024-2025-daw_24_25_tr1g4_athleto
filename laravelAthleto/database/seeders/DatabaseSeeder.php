@@ -48,14 +48,20 @@ class DatabaseSeeder extends Seeder
         }
 
         User::create([
-            'nom'=> "example",
+            'nom'=> "Example",
             'cognom'=> "siuu",
             'nom_usuari'=> "soyEjemplo",
             'email'=> "example@example.com",
             'password'=> Hash::make("1234"),
         ]);
-
-
         
+        User::create([
+            'nom'=> "Benjamin",
+            'cognom'=> "Romero",
+            'nom_usuari'=> "soyAdmin",
+            'email'=> "admin@admin.com",
+            'password'=> Hash::make("4321"),
+            'rol'=> "1",
+        ]);
     }
 }
