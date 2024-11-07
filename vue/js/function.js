@@ -49,6 +49,7 @@ createApp({
     const visibleProSes = ref(false);
     const mostrarDades = ref(false);
     const mostrarActCont = ref(false)
+    const mComandes=reactive( {compras:[]}); 
     let comprar=reactive({ id_user:"", preu:"", productes:[] = ""})
     const user = reactive({nom: "", cognom: "", nomUsuari: "", mail: "", pass: ""});
     const carrito = reactive({list: [], productesComprar: [], preu: 0});
@@ -308,12 +309,21 @@ createApp({
     }
 
     //Serveix per afegir el producte actual al carrito, actualitzar el preu i tancar el carrito
-    
-    function mevesComandes(){
+   
+
+   async function mevesComandes(){
+      if(dadesUser.value==undefined){
+        alert("Registrate primero")
+
+      }else{
+     
       ocultarTot();
-      
+      mComandes.compras = await getmevesComandes(dadesUser.value.id);
+      console.log(mComandes.compras) 
       visibleMevesComandes.value=true;
-      console.log(visibleMevesComandes.value)
+     
+
+      }
     }
     
     
@@ -571,6 +581,7 @@ createApp({
       actual,
       genero,
       mostrarDades,
+      mComandes,
       mostrarActCont,
       obtenirProductes,
       alternarPagina,

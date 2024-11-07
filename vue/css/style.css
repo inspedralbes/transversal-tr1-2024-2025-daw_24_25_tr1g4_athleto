@@ -738,14 +738,22 @@ body {
     color: white;
   }
   
-  .mispedidos_status.mispedidos_pending {
+  .mispedidos_status.mispedidos_pendiente {
     background-color: #FFA500; /* Naranja para Pendiente */
   }
-  
-  .mispedidos_status.mispedidos_shipped {
+
+  .mispedidos_status.mispedidos_aceptado {
+    background-color: #13e600; /* Azul para aceptado */
+  }
+  .mispedidos_status.mispedidos_completado {
+    background-color: #1b722f; /* Verde para Completado */
+  }
+  .mispedidos_status.mispedidos_enviado {
     background-color: #007BFF; /* Azul para Enviado */
   }
-  
-  .mispedidos_status.mispedidos_completed {
-    background-color: #28A745; /* Verde para Completado */
+  .mispedidos_status.mispedidos_recibido {
+    background-color: #808080; /* Verde para recibido */
   }
+  
+  
+ 

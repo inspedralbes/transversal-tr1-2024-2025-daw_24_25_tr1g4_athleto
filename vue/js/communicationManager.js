@@ -43,11 +43,11 @@ export async function enviarCompra(compra) {
 
 
 export async function getmevesComandes(param) {
-    const URL=`${laravel.URL}/categoria/${param}`;
+    const URL=`${laravel.URL}/mevesComandes/${param}`;
     const response = await fetch(URL);
     const data = await response.json();
     
-    return data;
+    return data.compras;
 }
 
 
