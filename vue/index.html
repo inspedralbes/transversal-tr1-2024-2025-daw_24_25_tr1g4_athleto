@@ -237,7 +237,11 @@
                         <ul style="padding: 0;" class="checkoutProductes">
                             <li v-for="(producte, index) in compra.list" :key="index">
                                 <div class="checkoutProd">
-                                    <div><img :src="producte.imatge" alt="Imagen de producto"></div>
+                                    <!-- Imagen del producto -->
+                                    <div class="productoImagen">
+                                        <img :src="producte.imatge" alt="Imagen de producto">
+                                    </div>
+                    
                                     <div class="dadesProdCheck">
                                         <div>
                                             <h3>{{ producte.nom }}</h3>
@@ -245,13 +249,19 @@
                                         <div>
                                             <p>{{ producte.preu }} €</p>
                                         </div>
-                                        <div><input type="number" v-model="producte.quantitat" @input="revisarQuantitatCompra(index)" class="inputQuantitat"></div>
-                                        <div @click="eliminarProducteCompra(index)"><img src="img/basura.png" class="brossaProducteCheck"></div>
+                                        <div>
+                                            <input type="number" v-model="producte.quantitat" @input="revisarQuantitatCompra(index)" class="inputQuantitat">
+                                        </div>
+                                        <!-- Imagen de la papelera -->
+                                        <div @click="eliminarProducteCompra(index)">
+                                            <img src="img/basura.png" class="imagenBasura">
+                                        </div>
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
+                    
                     <div class="checkoutFooter">
                         <h3>Total carrito: <span>{{ compra.preu }} €</span></h3>
                         <button class="comprarCarrito" @click="pagament">Comprar</button>
