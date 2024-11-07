@@ -200,13 +200,13 @@
                         ref="campoBusqueda" 
                         v-model="consulta_producte" 
                         @keyup.enter="inicia_busqueda" 
-                        placeholder="cerca productes..."
+                        placeholder="cercar productes..."
                         />
                     </div>
             </div>
             <!-- div de resultado de busqueda -->
             <div  v-if="visibilidad_resultadoBusqueda">
-                <h2>Resultados de búsqueda:</h2>
+                <h2>Resultats de cerca:</h2>
                     <!-- Sección para mostrar resultados de búsqueda -->
                     <div v-if="resultat_busqueda.length > 0" class="contentZapatos">
                         <div 
@@ -227,7 +227,7 @@
             </div>
             <!-- Si no hay resultados de búsqueda, muestra un mensaje -->
             <div v-else-if="consulta_producte.length > 0 && resultat_busqueda.length === 0 && !visibleActual && !visibleCheck && !visiblePagament && !visiblePort">
-                <h2>No se encontraron resultados para "{{ consulta_producte }}".</h2>
+                <h2>no s'han trobat resultats per "{{ consulta_producte }}".</h2>
             </div>  
         </div>
     </div>

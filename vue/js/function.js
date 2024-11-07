@@ -172,7 +172,7 @@ createApp({
             // Establece visibilidad_busqueda a true para mostrar resultados de búsqueda
             visibilidad_resultadoBusqueda.value = resultat_busqueda.value.length > 0;  // Mostrar solo si hay resultados
             // Log para verificar los datos filtrados
-            console.log("Resultados de búsqueda:", resultat_busqueda.value);
+            console.log("Resultats de cerca:", resultat_busqueda.value);
           } else {
             // Si la consulta está vacía, limpiar los resultados
             resultat_busqueda.value = [];
