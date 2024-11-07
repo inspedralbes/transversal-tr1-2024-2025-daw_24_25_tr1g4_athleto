@@ -17,7 +17,6 @@ Route::post('/categories/{id}', [CategoriesController::class, 'update'])->name('
 Route::get('/categories/{id}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
    
 
-
 Route::get("/productes", [Productes::class, "getProductesAdmin"])->name('prod.index');
 Route::get("/productes/crear", [Productes::class, "crearProductes"])->name('prod.create');
 Route::post("/productes/add" ,[Productes::class, "addProductes"] )->name('prod.store');

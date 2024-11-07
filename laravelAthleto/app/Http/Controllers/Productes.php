@@ -12,10 +12,10 @@ class Productes extends Controller
     {
         // Obtiene todos los productos de la base de datos
         $productes = Producte::all();
+        //dd($productes);
       //  return response()->json($productes); // Devuelve los productos en formato JSON
          return view('prod.index', compact('productes'));
     }
-
     
     public function getProductes()
     {
