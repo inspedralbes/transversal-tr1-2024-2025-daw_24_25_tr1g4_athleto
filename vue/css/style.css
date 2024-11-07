@@ -474,12 +474,15 @@ body {
 
 .search-bar{
 
-    right: 100px;
-    bottom: 610px;
+     right: 100px;
+     /* bottom: 92%; */
+    position: fixed;
+}
+.search-icon a{
     position: fixed;
 }
 .browseer{
-    
+    bottom: 10px;
     height: 25px;
     width: 300px;
     border-radius: 15px;
@@ -498,6 +501,7 @@ body {
     text-overflow: ellipsis;
     margin: 0;
 }
+
 
 
 

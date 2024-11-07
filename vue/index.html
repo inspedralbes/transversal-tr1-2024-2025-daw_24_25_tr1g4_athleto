@@ -188,68 +188,49 @@
                 <h3>Fes bizum a 111111111</h3>
                 <button @click="compraFeta">Bizum fet</button>
             </div>
-        </div>
 
 
-        <!-- html busquedas -->
-        <!-- Iconos de búsqueda y carrito -->
-        <div class="icons" style="display: flex; align-items: center;">
-            <!-- Campo de búsqueda (oculto por defecto) -->
-            <div v-if="visibilidad_busqueda" class="search-bar" >
-                <input class="browseer"
-                  type="text"   
-                  v-model="consulta_producte" 
-                  @keyup.enter="inicia_busqueda" 
-                  placeholder="cerca productes..."
-                />
-                <!-- Iconos de búsqueda y carrito -->
-             
-                <!-- <a href="#" class="search-icon" @click.prevent="alternar_visibilitat">🔍</a> -->  <!--icono no funciona corretamente -->
-                <!--<a href="#" class="cart-icon" @click="alternarCestella">🛒</a> -->
+            <!-- html busquedas -->
+            <!-- Iconos de búsqueda y carrito -->
+            <div class="icons" style="display: flex; align-items: center;">
+                <!-- Campo de búsqueda (oculto por defecto) -->
+                    <div v-if="visibilidad_busqueda" class="search-bar" >
+                        <input class="browseer"
+                        type="text"   
+                        ref="campoBusqueda" 
+                        v-model="consulta_producte" 
+                        @keyup.enter="inicia_busqueda" 
+                        placeholder="cerca productes..."
+                        />
+                    </div>
             </div>
-            
-            
-        </div>
-        <!-- div de resultado de busqueda -->
-        
-    <div  v-if="visibilidad_resultadoBusqueda">
-        <h2>Resultados de búsqueda:</h2>
-        <!-- Sección para mostrar resultados de búsqueda -->
-        <div v-if="resultat_busqueda.length > 0" class="contentZapatos">
-            
-            <div 
-            v-for="(producto, index) in resultat_busqueda" 
-            :key="producto.idOriginal" 
-            class="zapatos" 
-            @click="mostrarProducte(producto.idOriginal)"
-            >   
-
-         
-                <img :src="producto.imatge">
-                <div class="detalles">
-                    <div>
-                    <p>{{ producto.nom }}</p>
-                    <p>{{ producto.preu }} €</p> <!-- Mostrar el precio -->
-                </div>    
-                </div>
+            <!-- div de resultado de busqueda -->
+            <div  v-if="visibilidad_resultadoBusqueda">
+                <h2>Resultados de búsqueda:</h2>
+                    <!-- Sección para mostrar resultados de búsqueda -->
+                    <div v-if="resultat_busqueda.length > 0" class="contentZapatos">
+                        <div 
+                            v-for="(producto, index) in resultat_busqueda" 
+                            :key="producto.idOriginal" 
+                            class="zapatos" 
+                            @click="mostrarProducte(producto.idOriginal)"
+                            >   
+                            <img :src="producto.imatge">
+                                <div class="detalles">
+                                    <div>
+                                        <p>{{ producto.nom }}</p>
+                                        <p>{{ producto.preu }} €</p> <!-- Mostrar el precio -->
+                                    </div>    
+                                </div>
+                        </div>
+                    </div>
             </div>
+            <!-- Si no hay resultados de búsqueda, muestra un mensaje -->
+            <div v-else-if="consulta_producte.length > 0 && resultat_busqueda.length === 0 && !visibleActual && !visibleCheck && !visiblePagament && !visiblePort">
+                <h2>No se encontraron resultados para "{{ consulta_producte }}".</h2>
+            </div>  
         </div>
-
-            <!-- <img :src="producto.imatge" alt="Imagen del producto" />
-            <p>{{ producto.nom }}</p>
-            <p>{{ producto.preu }} €</p>
-        </div> -->
     </div>
-
-    <!-- Si no hay resultados de búsqueda, muestra un mensaje -->
-     <!-- <div v-else-if="consulta_producte.length > 0">
-        <h2>No se encontraron resultados para "{{ consulta_producte }}".</h2>
-    </div>  -->
-
-</div>
-      </div>
-    </div>
-
     <!--JavaScript principal -->
     <script type="module" src="./js/function.js"></script>
 </body>

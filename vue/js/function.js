@@ -1,6 +1,6 @@
-import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+import { createApp, ref, nextTick, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 import { getProductes } from './communicationManager.js';
-
+  
 
 
 
@@ -113,11 +113,13 @@ createApp({
         visibleCheck.value=true;
         visibleCar.value=false;
         visibleProd.value=false;
+        visibilidad_resultadoBusqueda.value=false; //ocultamos los resultados del buscador
       }
 
       function pagament(){
         visibleCheck.value=false;
         visiblePagament.value=true;
+        
       }
 
       function compraFeta(){
@@ -132,26 +134,32 @@ createApp({
       const visibilidad_resultadoBusqueda = ref(false);
       const consulta_producte = ref('');       // Almacena la consulta de búsqueda
       const resultat_busqueda = ref([]);     // Almacena los resultados de búsqueda
-
-    // Alterna la visibilidad del campo de búsqueda
-    function alternar_visibilitat() {
-      visibilidad_busqueda.value = !visibilidad_busqueda.value;
-
-    }
-
-
-    // Ejecuta la búsqueda al presionar Enter
-    function inicia_busqueda() {
-      //esconde el produc card
-      visibleActual.value = false;
-      //esconde los productos para mostrar los
-      visibleProd.value = false;
-      // Si la consulta está vacía, limpiar los resultados
-      resultat_busqueda.value = [];
-      // Verifica si la consulta no está vacía
-      if (consulta_producte.value.trim()) {
-        // Filtra productos y agrega los campos `idOriginal` y `preu` a cada producto filtrado
-        resultat_busqueda.value = llista.zapatillas
+      const campoBusqueda =ref(null); 
+      // Alterna la visibilidad del campo de búsqueda
+      function alternar_visibilitat() {
+        visibilidad_busqueda.value = !visibilidad_busqueda.value;
+        if (visibilidad_busqueda) {
+          nextTick(() => {
+              campoBusqueda.value.focus();
+          });
+        }
+      }
+      // Ejecuta la búsqueda al presionar Enter
+      function inicia_busqueda() {
+        //ocultamos la tabla de compra y de pago al buscar otro prodcuto
+        visibleCheck.value =false
+        visiblePagament.value =false
+        //esconde el produc card y los productos
+        visibleActual.value = false;
+        visibleProd.value = false;
+        //esconde la imagen de inicio
+        visiblePort.value=false;
+        // Si la consulta está vacía, limpiar los resultados
+        resultat_busqueda.value = [];
+        // Verifica si la consulta no está vacía
+        if (consulta_producte.value.trim()) {
+          // Filtra productos y agrega los campos `producto`, `idOriginal` y `preu` a cada producto filtrado
+          resultat_busqueda.value = llista.zapatillas
             .map((producto, index) => ({ 
                 ...producto, 
                 idOriginal: index,  // Índice en llista.zapatillas
@@ -161,23 +169,17 @@ createApp({
                 producto.nom.toLowerCase().includes(consulta_producte.value.toLowerCase())
             );
   
-          // Establece visibilidad_busqueda a true para mostrar resultados de búsqueda
-          visibilidad_resultadoBusqueda.value = resultat_busqueda.value.length > 0;  // Mostrar solo si hay resultados
+            // Establece visibilidad_busqueda a true para mostrar resultados de búsqueda
+            visibilidad_resultadoBusqueda.value = resultat_busqueda.value.length > 0;  // Mostrar solo si hay resultados
             // Log para verificar los datos filtrados
-        console.log("Resultados de búsqueda:", resultat_busqueda.value);
-        } else {
-          // Si la consulta está vacía, limpiar los resultados
-          resultat_busqueda.value = [];
-          visibleProd.value = false;  // Ocultar resultados si no hay consulta
+            console.log("Resultados de búsqueda:", resultat_busqueda.value);
+          } else {
+            // Si la consulta está vacía, limpiar los resultados
+            resultat_busqueda.value = [];
+            visibleProd.value = false;  // Ocultar resultados si no hay consulta
+          }
       }
-  }
 
-  
-
-
-
-
-  
       return {
       // Retornamos las variables y funciones 
         llista,
@@ -202,12 +204,13 @@ createApp({
         compraFeta,
 
         // Retornar las variables y métodos necesarios para el buscador
-      visibilidad_busqueda,
-      visibilidad_resultadoBusqueda,
-      consulta_producte,
-      resultat_busqueda,
-      alternar_visibilitat,
-      inicia_busqueda
+        visibilidad_busqueda,
+        visibilidad_resultadoBusqueda,
+        consulta_producte,
+        resultat_busqueda,
+        campoBusqueda,
+        alternar_visibilitat,
+        inicia_busqueda
       }
 
     }
