@@ -15,7 +15,6 @@
 <div class="container">
     <h1>Gestión de Comandas</h1>
 
-    <a href="#" class="btn-add">Añadir Comanda</a>
 
     <div class="table-container">
         <table>
