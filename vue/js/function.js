@@ -50,9 +50,9 @@ createApp({
     const visibleOpcUsuari = ref(false);
     const visibleProSes = ref(false);
     const mostrarDades = ref(false);
-    const mostrarActCont = ref(false)
-    const mComandes=reactive( {compras:[]}); 
     const mostrarActCont = ref(false);
+    const mComandes=reactive( {compras:[]}); 
+    
     const menuAdmin = ref(false);
     let comprar=reactive({ id_user:"", preu:"", productes:[] = ""})
     const user = reactive({nom: "", cognom: "", nomUsuari: "", mail: "", pass: ""});
