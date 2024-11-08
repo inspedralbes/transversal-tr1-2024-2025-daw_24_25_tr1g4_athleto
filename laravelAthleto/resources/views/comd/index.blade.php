@@ -41,6 +41,15 @@
                         <a href="{{ route('comd.edit',['id'=> $post['compra']['id'], 'estat'=> 'recibido'] ) }}" class="button btn-recibido">Recibido</a>
                     </td>
                 </tr>
+                @foreach ($post['producto'] as $pos )
+                <tr>
+                <td></td>
+                <td colspan="3">
+                    {{$pos->nom}}
+                </td>
+
+                </tr>
+                @endforeach
     @endforeach    
              
             </tbody>
