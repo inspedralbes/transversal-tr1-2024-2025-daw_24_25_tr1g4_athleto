@@ -167,6 +167,7 @@ createApp({
           return verificarContrasenyaCorrecta(password);
         }
       });
+      ocultarTot();
       visibleOpcUsuari.value = false;
     }
     
