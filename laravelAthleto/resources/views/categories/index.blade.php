@@ -13,8 +13,8 @@
     <div class="container-fluid">
     <div>
         <a class="navbar-brand h1" href={{ route('prod.index') }}>CRUD PRODUCTOS</a>
-        <a class="navbar-brand h1" href={{ route('categories.index') }}>CRUD CATEGORIES</a>
         <a class="navbar-brand h1" href={{ route('users.index') }}>CRUD USUARIS</a>
+        <a class="navbar-brand h1" href={{ route('comd.index') }}>CRUD COMANDES</a>
       </div>
       <div class="justify-end">
         <a class="btn btn-sm btn-success" href="{{ route('categories.create') }}">Afegir Categoria</a>
