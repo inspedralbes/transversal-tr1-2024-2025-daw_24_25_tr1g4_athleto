@@ -14,7 +14,7 @@ integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6
       <div>
         <a class="navbar-brand h1" href={{ route('prod.index') }}>CRUD PRODUCTOS</a>
         <a class="navbar-brand h1" href={{ route('categories.index') }}>CRUD CATEGORIES</a>
-        <a class="navbar-brand h1" href={{ route('users.index') }}>CRUD USUARIS</a>
+        <a class="navbar-brand h1" href={{ route('comd.index') }}>CRUD COMANDES</a>
       </div>
       <div class="justify-end ">
         <div class="col ">
