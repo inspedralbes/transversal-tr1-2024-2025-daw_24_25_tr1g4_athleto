@@ -801,3 +801,35 @@ body {
 .opcionsAdmin a:hover {
     background-color: #f0f0f0;
 }
+
+//añadido para la barra busqueda
+.search-bar{
+
+    right: 100px;
+    /* bottom: 92%; */
+   position: fixed;
+}
+.search-icon a{
+   position: fixed;
+}
+.browseer{
+   bottom: 10px;
+   height: 25px;
+   width: 300px;
+   border-radius: 15px;
+}
+
+.detalles {
+   display: flex;
+   flex-direction: column;
+   padding: 10px;
+   max-width: 100%;
+   overflow: hidden;
+}
+.detalles p {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   margin: 0;
+}
+//añadido para la barra busqueda

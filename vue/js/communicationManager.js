@@ -199,4 +199,4 @@ export async function actualitzarPassword(password, newPassword, access_token) {
     const data = await response.json();
 
     return data;
-}
+}   

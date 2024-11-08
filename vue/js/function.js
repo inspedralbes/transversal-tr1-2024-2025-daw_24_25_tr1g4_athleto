@@ -294,6 +294,7 @@ createApp({
       // Muestra el producto seleccionado y oculta la lista de productos
       visibleActual.value = true;
       visibleProd.value = false;
+      visibilidad_resultadoBusqueda.value = false;
     }
 
     // Función que vuelve a mostrar la lista de productos y oculta el producto actual
@@ -424,6 +425,7 @@ createApp({
         }
       )
       obrirCheckout();
+      visibilidad_resultadoBusqueda.value=false;
     }
 
     function pagament() {
@@ -587,6 +589,55 @@ createApp({
         alert("torna a iniciar sessió");
       }
     }
+    const visibilidad_busqueda = ref(false);  // Controla si el campo de búsqueda está visible o no
+      const visibilidad_resultadoBusqueda = ref(false);
+      const consulta_producte = ref('');       // Almacena la consulta de búsqueda
+      const resultat_busqueda = ref([]);     // Almacena los resultados de búsqueda
+      const campoBusqueda =ref(null); 
+      // Alterna la visibilidad del campo de búsqueda
+      function alternar_visibilitat() {
+        visibilidad_busqueda.value = !visibilidad_busqueda.value;
+        if (visibilidad_busqueda) {
+          nextTick(() => {
+              campoBusqueda.value.focus();
+          });
+        }
+      }
+      // Ejecuta la búsqueda al presionar Enter
+      function inicia_busqueda() {
+        //ocultamos la tabla de compra y de pago al buscar otro prodcuto
+        visibleCheck.value =false
+        visiblePagament.value =false
+        //esconde el produc card y los productos
+        visibleActual.value = false;
+        visibleProd.value = false;
+        //esconde la imagen de inicio
+        visiblePort.value=false;
+        // Si la consulta está vacía, limpiar los resultados
+        resultat_busqueda.value = [];
+        // Verifica si la consulta no está vacía
+        if (consulta_producte.value.trim()) {
+          // Filtra productos y agrega los campos `producto`, `idOriginal` y `preu` a cada producto filtrado
+          resultat_busqueda.value = llista.zapatillas
+            .map((producto, index) => ({ 
+                ...producto, 
+                idOriginal: index,  // Índice en llista.zapatillas
+                preu: producto.preu // Precio del producto
+            }))
+            .filter(producto => 
+                producto.nom.toLowerCase().includes(consulta_producte.value.toLowerCase())
+            );
+  
+            // Establece visibilidad_busqueda a true para mostrar resultados de búsqueda
+            visibilidad_resultadoBusqueda.value = resultat_busqueda.value.length > 0;  // Mostrar solo si hay resultados
+            // Log para verificar los datos filtrados
+            console.log("Resultats de cerca:", resultat_busqueda.value);
+          } else {
+            // Si la consulta está vacía, limpiar los resultados
+            resultat_busqueda.value = [];
+            visibleProd.value = false;  // Ocultar resultados si no hay consulta
+          }
+      }
     
 
     // Retornamos las variables y funciones 
@@ -654,6 +705,13 @@ createApp({
       ocultarTot,
       mevesComandes,
       redirigirCrud,
+      visibilidad_busqueda,
+        visibilidad_resultadoBusqueda,
+        consulta_producte,
+        resultat_busqueda,
+        campoBusqueda,
+        alternar_visibilitat,
+        inicia_busqueda
     }
 
 
