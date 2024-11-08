@@ -60,6 +60,7 @@
         <div id="funcionsAdmin" v-if="dadesUser && dadesUser.rol==1">
             <div @click="alternarMenuAdmin" class="menuAdminIcon">⋮</div>
             <div v-if="menuAdmin" class="opcionsAdmin">
+                <h5 style="text-align: center;">CRUD</h5>
                 <a @click="redirigirCrud('users')">Users</a>
                 <a @click="redirigirCrud('productes')">Productes</a>
                 <a @click="redirigirCrud('categories')">Categories</a>

@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 class Users extends Controller
 {
+    public function getUsersAdmin()
+    {
+        // Obtiene todos los productos de la base de datos
+        //$productes = Producte::all();
+        $usuaris = User::all();
+        //dd($productes);
+      //  return response()->json($productes); // Devuelve los productos en formato JSON
+         return view('users.index', compact('usuaris'));
+    }
+
     public function findMail(Request $request)
     {
         $request->validate([
