@@ -29,22 +29,34 @@ integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6
         <div class="col-sm">
           <div class="card">
             <div class="card-header">
-              <h5 class="card-title">{{ $user->id }}</h5>
+              <h5 class="card-title"> Id: {{ $user->id }}</h5>
             </div>
             <div class="card-body">
-              <p class="card-text">{{ $user->nom }}</p>
+              <p class="card-text"> Nom: {{ $user->nom }}</p>
+            </div>
+            <div class="card-body">
+              <p class="card-text"> Cognom: {{ $user->cognom }}</p>
+            </div>
+            <div class="card-body">
+              <p class="card-text"> Nom usuari: {{ $user->nom_usuari }}</p>
+            </div>
+            <div class="card-body">
+              <p class="card-text"> Email: {{ $user->email}}</p>
+            </div>
+            <div class="card-body">
+              <p class="card-text"> Rol {{ $user->rol}}</p>
             </div>
             <div class="card-footer">
               <div class="row">
                 <div class="col-sm">
-                  <a href="{{ route('prod.edit', $user->id) }}"
+                  <a href="{{ route('users.edit', $user->id) }}"
             class="btn btn-primary btn-sm">Edit</a>
                 </div>
                 <div class="col-sm">
-                    <form action="{{ route('prod.destroy', $user->id) }}" method="get">
+                    <form action="{{ route('users.destroy', $user->id) }}" method="get">
                       @csrf
                       
-                      <button type="submit" class="btn btn-danger btn-sm" href={{ route('prod.index') }}>Delete</button>
+                      <button type="submit" class="btn btn-danger btn-sm" href={{ route('users.index') }}>Delete</button>
                     </form>
                 </div>
               </div>

@@ -62,6 +62,10 @@ class Users extends Controller
         }
     }
 
+
+
+
+
     public function register(Request $request)
     {
         //dd($request->all());
@@ -187,4 +191,52 @@ class Users extends Controller
             return response()->json(['updated' => false]);
         }
     }
+
+    public function edit($id)
+    {
+      $prod = User::find($id);
+      return view('users.edit', compact('prod'));
+    }
+
+
+    public function editProducte(Request $request, $id)
+    {
+        $producte = User::findOrFail($id);
+        $producte->update($request->all());
+        return redirect()->route('users.index')->with('success', 'Producto editado con éxito.');
+ 
+    }
+
+    
+
+    public function crearProductes(){
+        
+        return view(view: 'users.create');
+
+    }
+
+    public function addProductes(Request $request)
+    {
+        User::create([      'nom' => $request->input('nom'),
+        'cognom' => $request->input('cognom'),
+        'nom_usuari' => $request->input('nom_usuari'),
+        'email' => $request->input('email'),
+        'password' => Hash::make($request->input('password')),
+    ]);
+
+        return redirect()->route('users.index')->with('success', 'Producto creado con éxito.');
+    }
+
+    public function remProducte($id)
+    {
+        User::destroy($id);
+        return redirect()->route('users.index')->with('success', 'Producto eliminado con éxito.');
+
+        
+    }   
+
+
+
+
+
 }

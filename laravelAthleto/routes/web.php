@@ -28,17 +28,20 @@ Route::get("/productes/rem/{id}" ,[Productes::class, "remProducte"] )->name('pro
 Route::get("/productes/mostrar/{id}" ,[Productes::class, "mostrarProducte"] )->name('prod.show');
 
 
-Route::get("/usuaris", [Users::class, "getUsersAdmin"])->name('users.index');
-Route::get("/usuaris/crear", [Productes::class, "crearProductes"])->name('users.create');
-Route::post("/usuaris/add" ,[Productes::class, "addProductes"] )->name('users.store');
-Route::get("/usuaris/edit/{id}/edit" ,[Productes::class, "edit"] )->name('users.edit');
-Route::post("/usuaris/edit/{id}" ,[Productes::class, "editProducte"] )->name('users.update');
-Route::get("/usuaris/rem/{id}" ,[Productes::class, "remProducte"] )->name('users.destroy');
-Route::get("/usuaris/mostrar/{id}" ,[Productes::class, "mostrarProducte"] )->name('users.show');
-
 
 
 Route::get("/comandes", [Compras::class, "getComandes"])->name('comd.index');
  
 Route::get("/comandes/edit/{id}/{estat}", [Compras::class, "actualizarEstat"])->name('comd.edit');
  
+
+
+
+
+Route::get("/usuaris", [Users::class, "getUsersAdmin"])->name('users.index');
+Route::get("/usuaris/crear", [Users::class, "crearProductes"])->name('users.create');
+Route::post("/usuaris/add" ,[Users::class, "addProductes"] )->name('users.store');
+Route::get("/usuaris/edit/{id}/edit" ,[Users::class, "edit"] )->name('users.edit');
+Route::post("/usuaris/edit/{id}" ,[Users::class, "editProducte"] )->name('users.update');
+Route::get("/usuaris/rem/{id}" ,[Users::class, "remProducte"] )->name('users.destroy');
+Route::get("/usuaris/mostrar/{id}" ,[Users::class, "mostrarProducte"] )->name('users.show');
