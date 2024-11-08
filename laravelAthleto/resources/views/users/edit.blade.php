@@ -40,7 +40,7 @@ integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6
         <div class="form-group">
           <label for="rol">Rol</label>
           <input type="number" class="form-control" id="rol" name="rol"
-            value="{{ $prod->rol }}" required>
+            value="{{ $prod->rol }}" required >
         </div>
         <a class="btn mt-3 btn-primary" href={{ route('users.index') }}>
         Volver 
