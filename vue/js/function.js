@@ -76,6 +76,7 @@ createApp({
       llista.paginaZapatillas=[];
       const n=6;
       let bucle=n;
+      
       let aux=num*bucle;
       
       if(num==Math.ceil(llista.zapatillas.length/n)){

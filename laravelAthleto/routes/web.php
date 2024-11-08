@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Compras;
 use App\Http\Controllers\Productes; 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController; 
@@ -25,4 +26,9 @@ Route::post("/productes/edit/{id}" ,[Productes::class, "editProducte"] )->name('
 Route::get("/productes/rem/{id}" ,[Productes::class, "remProducte"] )->name('prod.destroy');
 Route::get("/productes/mostrar/{id}" ,[Productes::class, "mostrarProducte"] )->name('prod.show');
 
+
+
+Route::get("/comandes", [Compras::class, "getComandes"])->name('comd.index');
+ 
+Route::get("/comandes/edit/{id}/{estat}", [Compras::class, "actualizarEstat"])->name('comd.edit');
  
