@@ -499,6 +499,7 @@ createApp({
     }
 
     function mostrarProcesSessio() {
+      ocultarTot();
       visibleOpcUsuari.value = false;
       visibleProSes.value = true;
     }
