@@ -124,7 +124,8 @@ class Productes extends Controller
 }
     $detallesCompras[]=[
         'compra' => $compra,
-        'producto' =>$prod_compra
+        'producto' =>$prod_compra,
+        'mostrar' => false
 
     ];
 

@@ -190,10 +190,10 @@
                       <td>{{comandes.compra.created_at.slice(0, 10)}} </td>
                       <td> {{comandes.compra.preu_total}}</td>
                       <td> <span :class="'mispedidos_status mispedidos_' + comandes.compra.estat"> {{comandes.compra.estat}}</span></td>
-                      <td><button class="mispedidos_view-button">Ver</button></td>
+                      <td><button @click="mostrarDetalles(index)" class="mispedidos_view-button">Ver</button></td>
                     </tr>
-               
-                    <tr class="mispedidos_order-details" id="mispedidos_details-001" v-for="(prod,index) in comandes.producto" :key="index">
+                    
+                    <tr v-if="comandes.mostrar" class="mispedidos_order-details" id="mispedidos_details-001" v-for="(prod,index) in comandes.producto" :key="index">
                         <td colspan="5">
                           <div class="mispedidos_details-content">
                             <p><strong>Producto:</strong> Producto {{prod.nom}}</p>

@@ -321,9 +321,12 @@ createApp({
       mComandes.compras = await getmevesComandes(dadesUser.value.id);
       console.log(mComandes.compras) 
       visibleMevesComandes.value=true;
-     
-
       }
+    }
+
+    function mostrarDetalles(index){
+
+      mComandes.compras[index].mostrar= ! mComandes.compras[index].mostrar;
     }
     
     
@@ -583,6 +586,7 @@ createApp({
       mostrarDades,
       mComandes,
       mostrarActCont,
+      mostrarDetalles,
       obtenirProductes,
       alternarPagina,
       mostrarLandingPage,
