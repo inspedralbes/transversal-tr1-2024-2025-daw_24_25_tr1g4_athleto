@@ -801,3 +801,65 @@ body {
 .opcionsAdmin a:hover {
     background-color: #f0f0f0;
 }
+
+
+ 
+
+.compra_container {
+    width: 40%;
+    margin: 50px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+ 
+
+.compra_form-group {
+    margin-bottom: 15px;
+    width: 95%;
+}
+
+.compra_form-group label {
+    font-weight: bold;
+    display: block;
+}
+
+.compra_form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.compra_form-group input[type="text"],
+.compra_form-group input[type="number"],
+.compra_form-group input[type="date"] {
+    margin-top: 5px;
+}
+
+.compra_boton {
+    background-color: #273043;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+     
+    padding:10px 20px;
+    
+
+    
+}
+
+
+.compra_footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777;
+}

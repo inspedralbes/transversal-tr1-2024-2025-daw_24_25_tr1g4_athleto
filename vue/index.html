@@ -364,8 +364,49 @@
             </div>
 
             <div v-if="visiblePagament" id="pagament">
-                <h3>Fes bizum a 111111111</h3>
-                <button @click="compraFeta">Bizum fet</button>
+                <div class="compra_container">
+                    <h2>Formulario de Compra</h2>
+                        <!-- Datos de la tarjeta bancaria -->
+                        <div class="compra_form-group">
+                            <label for="cardholder_name">Nombre del Titular de la Tarjeta:</label>
+                            <input type="text" id="cardholder_name" name="cardholder_name" required>
+                        </div>
+                
+                        <div class="compra_form-group">
+                            <label for="card_number">Número de Tarjeta:</label>
+                            <input type="number" id="card_number" name="card_number" maxlength="16" required>
+                        </div>
+                
+                        <div class="compra_form-group">
+                            <label for="expiry_date">Fecha de Expiración:</label>
+                            <input type="date" id="expiry_date" name="expiry_date" required>
+                        </div>
+                
+                        <div class="compra_form-group">
+                            <label for="cvv">CVV (Código de Seguridad):</label>
+                            <input type="number" id="cvv" name="cvv" maxlength="3" required>
+                        </div>
+                
+                        <div class="compra_form-group">
+                            <label for="billing_address">Dirección de Facturación:</label>
+                            <input type="text" id="billing_address" name="billing_address" required>
+                        </div>
+                
+                  
+                   <button  @click="compraFeta" class="compra_boton"> Pagar</button>
+                         
+                          
+                            
+                        
+                    
+                </div>
+                
+                <div class="compra_footer">
+                    <p>Al realizar la compra, aceptas los <a href="#">términos y condiciones</a>.</p>
+                </div>
+
+                
+                 
             </div>
         </div>
     </div>
