@@ -63,5 +63,14 @@ class DatabaseSeeder extends Seeder
             'password'=> Hash::make("4321"),
             'rol'=> "1",
         ]);
+
+        User::create([
+            'nom'=> "Agustin",
+            'cognom'=> "Noviello",
+            'nom_usuari'=> "soyEsclavo",
+            'email'=> "agus@agus.com",
+            'password'=> Hash::make("mussolini"),
+            'rol'=> "2",
+        ]);
     }
 }
