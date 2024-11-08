@@ -13,6 +13,7 @@ class compra extends Model
     protected $fillable = [
         'id',
         'id_usuaris',
-        'preu_total', 
+        'preu_total',
+        'estat', 
     ];
 }

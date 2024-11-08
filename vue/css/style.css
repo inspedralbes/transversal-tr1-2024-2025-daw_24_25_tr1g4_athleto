@@ -744,7 +744,10 @@ body {
   }
 
   .mispedidos_status.mispedidos_aceptado {
-    background-color: #13e600; /* Azul para aceptado */
+    background-color: #13e600; /* Azul para Aceptado */
+  }
+  .mispedidos_status.mispedidos_cancelado {
+    background-color: #e60000; /* Rojo para Cancelado*/
   }
   .mispedidos_status.mispedidos_completado {
     background-color: #1b722f; /* Verde para Completado */
