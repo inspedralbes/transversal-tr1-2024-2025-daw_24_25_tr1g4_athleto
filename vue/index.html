@@ -57,6 +57,14 @@
                 <a href="#" style="font-size: 1em;" @click="mostrarAccionsUsuari">{{ titulo() }}</a>
             </div>
         </nav>
+        <div id="funcionsAdmin" v-if="dadesUser && dadesUser.rol==1">
+            <div @click="alternarMenuAdmin" class="menuAdminIcon">⋮</div>
+            <div v-if="menuAdmin" class="opcionsAdmin">
+                <a @click="redirigirCrud('users')">Users</a>
+                <a @click="redirigirCrud('productes')">Productes</a>
+                <a @click="redirigirCrud('categories')">Categories</a>
+            </div>
+        </div>
 
         <div v-if="visibleOpcUsuari" @click="ocultarAccionsUsuari" class="fonsAccioUsu"></div>
         <div v-if="visibleOpcUsuari" id="accionsUsuari">

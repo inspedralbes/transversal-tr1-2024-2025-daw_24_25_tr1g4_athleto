@@ -13,11 +13,12 @@ class Productes extends Controller
     public function getProductesAdmin()
     {
         // Obtiene todos los productos de la base de datos
-        $productes = Producte::all();
+        //$productes = Producte::all();
+        $productes = Producte::with('categorias')->get();
+        //dd($productes);
       //  return response()->json($productes); // Devuelve los productos en formato JSON
          return view('prod.index', compact('productes'));
     }
-
     
     public function getProductes()
     {

@@ -37,6 +37,8 @@ createApp({
       llista.totalPaginas= Math.ceil(llista.zapatillas.length/6);
     }
 
+    //quizas seria mejor meter todas las variables de vision en una reactiva
+
     // Propiedades reactivas que controlan la visibilidad de diferentes secciones
     const visibleProd = ref(false); // Controla la visibilidad de la lista de productos
     const visiblePort = ref(true); // Controla la visibilidad de la portada
@@ -50,6 +52,8 @@ createApp({
     const mostrarDades = ref(false);
     const mostrarActCont = ref(false)
     const mComandes=reactive( {compras:[]}); 
+    const mostrarActCont = ref(false);
+    const menuAdmin = ref(false);
     let comprar=reactive({ id_user:"", preu:"", productes:[] = ""})
     const user = reactive({nom: "", cognom: "", nomUsuari: "", mail: "", pass: ""});
     const carrito = reactive({list: [], productesComprar: [], preu: 0});
@@ -63,6 +67,10 @@ createApp({
    
 
 
+
+    function alternarMenuAdmin(){
+      menuAdmin.value=!menuAdmin.value;
+    }
 
     function alternarPagina(num){
       llista.paginaZapatillas=[];
@@ -172,6 +180,7 @@ createApp({
         }else Swal.showValidationMessage(`Contrasenya incorrecta`);
       } catch (error) {
         alert("Error verificant");
+        logout();
       }
     }
 
@@ -260,8 +269,13 @@ createApp({
     }
 
     async function infoUser() {
-      dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
-      console.log(dadesUser.value);
+      try {
+        dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
+        console.log(dadesUser.value);
+      } catch (error) {
+        logout();
+        throw error;
+      }
     }
 
 
@@ -519,6 +533,7 @@ createApp({
         });
         dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
       } catch (error) {
+        logout();
         console.log("error actualitzant les dades");
       }
     }
@@ -556,10 +571,19 @@ createApp({
           });
         }
       } catch (error) {
+        logout();
         console.log("Error en actualitzar contrasenya");
       }
     }
 
+    async function redirigirCrud(crud){
+      try {
+        await infoUser();
+        window.location.href = `http://localhost:8000/${crud}`;
+      } catch (error) {
+        alert("torna a iniciar sessió");
+      }
+    }
     
 
     // Retornamos las variables y funciones 
@@ -573,6 +597,7 @@ createApp({
       visibleProSes,
       visiblePagament,
       visibleMevesComandes,
+      menuAdmin,
       user,
       carrito,
       compra,
@@ -587,6 +612,7 @@ createApp({
       mComandes,
       mostrarActCont,
       mostrarDetalles,
+      alternarMenuAdmin,
       obtenirProductes,
       alternarPagina,
       mostrarLandingPage,
@@ -624,6 +650,7 @@ createApp({
       actualitzarPass,
       ocultarTot,
       mevesComandes,
+      redirigirCrud,
     }
 
 
