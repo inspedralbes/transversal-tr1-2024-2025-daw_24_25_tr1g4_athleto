@@ -540,16 +540,7 @@ body {
     margin-bottom: 200px;
 }
 
-#butoAccUsu{
-    cursor: pointer;
-    width: 100%;    
-    padding: 15px 5px;
-    background-color: #251c1c;
-    color: white;
-    margin-top: 10px;
-}
-
-#butoDadesUsuari{
+#butoAccUsu, #butoDadesUsuari{
     cursor: pointer;
     width: 100%;    
     padding: 15px 5px;
@@ -802,7 +793,7 @@ body {
     background-color: #f0f0f0;
 }
 
-//añadido para la barra busqueda
+/*añadido para la barra busqueda*/
 .search-bar{
 
     right: 100px;
@@ -832,4 +823,4 @@ body {
    text-overflow: ellipsis;
    margin: 0;
 }
-//añadido para la barra busqueda
+/*añadido para la barra busqueda*/
