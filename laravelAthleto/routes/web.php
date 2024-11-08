@@ -2,6 +2,7 @@
 use App\Http\Controllers\Productes; 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController; 
+use App\Http\Controllers\Users; 
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,5 +25,14 @@ Route::get("/productes/edit/{id}/edit" ,[Productes::class, "edit"] )->name('prod
 Route::post("/productes/edit/{id}" ,[Productes::class, "editProducte"] )->name('prod.update');
 Route::get("/productes/rem/{id}" ,[Productes::class, "remProducte"] )->name('prod.destroy');
 Route::get("/productes/mostrar/{id}" ,[Productes::class, "mostrarProducte"] )->name('prod.show');
+
+
+Route::get("/usuaris", [Users::class, "getUsersAdmin"])->name('users.index');
+Route::get("/usuaris/crear", [Productes::class, "crearProductes"])->name('users.create');
+Route::post("/usuaris/add" ,[Productes::class, "addProductes"] )->name('users.store');
+Route::get("/usuaris/edit/{id}/edit" ,[Productes::class, "edit"] )->name('users.edit');
+Route::post("/usuaris/edit/{id}" ,[Productes::class, "editProducte"] )->name('users.update');
+Route::get("/usuaris/rem/{id}" ,[Productes::class, "remProducte"] )->name('users.destroy');
+Route::get("/usuaris/mostrar/{id}" ,[Productes::class, "mostrarProducte"] )->name('users.show');
 
  
