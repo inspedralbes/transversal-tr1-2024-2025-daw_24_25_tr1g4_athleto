@@ -203,7 +203,7 @@ createApp({
     async function loginUsuari() {
       try {
         const accessToken = await login(user.mail, user.pass);
-        document.cookie = `access_token=${accessToken}; path=/; max-age=900; SameSite=Strict; Secure`;
+        document.cookie = `access_token=${accessToken}; path=/; max-age=900; SameSite=Strict;`;
         await infoUser();
       } catch (error) {
         console.log("error iniciant sessió");
