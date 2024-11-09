@@ -6,53 +6,57 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
 integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <title>AdminerProd</title>
+  <title>AdminerUsers</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-warning">
     <div class="container-fluid">
       <div>
+        <a class="navbar-brand h1" href={{ route('prod.index') }}>CRUD PRODUCTOS</a>
         <a class="navbar-brand h1" href={{ route('categories.index') }}>CRUD CATEGORIES</a>
-        <a class="navbar-brand h1" href={{ route('users.index') }}>CRUD USUARIS</a>
         <a class="navbar-brand h1" href={{ route('comd.index') }}>CRUD COMANDES</a>
       </div>
       <div class="justify-end ">
         <div class="col ">
-          <a class="btn btn-sm btn-success" href={{ route('prod.create') }}>Afegir Producte</a>
+          <a class="btn btn-sm btn-success" href={{ route('users.create') }}>Afegir Usuari</a>
         </div>
       </div>
     </div>
   </nav>
   <div class="container mt-5">
     <div class="row">
-      @foreach ($productes as $post)
+      @foreach ($usuaris as $user)
         <div class="col-sm">
           <div class="card">
             <div class="card-header">
-              <h5 class="card-title">{{ $post->id }}</h5>
+              <h5 class="card-title"> Id: {{ $user->id }}</h5>
             </div>
             <div class="card-body">
-              <p class="card-text">{{ $post->nom }}</p>
+              <p class="card-text"> Nom: {{ $user->nom }}</p>
             </div>
-            <div>
-              <p>Categories:</p>
-              <ul>
-                @foreach ( $post->categorias as $cat)
-                  <li>{{ $cat->nom }}</li>
-                @endforeach
-              </ul>
+            <div class="card-body">
+              <p class="card-text"> Cognom: {{ $user->cognom }}</p>
+            </div>
+            <div class="card-body">
+              <p class="card-text"> Nom usuari: {{ $user->nom_usuari }}</p>
+            </div>
+            <div class="card-body">
+              <p class="card-text"> Email: {{ $user->email}}</p>
+            </div>
+            <div class="card-body">
+              <p class="card-text"> Rol {{ $user->rol}}</p>
             </div>
             <div class="card-footer">
               <div class="row">
                 <div class="col-sm">
-                  <a href="{{ route('prod.edit', $post->id) }}"
+                  <a href="{{ route('users.edit', $user->id) }}"
             class="btn btn-primary btn-sm">Edit</a>
                 </div>
                 <div class="col-sm">
-                    <form action="{{ route('prod.destroy', $post->id) }}" method="get">
+                    <form action="{{ route('users.destroy', $user->id) }}" method="get">
                       @csrf
                       
-                      <button type="submit" class="btn btn-danger btn-sm" href={{ route('prod.index') }}>Delete</button>
+                      <button type="submit" class="btn btn-danger btn-sm" href={{ route('users.index') }}>Delete</button>
                     </form>
                 </div>
               </div>
