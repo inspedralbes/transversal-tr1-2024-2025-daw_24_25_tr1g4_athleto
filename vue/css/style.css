@@ -1,4 +1,3 @@
-
 /* Estilos generales para el cuerpo de la página */
 body {
   font-family: "Times New Roman", Times, serif;
@@ -108,6 +107,7 @@ body {
 }
 
 .nomProducte {
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 10px;
@@ -229,10 +229,12 @@ body {
 
 /* Botones específicos */
 .buy-now-btn {
+  background-color: #61abdc;
   background-color: #101111;
 }
 
 .add-to-cart-btn {
+  background-color: #6200ff;
   background-color: #1f0f38;
 }
 
@@ -374,6 +376,7 @@ body {
 }
 
 .comprarCarrito:hover {
+  background-color: #a71c24;
   background-color: #381ca7;
 }
 
@@ -472,10 +475,10 @@ body {
   text-align: center;
   margin-bottom: 10px;
 }
-
 .enllaços p{
   font-size: 20px;
   border-bottom: 1px solid rgb(31, 58, 86);
+  
 }
 
 #accionsUsuari .contingut{
@@ -489,7 +492,6 @@ body {
 #butoDadesUsuari {
   padding: 15px 5px;
 }
-
 #butoAccUsuari{
   padding: 15px 5px;
  margin-top: 10px;
@@ -512,6 +514,18 @@ body {
   font-size: 20px;
 }
 
+/* Botones de compra y continuar */
+.comprarCarrito {
+  width: 200px;
+  height: 40px;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  margin-bottom: 8px;
+  padding-bottom: 10px;
+}
 
 .cancelarCompra {
   width: 200px;
@@ -527,10 +541,12 @@ body {
 
 /* Color específico para cada botón */
 .comprarCarrito {
+  background-color: #61abdc;
   background-color: #101111;;
 }
 
 .cancelarCompra {
+  background-color: #6200ff;
   background-color: #1f0f38;;
 }
 
@@ -568,6 +584,7 @@ body {
 #cancelAccUsu {
   position: absolute;
   top: 8px;
+  right: 10px;
   right: 0px;
   margin-bottom: 100px;
 }
@@ -592,7 +609,7 @@ body {
 
 .enllacos {
   margin-top: 1.5em;
-  
+
 }
 
 .enllgacsIniciat {
@@ -601,6 +618,7 @@ body {
 
 @media (min-width: 600px) {
   .navbar{
+    padding: 15px;
     padding: 10px;
     position: sticky;
     top: 0;
@@ -618,7 +636,6 @@ body {
 .menu-item a {
   font-size: 20px;
 }
-
 .submenu {
   list-style: none;
   margin: 0;
@@ -626,11 +643,9 @@ body {
   display: none;
   background-color: #444;
 }
-
 .menu-item:hover .submenu {
   display: block;
 }
-
 /* Estilos para enlaces dentro del submenú */
 .submenu li a {
   color: #ddd;
@@ -639,7 +654,6 @@ body {
   text-decoration: none;
   font-size: 15px;
 }
-
 .submenu li a:hover {
   background-color: #90add0;
 }
@@ -647,7 +661,6 @@ body {
 .icons {
   right: 60px;
 }
-
 .icons a {
   font-size: 20px;
   margin-left: 15px;
@@ -661,12 +674,15 @@ body {
 }
 
 .contentZapatos {
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  margin: 10px;
+  width: 10px;
+  
   justify-content: center;
   margin: 0 auto;
   margin-top: 20px;
 }
-
 .dadesProducte {
   width: 350px;
   height: 200px;
@@ -675,60 +691,50 @@ body {
   justify-content: flex-start;
   padding: 10px;
 }
-
 .dadesProducte img {
   width: 150px;
   height: 150px;
   margin-bottom: 20px;      /* Más espacio en versión desktop */
 }
-
 .preuProducte {
   font-size: 20px;
   margin-top: 0px;  
   padding-left: 10px; 
 }
-
 .nomProducte {
   width: 150px;
   font-size: 20px;
   padding-left: 10px;
   padding-right: 10px;
 }
-
 .product-container {
   align-items: center;
   width: 100%;
   padding-top: 220px;}
-
 /* Tarjeta de producto */
 .product-card {
   width: 500px;
   height: 450px;
 }
-
 /* Imagen del producto */
 .product-image {
   width: 150px;
   height: 150px;
   border-radius: 8px;
 }
-
 /* Título del producto */
 .product-title {
   font-size: 30px;
 }
-
 /* Descripción del producto */
 .product-description {
   font-size: 20px;
 }
-
 /* Precio del producto */
 .product-price {
   font-size: 20px;
   padding-bottom: 5px;
 }
-
 /* Botones de compra */
 .product-buttons {
   display: flex;
@@ -736,7 +742,6 @@ body {
   gap: 8px;
   align-items: center;
 }
-
 .product-buttons button {
   width: 300px;
   padding: 10px;
@@ -748,7 +753,6 @@ body {
   color: #fff;
   text-align: center;
 }
-
 /* Botón de regresar */
 #buto-cancelar {
   left: 250px;
@@ -761,7 +765,6 @@ body {
   width: 300px; 
   padding-top: 60px;
 }
-
 /* Contenedor para el producto */
 .productoContainer {
   display: flex;
@@ -769,41 +772,34 @@ body {
   align-items: center;
   width: 100%;
 }
-
 /* Imagen del producto */
 .productoImagen img {
   padding-top: 50px;
   width: 200px;
   margin-left: 30px;
 }
-
 /* Contenedor para los elementos de la derecha */
 .checkoutProd {
   display: flex;
   gap: 10px; 
 }
-
 /* Estilo del nombre del producto */
 .checkoutProd h3 {
   padding-top: 50px;
   font-size: 25px;
 }
-
 /* Estilo del precio */
 .checkoutProd p {
   font-size: 20px;
 }
-
 /* Estilo del input de cantidad */
 .inputQuantitat {
   width: 30px;
 }
-
 /* Imagen de la basura (eliminar producto) */
 .imagenBasura {
   width: 20px;
 }
-
 /* Contenedor para el total y los botones */
 .totalYBotones {
   display: flex;
@@ -812,7 +808,6 @@ body {
   margin-top: 30px;
   align-items: center; /* Centra los elementos horizontalmente */
 }
-
 /* Contenedor para el total y su precio */
 .totalCarrito {
   display: flex;
@@ -820,7 +815,6 @@ body {
   align-items: center;
   width: 100px;
 }
-
 /* Contenedor para los botones */
 .botonesContainer {
   display: flex;
@@ -828,18 +822,15 @@ body {
   gap: 10px;
   margin-top: 20px; /* Espacio entre el total y los botones */
 }
-
 /* Botones de compra y continuar */
 .comprarCarrito {
   width: 280px;
   font-size: 15px;
 }
-
 .cancelarCompra {
   width: 280px;
   font-size: 15px;
 }
-
 /* Estilos del carrito deslizante */
 .cart-closed {
   width: 0;
@@ -848,17 +839,14 @@ body {
 .cart-open {
   width: 300px;
 }
-
 .cart-header {
   padding: 0.5rem;
   background-color: #333;
   color: white;
 }
-
 .cart-header h2 {
   font-size: 20px;
 }
-
 /* Estilo para el item del producto */
 .producteCar {
   display: flex;
@@ -866,11 +854,9 @@ body {
   align-items: center;
   padding: 10px;
 }
-
 .imatgesCar {
   width: 100px;
 }
-
 /* Detalles del producto (nombre y precio) */
 .producteCar > div:first-child > div:nth-child(2) {
   font-size: 15px;
@@ -881,7 +867,6 @@ body {
   margin: 0;
   font-size: 15px; /* Añadido tamaño de fuente de 20px */
 }
-
 .brossaProducte {
   width: 15px;
   height: 15px;
@@ -889,18 +874,15 @@ body {
   top: 100px;
   right: 10px;
 }
-
 /* Input de cantidad */
 .inputQuantitat {
   width: 30px;
   margin: 5px 0;
 }
-
 /* Total del carrito */
 .cart-footer h3 {
   font-size: 15px;
 }
-
 /* Botón de comprar */
 .btn-comprar {
   width: 50px;
@@ -908,12 +890,10 @@ body {
   margin: 10px auto;
   display: block;
 }
-
 .enllaços p{
   font-size: 20px;
   border-bottom: 1px solid rgb(31, 58, 86);
 }
-
 #accionsUsuari {
   width: 300px;
   height: 200px;
@@ -921,8 +901,6 @@ body {
   left: 963px;
   top: 0px;
 }
-
-
 #accionsUsuari .contingut{
   padding: 10px;
   height: 100%;
@@ -930,15 +908,11 @@ body {
   box-sizing: border-box;
   position: absolute;
 }
-
-
-
 #imgLandingPage img{
   width: 1000px;
   height: 500px;
   left: 20px;
 }
-
 /* Contenedor principal */
 #compte {
   width: 600px;
@@ -948,29 +922,24 @@ body {
   position: relative;
   left: auto;
 }
-
 /* Encabezado */
 #compteHeader {
   text-align: center;
   margin-bottom: 20px;
 }
-
 #compteHeader h1 {
   font-size: 24px;
   color: #333;
   margin: 0;
 }
-
 /* Contenido del registro y acceso */
 #compteInfo {
   text-align: center;
   margin-bottom: 20px;
 }
-
 #compteInfo h4 {
   color: #333;
 }
-
 #compteInfo ul {
   list-style: disc;
   width: 80%;
@@ -979,11 +948,9 @@ body {
   text-align: left;
   color: #555;
 }
-
 #compteInfo ul li {
   margin: 5px 0;
 }
-
 /* Input de correo y botones */
 #compteMail h4, .passInput h4 {
   font-size: 18px;
@@ -991,7 +958,6 @@ body {
   margin-bottom: 10px;
   text-align: center;
 }
-
 #compteMail input[type="email"],
 input[type="text"],
 input[type="password"] {
@@ -1003,26 +969,22 @@ input[type="password"] {
   font-size: 16px;
   display: block; 
 }
-
 /* Contenedor de la función de usuario */
 .funcioUsuari {
   text-align: center;
   padding: 20px;
 }
-
 /* Títulos y textos */
 .funcioUsuari h2 {
   font-size: 24px;
   color: #333;
   margin-bottom: 10px;
 }
-
 .funcioUsuari h4 {
   font-size: 18px;
   color: #555;
   margin-bottom: 15px;
 }
-
 /* Contenedor del campo de contraseña */
 .passInput {
   display: flex;
@@ -1031,7 +993,6 @@ input[type="password"] {
   gap: 10px;
   margin-bottom: 20px;
 }
-
 /* Campo de entrada de contraseña */
 .passInput input {
   width: 80%;
@@ -1042,18 +1003,71 @@ input[type="password"] {
   outline: none;
   transition: border-color 0.3s;
 }
-
 .passInput input:focus {
   border-color: #4CAF50; /* Cambia de color al hacer foco */
 }
-
 /* Icono para mostrar/ocultar contraseña */
 .ullPass {
   width: 24px;
   cursor: pointer;
 }
+.compra_container {
+  width: 40%;
+  margin: 50px auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+}
 
 
 
+.compra_form-group {
+  margin-bottom: 15px;
+  width: 95%;
+}
+
+.compra_form-group label {
+  font-weight: bold;
+  display: block;
+}
+
+.compra_form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.compra_form-group input[type="text"],
+.compra_form-group input[type="number"],
+.compra_form-group input[type="date"] {
+  margin-top: 5px;
+}
+
+.compra_boton {
+  background-color: #273043;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+   
+  padding:10px 20px;
+  
+
+  
+}
+
+
+.compra_footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #777;
+}
 
 }
