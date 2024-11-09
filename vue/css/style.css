@@ -108,7 +108,6 @@ body {
 }
 
 .nomProducte {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 10px;
@@ -122,8 +121,6 @@ body {
   width: 10px;
 
 }
-
-
 
 .portada {
   display: inline-block;
@@ -232,11 +229,11 @@ body {
 
 /* Botones específicos */
 .buy-now-btn {
-  background-color: #61abdc;
+  background-color: #101111;
 }
 
 .add-to-cart-btn {
-  background-color: #6200ff;
+  background-color: #1f0f38;
 }
 
 
@@ -364,6 +361,7 @@ body {
 
 .comprarCarrito {
   background-color: #c82333;
+  width: 200px;
   color: white;
   border: none;
   padding: 10px;
@@ -376,7 +374,7 @@ body {
 }
 
 .comprarCarrito:hover {
-  background-color: #a71c24;
+  background-color: #381ca7;
 }
 
 .cancelarCompra {
@@ -474,11 +472,10 @@ body {
   text-align: center;
   margin-bottom: 10px;
 }
+
 .enllaços p{
   font-size: 20px;
   border-bottom: 1px solid rgb(31, 58, 86);
-  
-
 }
 
 #accionsUsuari .contingut{
@@ -492,12 +489,11 @@ body {
 #butoDadesUsuari {
   padding: 15px 5px;
 }
+
 #butoAccUsuari{
   padding: 15px 5px;
  margin-top: 10px;
  position: absolute;
-
-
 }
 
 /* Estilo para el texto "Total carrito" */
@@ -516,18 +512,6 @@ body {
   font-size: 20px;
 }
 
-/* Botones de compra y continuar */
-.comprarCarrito {
-  width: 200px;
-  height: 40px;
-  padding: 5px;
-  font-size: 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  color: #fff;
-  margin-bottom: 8px;
-  padding-bottom: 10px;
-}
 
 .cancelarCompra {
   width: 200px;
@@ -543,11 +527,11 @@ body {
 
 /* Color específico para cada botón */
 .comprarCarrito {
-  background-color: #61abdc;
+  background-color: #101111;;
 }
 
 .cancelarCompra {
-  background-color: #6200ff;
+  background-color: #1f0f38;;
 }
 
 .dadesProdCheck {
@@ -584,7 +568,7 @@ body {
 #cancelAccUsu {
   position: absolute;
   top: 8px;
-  right: 10px;
+  right: 0px;
   margin-bottom: 100px;
 }
 
@@ -617,7 +601,7 @@ body {
 
 @media (min-width: 600px) {
   .navbar{
-    padding: 15px;
+    padding: 10px;
     position: sticky;
     top: 0;
   }
@@ -631,16 +615,445 @@ body {
   justify-content: left;
 }
 
+.menu-item a {
+  font-size: 20px;
+}
 
+.submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  background-color: #444;
+}
+
+.menu-item:hover .submenu {
+  display: block;
+}
+
+/* Estilos para enlaces dentro del submenú */
+.submenu li a {
+  color: #ddd;
+  padding: 5px;
+  display: block;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.submenu li a:hover {
+  background-color: #90add0;
+}
+/* Estilos para los iconos (lupa y carrito) */
+.icons {
+  right: 60px;
+}
+
+.icons a {
+  font-size: 20px;
+  margin-left: 15px;
+}
+
+.zapatos {
+  height: 200px; 
+  width: 350px;  
+  margin: 15px;   
+  
+}
 
 .contentZapatos {
-  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin: 10px;
-  width: 10px;
-  
-
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 20px;
 }
+
+.dadesProducte {
+  width: 350px;
+  height: 200px;
+  display: flex;
+  align-items: center;       
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+.dadesProducte img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;      /* Más espacio en versión desktop */
+}
+
+.preuProducte {
+  font-size: 20px;
+  margin-top: 0px;  
+  padding-left: 10px; 
+}
+
+.nomProducte {
+  width: 150px;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.product-container {
+  align-items: center;
+  width: 100%;
+  padding-top: 220px;}
+
+/* Tarjeta de producto */
+.product-card {
+  width: 500px;
+  height: 450px;
+}
+
+/* Imagen del producto */
+.product-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+}
+
+/* Título del producto */
+.product-title {
+  font-size: 30px;
+}
+
+/* Descripción del producto */
+.product-description {
+  font-size: 20px;
+}
+
+/* Precio del producto */
+.product-price {
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+/* Botones de compra */
+.product-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.product-buttons button {
+  width: 300px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  text-align: center;
+}
+
+/* Botón de regresar */
+#buto-cancelar {
+  left: 250px;
+  top: 20px;
+}
+.checkoutFooter {
+  display: flex;
+  flex-direction: column; /* Cambiado a column para apilar elementos */
+  background-color: white;
+  width: 300px; 
+  padding-top: 60px;
+}
+
+/* Contenedor para el producto */
+.productoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+/* Imagen del producto */
+.productoImagen img {
+  padding-top: 50px;
+  width: 200px;
+  margin-left: 30px;
+}
+
+/* Contenedor para los elementos de la derecha */
+.checkoutProd {
+  display: flex;
+  gap: 10px; 
+}
+
+/* Estilo del nombre del producto */
+.checkoutProd h3 {
+  padding-top: 50px;
+  font-size: 25px;
+}
+
+/* Estilo del precio */
+.checkoutProd p {
+  font-size: 20px;
+}
+
+/* Estilo del input de cantidad */
+.inputQuantitat {
+  width: 30px;
+}
+
+/* Imagen de la basura (eliminar producto) */
+.imagenBasura {
+  width: 20px;
+}
+
+/* Contenedor para el total y los botones */
+.totalYBotones {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+  align-items: center; /* Centra los elementos horizontalmente */
+}
+
+/* Contenedor para el total y su precio */
+.totalCarrito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100px;
+}
+
+/* Contenedor para los botones */
+.botonesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px; /* Espacio entre el total y los botones */
+}
+
+/* Botones de compra y continuar */
+.comprarCarrito {
+  width: 280px;
+  font-size: 15px;
+}
+
+.cancelarCompra {
+  width: 280px;
+  font-size: 15px;
+}
+
+/* Estilos del carrito deslizante */
+.cart-closed {
+  width: 0;
+}
+
+.cart-open {
+  width: 300px;
+}
+
+.cart-header {
+  padding: 0.5rem;
+  background-color: #333;
+  color: white;
+}
+
+.cart-header h2 {
+  font-size: 20px;
+}
+
+/* Estilo para el item del producto */
+.producteCar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.imatgesCar {
+  width: 100px;
+}
+
+/* Detalles del producto (nombre y precio) */
+.producteCar > div:first-child > div:nth-child(2) {
+  font-size: 15px;
+}
+
+/* Estilos para nombre y precio */
+.producteCar p {
+  margin: 0;
+  font-size: 15px; /* Añadido tamaño de fuente de 20px */
+}
+
+.brossaProducte {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  top: 100px;
+  right: 10px;
+}
+
+/* Input de cantidad */
+.inputQuantitat {
+  width: 30px;
+  margin: 5px 0;
+}
+
+/* Total del carrito */
+.cart-footer h3 {
+  font-size: 15px;
+}
+
+/* Botón de comprar */
+.btn-comprar {
+  width: 50px;
+  padding: 10px;
+  margin: 10px auto;
+  display: block;
+}
+
+.enllaços p{
+  font-size: 20px;
+  border-bottom: 1px solid rgb(31, 58, 86);
+}
+
+#accionsUsuari {
+  width: 300px;
+  height: 200px;
+  right: 0px;
+  left: 963px;
+  top: 0px;
+}
+
+
+#accionsUsuari .contingut{
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+
+
+#imgLandingPage img{
+  width: 1000px;
+  height: 500px;
+  left: 20px;
+}
+
+/* Contenedor principal */
+#compte {
+  width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  top: 20px;
+  margin: 0 auto; 
+  position: relative;
+  left: auto;
+}
+
+/* Encabezado */
+#compteHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#compteHeader h1 {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+/* Contenido del registro y acceso */
+#compteInfo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#compteInfo h4 {
+  color: #333;
+}
+
+#compteInfo ul {
+  list-style: disc;
+  width: 80%;
+  margin: 0 auto;
+  padding-left: 40px;
+  text-align: left;
+  color: #555;
+}
+
+#compteInfo ul li {
+  margin: 5px 0;
+}
+
+/* Input de correo y botones */
+#compteMail h4, .passInput h4 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#compteMail input[type="email"],
+input[type="text"],
+input[type="password"] {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 5px auto 15px auto; 
+  font-size: 16px;
+  display: block; 
+}
+
+/* Contenedor de la función de usuario */
+.funcioUsuari {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Títulos y textos */
+.funcioUsuari h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.funcioUsuari h4 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Contenedor del campo de contraseña */
+.passInput {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Campo de entrada de contraseña */
+.passInput input {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.passInput input:focus {
+  border-color: #4CAF50; /* Cambia de color al hacer foco */
+}
+
+/* Icono para mostrar/ocultar contraseña */
+.ullPass {
+  width: 24px;
+  cursor: pointer;
+}
+
+
 
 
 }

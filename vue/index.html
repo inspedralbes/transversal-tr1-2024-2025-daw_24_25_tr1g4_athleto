@@ -139,14 +139,9 @@
                 </div>
             </div>
 
-            
-
-
-
             <!-- Contenido de productos mostrado cuando visibleProd es verdadero -->
             <div class="contentZapatos" v-if="visibleProd">
-
-                
+     
                 <div  @click="mostrarProducte(index)" v-for="(prod, index) in llista.zapatillas"
                     :key="index" :id="'zapato' + index" class="zapatos">
                     <!-- Bucle que recorre la lista de zapatillas y muestra -->
@@ -282,6 +277,7 @@
 
     <!--JavaScript principal -->
     <script type="module" src="./js/function.js"></script>
+    
 </body>
 
 </html>
