@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Categoria; 
+use App\Models\Categoria;
 use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Categoria::all(); 
+        $categories = Categoria::all();
         return view('categories.index', compact('categories'));
     }
 
@@ -27,8 +27,8 @@ class CategoriesController extends Controller
 
         if ($validator->fails()) {
             return redirect()->route('categories.create')
-                             ->withErrors($validator)
-                             ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
 
         Categoria::create([
@@ -40,13 +40,13 @@ class CategoriesController extends Controller
 
     public function show($id)
     {
-        $category = Categoria::findOrFail($id); 
+        $category = Categoria::findOrFail($id);
         return view('categories.show', compact('category'));
     }
 
     public function edit($id)
     {
-        $category = Categoria::findOrFail($id); 
+        $category = Categoria::findOrFail($id);
         return view('categories.edit', compact('category'));
     }
 
@@ -58,8 +58,8 @@ class CategoriesController extends Controller
 
         if ($validator->fails()) {
             return redirect()->route('categories.edit', $id)
-                             ->withErrors($validator)
-                             ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $category = Categoria::findOrFail($id);
@@ -72,8 +72,8 @@ class CategoriesController extends Controller
 
     public function destroy($id)
     {
-        $category = Categoria::findOrFail($id); 
-        $category->delete(); 
+        $category = Categoria::findOrFail($id);
+        $category->delete();
 
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
     }

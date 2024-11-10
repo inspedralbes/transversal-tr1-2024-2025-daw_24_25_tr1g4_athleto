@@ -1,11 +1,11 @@
 import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getProductes, enviarCorreo,getmevesComandes, enviarCompra, postMail, register, login, obtenirDadesUser, postNomUsuari, getProductesFiltre, getProductesFiltre2, verificarPassUsuari, actualitzarDadesUsuari, actualitzarPassword } from './communicationManager.js';
+import { getProductes, enviarCorreo, getmevesComandes, enviarCompra, postMail, register, login, obtenirDadesUser, postNomUsuari, getProductesFiltre, getProductesFiltre2, verificarPassUsuari, actualitzarDadesUsuari, actualitzarPassword } from './communicationManager.js';
 // Creación de la instancia de la aplicación Vue
 createApp({
 
   setup() {
     // `llista`contiene una lista de productos 
-    const llista = reactive({ zapatillas: [], totalPaginas:"", paginaZapatillas: [] });
+    const llista = reactive({ zapatillas: [], totalPaginas: "", paginaZapatillas: [] });
     const dadesUser = ref();
     const mailExisteix = ref();
     // Se ejecuta antes del mount(montar)
@@ -25,16 +25,16 @@ createApp({
       // Guardar los productos obtenidos
       llista.zapatillas = data;
 
-       // paginas totales  
-     
-      llista.paginaActual=1;
+      // paginas totales  
+
+      llista.paginaActual = 1;
       generarPagina();
       alternarPagina(llista.paginaActual);
 
     });
 
-    function generarPagina(){
-      llista.totalPaginas= Math.ceil(llista.zapatillas.length/6);
+    function generarPagina() {
+      llista.totalPaginas = Math.ceil(llista.zapatillas.length / 6);
     }
 
     //quizas seria mejor meter todas las variables de vision en una reactiva
@@ -51,42 +51,42 @@ createApp({
     const visibleProSes = ref(false);
     const mostrarDades = ref(false);
     const mostrarActCont = ref(false);
-    const mComandes=reactive( {compras:[]}); 
-    
+    const mComandes = reactive({ compras: [] });
+
     const menuAdmin = ref(false);
-    let comprar=reactive({ id_user:"", preu:"", productes:[] = ""})
-    const user = reactive({nom: "", cognom: "", nomUsuari: "", mail: "", pass: ""});
-    const carrito = reactive({list: [], productesComprar: [], preu: 0});
-    const compra = reactive({list: [], preu: 0});
+    let comprar = reactive({ id_user: "", preu: "", productes: [] = "" })
+    const user = reactive({ nom: "", cognom: "", nomUsuari: "", mail: "", pass: "" });
+    const carrito = reactive({ list: [], productesComprar: [], preu: 0 });
+    const compra = reactive({ list: [], preu: 0 });
     const showPass = ref(false);
     const nomExisteix = ref(false);
     let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
     let actual = ref();
     //const actual = reactive({ nom: "", preu: "", imatge: "", genero: "", mida: "", }); // `actual` almacena la información del producto seleccionado
 
-   
 
 
 
-    function alternarMenuAdmin(){
-      menuAdmin.value=!menuAdmin.value;
+
+    function alternarMenuAdmin() {
+      menuAdmin.value = !menuAdmin.value;
     }
 
-    function alternarPagina(num){
-      llista.paginaZapatillas=[];
-      const n=6;
-      let bucle=n;
-      
-      let aux=num*bucle;
-      
-      if(num==Math.ceil(llista.zapatillas.length/n)){
-        bucle=llista.zapatillas.length-(aux-n);  
-        aux=llista.zapatillas.length
+    function alternarPagina(num) {
+      llista.paginaZapatillas = [];
+      const n = 6;
+      let bucle = n;
+
+      let aux = num * bucle;
+
+      if (num == Math.ceil(llista.zapatillas.length / n)) {
+        bucle = llista.zapatillas.length - (aux - n);
+        aux = llista.zapatillas.length
       }
-     
+
       for (let index = 0; index < bucle; index++) {
-        
-        llista.paginaZapatillas.push(llista.zapatillas[aux-1]);
+
+        llista.paginaZapatillas.push(llista.zapatillas[aux - 1]);
         aux--;
       }
     }
@@ -98,34 +98,34 @@ createApp({
 
     async function obtenirProductes() {
       const data = await getProductes();
-       // Guardar los productos obtenidos
-       llista.paginaZapatillas = data;
-       llista.zapatillas= data;    
-       generarPagina();
-       alternarPagina(1);
+      // Guardar los productos obtenidos
+      llista.paginaZapatillas = data;
+      llista.zapatillas = data;
+      generarPagina();
+      alternarPagina(1);
       mostrarSeccioProductes();
     }
 
-     async function filtrar(param){
-       // Obtenemos los productos 
-       const data = await getProductesFiltre(param);
-       // Guardar los productos obtenidos
-       llista.paginaZapatillas = data;
-       llista.zapatillas= data;    
-     generarPagina();
-     alternarPagina(1);
-     mostrarSeccioProductes();
+    async function filtrar(param) {
+      // Obtenemos los productos 
+      const data = await getProductesFiltre(param);
+      // Guardar los productos obtenidos
+      llista.paginaZapatillas = data;
+      llista.zapatillas = data;
+      generarPagina();
+      alternarPagina(1);
+      mostrarSeccioProductes();
     }
-    
-    async function filtrar2(id1,id2){
-     // Obtenemos los productos 
-   const data = await getProductesFiltre2(id1,id2);
-    // Guardar los productos obtenidos
-    llista.paginaZapatillas = data;
-    llista.zapatillas=data;
-    generarPagina();
-    alternarPagina(1);
-    mostrarSeccioProductes();
+
+    async function filtrar2(id1, id2) {
+      // Obtenemos los productos 
+      const data = await getProductesFiltre2(id1, id2);
+      // Guardar los productos obtenidos
+      llista.paginaZapatillas = data;
+      llista.zapatillas = data;
+      generarPagina();
+      alternarPagina(1);
+      mostrarSeccioProductes();
     }
 
 
@@ -171,15 +171,15 @@ createApp({
       ocultarTot();
       visibleOpcUsuari.value = false;
     }
-    
-    async function verificarContrasenyaCorrecta(password){
+
+    async function verificarContrasenyaCorrecta(password) {
       try {
         const resp = await verificarPassUsuari(password, getCookie('access_token'));
         if (resp) {
           visibleProSes.value = true;
-          mostrarActCont.value=false;
-          mostrarDades.value=false;
-        }else Swal.showValidationMessage(`Contrasenya incorrecta`);
+          mostrarActCont.value = false;
+          mostrarDades.value = false;
+        } else Swal.showValidationMessage(`Contrasenya incorrecta`);
       } catch (error) {
         alert("Error verificant");
         logout();
@@ -262,7 +262,7 @@ createApp({
       visibleOpcUsuari.value = false;
       visibleProSes.value = false;
       mostrarDades.value = false;
-      visibleMevesComandes.value=false;
+      visibleMevesComandes.value = false;
     }
 
     function mostrarLandingPage() {
@@ -326,45 +326,45 @@ createApp({
     }
 
     //Serveix per afegir el producte actual al carrito, actualitzar el preu i tancar el carrito
-   
+
 
    async function mevesComandes(){
       if(dadesUser.value==undefined){
         showToast('Registrate primero');
 
-      }else{
-     
-      ocultarTot();
-      mComandes.compras = await getmevesComandes(dadesUser.value.id);
-      console.log(mComandes.compras) 
-      visibleMevesComandes.value=true;
+      } else {
+
+        ocultarTot();
+        mComandes.compras = await getmevesComandes(dadesUser.value.id);
+        console.log(mComandes.compras)
+        visibleMevesComandes.value = true;
       }
     }
 
-    function mostrarDetalles(index){
+    function mostrarDetalles(index) {
 
-      mComandes.compras[index].mostrar= ! mComandes.compras[index].mostrar;
+      mComandes.compras[index].mostrar = !mComandes.compras[index].mostrar;
     }
-    
-    
+
+
     function afegirProducte() {
       
       if(dadesUser.value==undefined){
         showToast('Registrate primero');
         
 
-      }else{
+      } else {
 
 
-      let producte = trobarProducte();
-      if (producte) producte.quantitat++;
-      else carrito.list.push({ ...toRaw(actual.value), quantitat: 1 });
-      actualitzarPreuCarrito();
-      alternarCestella();
-      visibleProd.value = true;
-      visibleActual.value = false;
-  
-    }
+        let producte = trobarProducte();
+        if (producte) producte.quantitat++;
+        else carrito.list.push({ ...toRaw(actual.value), quantitat: 1 });
+        actualitzarPreuCarrito();
+        alternarCestella();
+        visibleProd.value = true;
+        visibleActual.value = false;
+
+      }
     }
 
     function revisarQuantitat(index) {
@@ -416,23 +416,23 @@ createApp({
       if (carrito.productesComprar.length > 0) compra.list = carrito.productesComprar.map(product => ({ ...product }));
       else compra.list = carrito.list.map(product => ({ ...product }));
       compra.preu = carrito.preu;
-      comprar=reactive(
+      comprar = reactive(
         {
-          id_user:dadesUser.value.id,
-          preu:carrito.preu,
-          productes:[] = carrito.list
-         
+          id_user: dadesUser.value.id,
+          preu: carrito.preu,
+          productes: [] = carrito.list
+
 
         }
       )
       obrirCheckout();
-      visibilidad_resultadoBusqueda.value=false;
+      visibilidad_resultadoBusqueda.value = false;
     }
 
     function pagament() {
       visibleCheck.value = false;
       visiblePagament.value = true;
-      
+
     }
 
     function reiniciarProductesComprar() {
@@ -475,11 +475,11 @@ createApp({
       reiniciarProductesComprar();
       actualitzarCarritoCompra();
       actualitzarPreuCarrito();
-     
-     
 
 
-      
+
+
+
 
 
     }
@@ -506,25 +506,25 @@ createApp({
         
         showToast('Registrate primero');
 
-      }else{
+      } else {
 
 
-      compra.list = [{ ...toRaw(actual.value), quantitat: 1 }];
-      //compra.list.push({ ...toRaw(actual.value), quantitat: 1 });
-      compra.preu = actual.value.preu;   
-      
-      comprar=reactive(
-        {
-          id_user:dadesUser.value.id,
-          preu:compra.preu,
-          productes:[] = compra.list
-         
+        compra.list = [{ ...toRaw(actual.value), quantitat: 1 }];
+        //compra.list.push({ ...toRaw(actual.value), quantitat: 1 });
+        compra.preu = actual.value.preu;
 
-        }
-      )
-      obrirCheckout();
+        comprar = reactive(
+          {
+            id_user: dadesUser.value.id,
+            preu: compra.preu,
+            productes: [] = compra.list
 
-    }
+
+          }
+        )
+        obrirCheckout();
+
+      }
     }
 
     function mostrarProcesSessio() {
@@ -543,7 +543,7 @@ createApp({
       mostrarActCont.value = false;
     }
 
-    async function actualitzarDades(){
+    async function actualitzarDades() {
       if (!user.nom || !user.cognom || !user.nomUsuari || !user.mail || !user.adreca) {
         alert("Por favor, completa todos los campos.");
         return;
@@ -568,14 +568,14 @@ createApp({
       }
     }
 
-    function butoActualitzarContrasenya(){
-      mostrarActCont.value=true;
+    function butoActualitzarContrasenya() {
+      mostrarActCont.value = true;
       mostrarDades.value = false;
-      user.pass="";
-      user.newPass="";
+      user.pass = "";
+      user.newPass = "";
     }
 
-    async function actualitzarPass(){
+    async function actualitzarPass() {
       if (!user.pass || !user.newPass) {
         alert("Els camps no poden estar buits");
         return;
@@ -594,7 +594,7 @@ createApp({
             icon: "success",
             title: "Contrasenya actualitzada"
           });
-        }else {
+        } else {
           Toast.fire({
             icon: "error",
             title: "Contrasenya incorrecta"
@@ -606,7 +606,7 @@ createApp({
       }
     }
 
-    async function redirigirCrud(crud){
+    async function redirigirCrud(crud) {
       try {
         await infoUser();
         window.location.href = `http://localhost:8000/${crud}`;
@@ -615,55 +615,55 @@ createApp({
       }
     }
     const visibilidad_busqueda = ref(false);  // Controla si el campo de búsqueda está visible o no
-      const visibilidad_resultadoBusqueda = ref(false);
-      const consulta_producte = ref('');       // Almacena la consulta de búsqueda
-      const resultat_busqueda = ref([]);     // Almacena los resultados de búsqueda
-      const campoBusqueda =ref(null); 
-      // Alterna la visibilidad del campo de búsqueda
-      function alternar_visibilitat() {
-        visibilidad_busqueda.value = !visibilidad_busqueda.value;
-        if (visibilidad_busqueda) {
-          nextTick(() => {
-              campoBusqueda.value.focus();
-          });
-        }
+    const visibilidad_resultadoBusqueda = ref(false);
+    const consulta_producte = ref('');       // Almacena la consulta de búsqueda
+    const resultat_busqueda = ref([]);     // Almacena los resultados de búsqueda
+    const campoBusqueda = ref(null);
+    // Alterna la visibilidad del campo de búsqueda
+    function alternar_visibilitat() {
+      visibilidad_busqueda.value = !visibilidad_busqueda.value;
+      if (visibilidad_busqueda) {
+        nextTick(() => {
+          campoBusqueda.value.focus();
+        });
       }
-      // Ejecuta la búsqueda al presionar Enter
-      function inicia_busqueda() {
-        //ocultamos la tabla de compra y de pago al buscar otro prodcuto
-        visibleCheck.value =false
-        visiblePagament.value =false
-        //esconde el produc card y los productos
-        visibleActual.value = false;
-        visibleProd.value = false;
-        //esconde la imagen de inicio
-        visiblePort.value=false;
+    }
+    // Ejecuta la búsqueda al presionar Enter
+    function inicia_busqueda() {
+      //ocultamos la tabla de compra y de pago al buscar otro prodcuto
+      visibleCheck.value = false
+      visiblePagament.value = false
+      //esconde el produc card y los productos
+      visibleActual.value = false;
+      visibleProd.value = false;
+      //esconde la imagen de inicio
+      visiblePort.value = false;
+      // Si la consulta está vacía, limpiar los resultados
+      resultat_busqueda.value = [];
+      // Verifica si la consulta no está vacía
+      if (consulta_producte.value.trim()) {
+        // Filtra productos y agrega los campos `producto`, `idOriginal` y `preu` a cada producto filtrado
+        resultat_busqueda.value = llista.zapatillas
+          .map((producto, index) => ({
+            ...producto,
+            idOriginal: index,  // Índice en llista.zapatillas
+            preu: producto.preu // Precio del producto
+          }))
+          .filter(producto =>
+            producto.nom.toLowerCase().includes(consulta_producte.value.toLowerCase())
+          );
+
+        // Establece visibilidad_busqueda a true para mostrar resultados de búsqueda
+        visibilidad_resultadoBusqueda.value = resultat_busqueda.value.length > 0;  // Mostrar solo si hay resultados
+        // Log para verificar los datos filtrados
+        console.log("Resultats de cerca:", resultat_busqueda.value);
+      } else {
         // Si la consulta está vacía, limpiar los resultados
         resultat_busqueda.value = [];
-        // Verifica si la consulta no está vacía
-        if (consulta_producte.value.trim()) {
-          // Filtra productos y agrega los campos `producto`, `idOriginal` y `preu` a cada producto filtrado
-          resultat_busqueda.value = llista.zapatillas
-            .map((producto, index) => ({ 
-                ...producto, 
-                idOriginal: index,  // Índice en llista.zapatillas
-                preu: producto.preu // Precio del producto
-            }))
-            .filter(producto => 
-                producto.nom.toLowerCase().includes(consulta_producte.value.toLowerCase())
-            );
-  
-            // Establece visibilidad_busqueda a true para mostrar resultados de búsqueda
-            visibilidad_resultadoBusqueda.value = resultat_busqueda.value.length > 0;  // Mostrar solo si hay resultados
-            // Log para verificar los datos filtrados
-            console.log("Resultats de cerca:", resultat_busqueda.value);
-          } else {
-            // Si la consulta está vacía, limpiar los resultados
-            resultat_busqueda.value = [];
-            visibleProd.value = false;  // Ocultar resultados si no hay consulta
-          }
+        visibleProd.value = false;  // Ocultar resultados si no hay consulta
       }
-    
+    }
+
 
     // Retornamos las variables y funciones 
     return {
@@ -731,12 +731,12 @@ createApp({
       mevesComandes,
       redirigirCrud,
       visibilidad_busqueda,
-        visibilidad_resultadoBusqueda,
-        consulta_producte,
-        resultat_busqueda,
-        campoBusqueda,
-        alternar_visibilitat,
-        inicia_busqueda
+      visibilidad_resultadoBusqueda,
+      consulta_producte,
+      resultat_busqueda,
+      campoBusqueda,
+      alternar_visibilitat,
+      inicia_busqueda
     }
 
 

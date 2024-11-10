@@ -43,7 +43,7 @@
                 @foreach ($post['producto'] as $pos )
                 <tr>
                 <td></td>
-                <td colspan="3">
+                <td colspan="2">
                     {{$pos->nom}}
                 </td>
 

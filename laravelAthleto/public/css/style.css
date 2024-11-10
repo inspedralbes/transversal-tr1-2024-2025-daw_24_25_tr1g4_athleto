@@ -1,124 +1,136 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 body {
-    background-color: #c0c0c0;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+  background-color: #c0c0c0;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .container {
-    width: 90%;
-    max-width: 800px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
+  width: 90%;
+  max-width: 800px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
 }
 
 .table-container {
-    overflow-x: auto;
-    margin-bottom: 20px;
+  overflow-x: auto;
+  margin-bottom: 20px;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 auto;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
 }
 
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 th {
-    background-color: #2c3e50;
-    color: white;
-    text-transform: uppercase;
+  background-color: #2c3e50;
+  color: white;
+  text-transform: uppercase;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 .actions {
-    display: flex;
-    gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 .button {
-    padding: 8px 12px;
-    border-radius: 4px;
-    text-decoration: none;
-    color: white;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
- 
+
 
 .btn-desactivado {
-    background-color: #a3a3a3; /* Naranja para Pendiente */
-  }
+  background-color: #a3a3a3;
+  /* Naranja para Pendiente */
+}
 
-  .btn-activado {
-    background-color: #2271a5; /* Azul para aceptado */
-  }
+.btn-activado {
+  background-color: #2271a5;
+  /* Azul para aceptado */
+}
 
 
 .btn-pendiente {
-    background-color: #FFA500; /* Naranja para Pendiente */
-  }
+  background-color: #FFA500;
+  /* Naranja para Pendiente */
+}
 
-  .btn-cancelado {
-    background-color: #e60000; /* Azul para aceptado */
-  }
+.btn-cancelado {
+  background-color: #e60000;
+  /* Azul para aceptado */
+}
 
-  .btn-aceptado {
-    background-color: #13e600; /* Azul para aceptado */
-  }
-  .btn-completado {
-    background-color: #1b722f; /* Verde para Completado */
-  }
-  .btn-enviado {
-    background-color: #007BFF; /* Azul para Enviado */
-  }
-  .btn-recibido {
-    background-color: #808080; /* Verde para recibido */
-  }
+.btn-aceptado {
+  background-color: #13e600;
+  /* Azul para aceptado */
+}
+
+.btn-completado {
+  background-color: #1b722f;
+  /* Verde para Completado */
+}
+
+.btn-enviado {
+  background-color: #007BFF;
+  /* Azul para Enviado */
+}
+
+.btn-recibido {
+  background-color: #808080;
+  /* Verde para recibido */
+}
 
 
 
 
 .btn-add {
-    display: block;
-    width: fit-content;
-    padding: 10px 20px;
-    background-color: #2ecc71;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    text-align: center;
-    margin: 20px auto;
-    transition: background-color 0.3s ease;
+  display: block;
+  width: fit-content;
+  padding: 10px 20px;
+  background-color: #2ecc71;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  margin: 20px auto;
+  transition: background-color 0.3s ease;
 }
 
 .btn-add:hover {
-    background-color: #27ae60;
+  background-color: #27ae60;
 }

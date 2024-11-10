@@ -16,7 +16,7 @@ class Producte extends Model
         'imatge',
         'actiu',
     ];
-    
+
     protected $casts = [
         'actiu' => 'boolean',
     ];

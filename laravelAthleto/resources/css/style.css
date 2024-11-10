@@ -40,7 +40,8 @@ table {
     margin: 0 auto;
 }
 
-th, td {
+th,
+td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
@@ -71,28 +72,37 @@ tr:nth-child(even) {
     cursor: pointer;
 }
 
- 
+
 
 .btn-pendiente {
-    background-color: #FFA500; /* Naranja para Pendiente */
-  }
+    background-color: #FFA500;
+    /* Naranja para Pendiente */
+}
 
-  .btn-cancelado {
-    background-color: #e60000; /* Azul para aceptado */
-  }
+.btn-cancelado {
+    background-color: #e60000;
+    /* Azul para aceptado */
+}
 
-  .btn-aceptado {
-    background-color: #13e600; /* Azul para aceptado */
-  }
-  .btn-completado {
-    background-color: #1b722f; /* Verde para Completado */
-  }
-  .btn-enviado {
-    background-color: #007BFF; /* Azul para Enviado */
-  }
-  .btn-recibido {
-    background-color: #808080; /* Verde para recibido */
-  }
+.btn-aceptado {
+    background-color: #13e600;
+    /* Azul para aceptado */
+}
+
+.btn-completado {
+    background-color: #1b722f;
+    /* Verde para Completado */
+}
+
+.btn-enviado {
+    background-color: #007BFF;
+    /* Azul para Enviado */
+}
+
+.btn-recibido {
+    background-color: #808080;
+    /* Verde para recibido */
+}
 
 
 

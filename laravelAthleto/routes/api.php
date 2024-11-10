@@ -2,18 +2,18 @@
 
 // Importa controlador Productes y clases Request y Route.
 use App\Http\Controllers\Compras;
-use App\Http\Controllers\Productes; 
+use App\Http\Controllers\Productes;
 use App\Models\compra;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Users; 
-use Illuminate\Support\Facades\Route; 
+use App\Http\Controllers\Users;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
 
 
 // Ruta para obtener la información del usuario 
 Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:sanctum'); 
+})->middleware('auth:sanctum');
 
 // Ruta para obtener los productos.
 Route::get("/productes", action: [Productes::class, "getProductes"]);
@@ -37,7 +37,7 @@ Route::get('/categorias', [Productes::class, 'getProductesByCategories']);
 Route::get('/categoria/{id_categoria}', [Productes::class, 'getProductesByCategory']);
 
 
-Route::get('/mevesComandes/{id}', [Productes::class,'getMevesComandes']);
+Route::get('/mevesComandes/{id}', [Productes::class, 'getMevesComandes']);
 
 
 // Rutas para el CRUD de categorías

@@ -21,77 +21,75 @@ class Compras extends Controller
         
     
         foreach ($compras as $compra) {
-            $prod_compra=[];
-    
+            $prod_compra = [];
+
             foreach ($compra_prod as $compra_pro) {
                 if ($compra_pro['id_compras'] == $compra['id']) {
                     foreach ($productes as $produc) {
-                        if($compra_pro['id_productes']== $produc['id']){
-                            $prod_compra[]=$produc;
-    
+                        if ($compra_pro['id_productes'] == $produc['id']) {
+                            $prod_compra[] = $produc;
+
                         }
-    
+
                     }
-    
-    
-        } 
-    
-    }
-        $detallesCompras[]=[
-            'compra' => $compra,
-            'producto' =>$prod_compra,
-            'mostrar' => false
-    
-        ];
-    
+
+
+                }
+
+            }
+            $detallesCompras[] = [
+                'compra' => $compra,
+                'producto' => $prod_compra,
+                'mostrar' => false
+
+            ];
+
         }
-        $comanda=[
+        $comanda = [
             'compras' => $detallesCompras
         ];
 
 
-
-
-
-      //  return response()->json($productes); // Devuelve los productos en formato JSON
-      return view('comd.index', compact('comanda'));
+        //  return response()->json($productes); // Devuelve los productos en formato JSON
+        return view('comd.index', compact('comanda'));
     }
 
 
-    public function actualizarEstat($id,$estat)
+    public function actualizarEstat($id, $estat)
     {
         $producte = compra::findOrFail($id);
-        $producte->update(['estat'=> $estat]);
+        $producte->update(['estat' => $estat]);
 
         return redirect()->route('comd.index')->with('success', 'Producto eliminado con éxito.');
- 
+
     }
 
 
 
 
-    function guardarCompra(Request $request){
+    function guardarCompra(Request $request)
+    {
 
 
-        
-    
 
 
-      $compra = compra::create([
+
+
+        $compra = compra::create([
             'id_usuaris' => $request->input('id_user'),
             'preu_total' => $request->input('preu'),
-            
+
         ]);
 
-       foreach ($request->input('productes') as $producto){
+        foreach ($request->input('productes') as $producto) {
 
-        prod_compras::create([
-            'id_compras' => $compra->id,
-            'id_productes' => $producto['id'], 
-            'preu'=> $producto['preu'], 
-        ]);
+            prod_compras::create([
+                'id_compras' => $compra->id,
+                'id_productes' => $producto['id'],
+                'preu' => $producto['preu'],
+            ]);
 
-       }
+        }
 
     }
 }
