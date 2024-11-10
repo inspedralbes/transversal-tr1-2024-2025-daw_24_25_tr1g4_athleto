@@ -1,4 +1,4 @@
-import { createApp, ref, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+import { createApp, ref, nextTick, onBeforeMount, reactive, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 import { getProductes, enviarCorreo, getmevesComandes, enviarCompra, postMail, register, login, obtenirDadesUser, postNomUsuari, getProductesFiltre, getProductesFiltre2, verificarPassUsuari, actualitzarDadesUsuari, actualitzarPassword } from './communicationManager.js';
 // Creación de la instancia de la aplicación Vue
 createApp({
