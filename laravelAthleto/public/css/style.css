@@ -73,6 +73,15 @@ tr:nth-child(even) {
 
  
 
+.btn-desactivado {
+    background-color: #a3a3a3; /* Naranja para Pendiente */
+  }
+
+  .btn-activado {
+    background-color: #2271a5; /* Azul para aceptado */
+  }
+
+
 .btn-pendiente {
     background-color: #FFA500; /* Naranja para Pendiente */
   }
