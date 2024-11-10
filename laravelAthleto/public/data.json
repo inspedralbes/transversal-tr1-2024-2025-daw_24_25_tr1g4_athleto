@@ -1,212 +1,206 @@
 {
-  "cat_prod":[
+  "cat_prod": [
     {
-        "id": 1,
-        "id_producte": 1,
-        "id_categoria": 2
+      "id": 1,
+      "id_producte": 1,
+      "id_categoria": 2
     },
     {
-        "id": 2,
-        "id_producte": 1,
-        "id_categoria": 6
+      "id": 2,
+      "id_producte": 1,
+      "id_categoria": 6
     },
     {
-        "id": 3,
-        "id_producte": 2,
-        "id_categoria": 1
+      "id": 3,
+      "id_producte": 2,
+      "id_categoria": 1
     },
     {
-        "id": 4,
-        "id_producte": 2,
-        "id_categoria": 6
+      "id": 4,
+      "id_producte": 2,
+      "id_categoria": 6
     },
     {
-        "id": 5,
-        "id_producte": 3,
-        "id_categoria": 1
+      "id": 5,
+      "id_producte": 3,
+      "id_categoria": 1
     },
     {
-        "id": 6,
-        "id_producte": 3,
-        "id_categoria": 4
+      "id": 6,
+      "id_producte": 3,
+      "id_categoria": 4
     },
     {
-        "id": 7,
-        "id_producte": 4,
-        "id_categoria": 1
+      "id": 7,
+      "id_producte": 4,
+      "id_categoria": 1
     },
     {
-        "id": 8,
-        "id_producte": 4,
-        "id_categoria": 4
+      "id": 8,
+      "id_producte": 4,
+      "id_categoria": 4
     },
     {
-        "id": 9,
-        "id_producte": 5,
-        "id_categoria": 2
+      "id": 9,
+      "id_producte": 5,
+      "id_categoria": 2
     },
     {
-        "id": 10,
-        "id_producte": 5,
-        "id_categoria": 5
+      "id": 10,
+      "id_producte": 5,
+      "id_categoria": 5
     },
     {
-        "id": 11,
-        "id_producte": 6,
-        "id_categoria": 2
+      "id": 11,
+      "id_producte": 6,
+      "id_categoria": 2
     },
     {
-        "id": 12,
-        "id_producte": 6,
-        "id_categoria": 5
+      "id": 12,
+      "id_producte": 6,
+      "id_categoria": 5
     },
     {
-        "id": 13,
-        "id_producte": 7,
-        "id_categoria": 2
+      "id": 13,
+      "id_producte": 7,
+      "id_categoria": 2
     },
     {
-        "id": 14,
-        "id_producte": 7,
-        "id_categoria": 6
+      "id": 14,
+      "id_producte": 7,
+      "id_categoria": 6
     },
     {
-        "id": 15,
-        "id_producte": 8,
-        "id_categoria": 3
+      "id": 15,
+      "id_producte": 8,
+      "id_categoria": 3
     },
     {
-        "id": 16,
-        "id_producte": 8,
-        "id_categoria": 6
+      "id": 16,
+      "id_producte": 8,
+      "id_categoria": 6
     },
     {
-        "id": 17,
-        "id_producte": 9,
-        "id_categoria": 1
+      "id": 17,
+      "id_producte": 9,
+      "id_categoria": 1
     },
     {
-        "id": 18,
-        "id_producte": 9,
-        "id_categoria": 5
+      "id": 18,
+      "id_producte": 9,
+      "id_categoria": 5
     },
     {
-        "id": 19,
-        "id_producte": 10,
-        "id_categoria": 2
+      "id": 19,
+      "id_producte": 10,
+      "id_categoria": 2
     },
     {
-        "id": 20,
-        "id_producte": 10,
-        "id_categoria": 4
+      "id": 20,
+      "id_producte": 10,
+      "id_categoria": 4
     },
     {
-        "id": 21,
-        "id_producte": 11,
-        "id_categoria": 2
+      "id": 21,
+      "id_producte": 11,
+      "id_categoria": 2
     },
     {
-        "id": 22,
-        "id_producte": 11,
-        "id_categoria": 4
+      "id": 22,
+      "id_producte": 11,
+      "id_categoria": 4
     },
     {
-        "id": 23,
-        "id_producte": 12,
-        "id_categoria": 3
+      "id": 23,
+      "id_producte": 12,
+      "id_categoria": 3
     },
     {
-        "id": 24,
-        "id_producte": 12,
-        "id_categoria": 6
+      "id": 24,
+      "id_producte": 12,
+      "id_categoria": 6
     },
     {
-        "id": 25,
-        "id_producte": 13,
-        "id_categoria": 3
+      "id": 25,
+      "id_producte": 13,
+      "id_categoria": 3
     },
     {
-        "id": 26,
-        "id_producte": 13,
-        "id_categoria": 4
+      "id": 26,
+      "id_producte": 13,
+      "id_categoria": 4
     },
     {
-        "id": 27,
-        "id_producte": 14,
-        "id_categoria": 1
+      "id": 27,
+      "id_producte": 14,
+      "id_categoria": 1
     },
     {
-        "id": 28,
-        "id_producte": 14,
-        "id_categoria": 5
+      "id": 28,
+      "id_producte": 14,
+      "id_categoria": 5
     },
     {
-        "id": 29,
-        "id_producte": 15,
-        "id_categoria": 1
+      "id": 29,
+      "id_producte": 15,
+      "id_categoria": 1
     },
     {
-        "id": 30,
-        "id_producte": 15,
-        "id_categoria": 6
+      "id": 30,
+      "id_producte": 15,
+      "id_categoria": 6
     },
     {
-        "id": 31,
-        "id_producte": 16,
-        "id_categoria": 2
+      "id": 31,
+      "id_producte": 16,
+      "id_categoria": 2
     },
     {
-        "id": 32,
-        "id_producte": 16,
-        "id_categoria": 5
+      "id": 32,
+      "id_producte": 16,
+      "id_categoria": 5
     },
     {
-        "id": 33,
-        "id_producte": 17,
-        "id_categoria": 3
+      "id": 33,
+      "id_producte": 17,
+      "id_categoria": 3
     },
     {
-        "id": 34,
-        "id_producte": 17,
-        "id_categoria": 5
+      "id": 34,
+      "id_producte": 17,
+      "id_categoria": 5
     },
     {
-        "id": 35,
-        "id_producte": 18,
-        "id_categoria": 1
+      "id": 35,
+      "id_producte": 18,
+      "id_categoria": 1
     },
     {
-        "id": 36,
-        "id_producte": 18,
-        "id_categoria": 6
+      "id": 36,
+      "id_producte": 18,
+      "id_categoria": 6
     },
     {
-        "id": 37,
-        "id_producte": 19,
-        "id_categoria": 2
+      "id": 37,
+      "id_producte": 19,
+      "id_categoria": 2
     },
     {
-        "id": 38,
-        "id_producte": 19,
-        "id_categoria": 6
+      "id": 38,
+      "id_producte": 19,
+      "id_categoria": 6
     },
     {
-        "id": 39,
-        "id_producte": 20,
-        "id_categoria": 1
+      "id": 39,
+      "id_producte": 20,
+      "id_categoria": 1
     },
     {
-        "id": 40,
-        "id_producte": 20,
-        "id_categoria": 4
+      "id": 40,
+      "id_producte": 20,
+      "id_categoria": 4
     }
-]
-
-
-,
-
-
-
+  ],
   "categories": [
     {
       "id": 1,
@@ -466,6 +460,5 @@
       "updated_at": "2024-10-10",
       "genero": "mujer"
     }
-    
   ]
 }

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Ejecuta la migración para crear la tabla 'stock'.
      */
@@ -13,22 +12,22 @@ return new class extends Migration
     {
         // Crea la tabla 'stock' para gestionar el inventario de productos
         Schema::create('stock', function (Blueprint $table) {
-            $table->id(); 
-            
+            $table->id();
+
             // Columna para almacenar el ID del producto
             $table->unsignedBigInteger('id_producte');
             $table->foreign('id_producte')
-                  ->references('id')
-                  ->on('productes')
-                  ->onDelete('cascade'); 
+                ->references('id')
+                ->on('productes')
+                ->onDelete('cascade');
 
             // Columna para el tamaño del producto 
             $table->string('mida');
-            
-            // Columna para el número de unidades disponibles
-            $table->integer('stock')->default(0); 
 
-            $table->timestamps(); 
+            // Columna para el número de unidades disponibles
+            $table->integer('stock')->default(0);
+
+            $table->timestamps();
         });
     }
 

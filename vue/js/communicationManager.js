@@ -1,22 +1,22 @@
-const laravel = {URL: "http://localhost:8000/api"}
+const laravel = { URL: "http://localhost:8000/api" }
 
 export async function getProductes() {
-    const URL=`${laravel.URL}/productes`;
+    const URL = `${laravel.URL}/productes`;
     const response = await fetch(URL);
     const data = await response.json();
-    
+
     return data;
 }
 
 
 export async function enviarCorreo(correu) {
-    const URL=`${laravel.URL}/buscarMail`;
+    const URL = `${laravel.URL}/buscarMail`;
     const response = await fetch(URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({correu})
+        body: JSON.stringify({ correu })
     });
 
     const data = await response.json();
@@ -25,7 +25,7 @@ export async function enviarCorreo(correu) {
 }
 
 export async function enviarCompra(compra) {
-    const URL=`${laravel.URL}/compra`;
+    const URL = `${laravel.URL}/compra`;
 
     console.log(JSON.stringify(compra));
     const response = await fetch(URL, {
@@ -43,38 +43,38 @@ export async function enviarCompra(compra) {
 
 
 export async function getmevesComandes(param) {
-    const URL=`${laravel.URL}/mevesComandes/${param}`;
+    const URL = `${laravel.URL}/mevesComandes/${param}`;
     const response = await fetch(URL);
     const data = await response.json();
-    
+
     return data.compras;
 }
 
 
 export async function getProductesFiltre(param) {
-    const URL=`${laravel.URL}/categoria/${param}`;
+    const URL = `${laravel.URL}/categoria/${param}`;
     const response = await fetch(URL);
     const data = await response.json();
-    
+
     return data;
 }
 
-export async function getProductesFiltre2(id1,id2) {
-    const URL=`${laravel.URL}/categorias??ids[]=${id1}&ids[]=${id2}`;
+export async function getProductesFiltre2(id1, id2) {
+    const URL = `${laravel.URL}/categorias??ids[]=${id1}&ids[]=${id2}`;
     const response = await fetch(URL);
     const data = await response.json();
-    
+
     return data;
 }
 
 export async function postMail(correu) {
-    const URL=`${laravel.URL}/buscarMail`;
+    const URL = `${laravel.URL}/buscarMail`;
     const response = await fetch(URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({correu})
+        body: JSON.stringify({ correu })
     });
 
     const data = await response.json();
@@ -83,13 +83,13 @@ export async function postMail(correu) {
 }
 
 export async function register(dades) {
-    const URL=`${laravel.URL}/register`;
+    const URL = `${laravel.URL}/register`;
     const response = await fetch(URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({nom: dades.nom, cognom: dades.cognom, nom_usuari: dades.nomUsuari, email: dades.mail, password: dades.pass}),
+        body: JSON.stringify({ nom: dades.nom, cognom: dades.cognom, nom_usuari: dades.nomUsuari, email: dades.mail, password: dades.pass }),
     });
 
     if (!response.ok) throw new Error("Register failed");
@@ -98,14 +98,14 @@ export async function register(dades) {
     return data;
 }
 
-export async function login(email, password){
-    const URL=`${laravel.URL}/login`;
+export async function login(email, password) {
+    const URL = `${laravel.URL}/login`;
     const response = await fetch(URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({email, password}),
+        body: JSON.stringify({ email, password }),
     });
 
     if (!response.ok) throw new Error("Login failed");
@@ -115,7 +115,7 @@ export async function login(email, password){
 }
 
 export async function verificarPassUsuari(password, access_token) {
-    const URL=`${laravel.URL}/verificarPass`;
+    const URL = `${laravel.URL}/verificarPass`;
     const response = await fetch(URL, {
         method: 'POST',
         headers: {
@@ -123,9 +123,9 @@ export async function verificarPassUsuari(password, access_token) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${access_token}`,
         },
-        body: JSON.stringify({password}),
+        body: JSON.stringify({ password }),
     });
- 
+
     if (!response.ok) throw new Error("Error verifying");
     const data = await response.json();
 
@@ -145,7 +145,7 @@ export async function obtenirDadesUser(access_token) {
 
     if (!response.ok) throw new Error("No autenticado");
     const data = await response.json();
-    
+
     return data.usuari;
 }
 
@@ -156,7 +156,7 @@ export async function postNomUsuari(username, email) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({username, email}),
+        body: JSON.stringify({ username, email }),
     });
 
     if (!response.ok) throw new Error("Error en la comprovacio");
@@ -166,7 +166,7 @@ export async function postNomUsuari(username, email) {
 }
 
 export async function actualitzarDadesUsuari(dades, access_token, idUser) {
-    const URL=`${laravel.URL}/actualitzar`;
+    const URL = `${laravel.URL}/actualitzar`;
     const response = await fetch(URL, {
         method: 'POST',
         headers: {
@@ -174,7 +174,7 @@ export async function actualitzarDadesUsuari(dades, access_token, idUser) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${access_token}`,
         },
-        body: JSON.stringify({nom: dades.nom, cognom: dades.cognom, nom_usuari: dades.nomUsuari, email: dades.mail, adreca: dades.adreca, id: idUser}),
+        body: JSON.stringify({ nom: dades.nom, cognom: dades.cognom, nom_usuari: dades.nomUsuari, email: dades.mail, adreca: dades.adreca, id: idUser }),
     });
 
     if (!response.ok) throw new Error("Update failed");
@@ -184,7 +184,7 @@ export async function actualitzarDadesUsuari(dades, access_token, idUser) {
 }
 
 export async function actualitzarPassword(password, newPassword, access_token) {
-    const URL=`${laravel.URL}/actualitzarPass`;
+    const URL = `${laravel.URL}/actualitzarPass`;
     const response = await fetch(URL, {
         method: 'POST',
         headers: {
@@ -192,7 +192,7 @@ export async function actualitzarPassword(password, newPassword, access_token) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${access_token}`,
         },
-        body: JSON.stringify({password, newPassword}),
+        body: JSON.stringify({ password, newPassword }),
     });
 
     if (!response.ok) throw new Error("Update failed");

@@ -187,58 +187,60 @@
             <div class="mispedidos_container">
                 <h1>Mis Pedidos</h1>
                 <table class="mispedidos_orders-table">
-                  <thead>
-                    <tr>
-                      <th>ID Pedido</th>
-                      <th>Fecha</th>
-                      <th>Total</th>
-                      <th>Estado</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody v-for="(comandes, index) in mComandes.compras" :key="index">
+                    <thead>
+                        <tr>
+                            <th>ID Pedido</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody v-for="(comandes, index) in mComandes.compras" :key="index">
 
-                     <tr >  
-                      <td>{{comandes.compra.id}}</td>
-                      <td>{{comandes.compra.created_at.slice(0, 10)}} </td>
-                      <td> {{comandes.compra.preu_total}}</td>
-                      <td> <span :class="'mispedidos_status mispedidos_' + comandes.compra.estat"> {{comandes.compra.estat}}</span></td>
-                      <td><button @click="mostrarDetalles(index)" class="mispedidos_view-button">Ver</button></td>
-                    </tr>
+                        <tr>
+                            <td>{{comandes.compra.id}}</td>
+                            <td>{{comandes.compra.created_at.slice(0, 10)}} </td>
+                            <td> {{comandes.compra.preu_total}}</td>
+                            <td> <span :class="'mispedidos_status mispedidos_' + comandes.compra.estat">
+                                    {{comandes.compra.estat}}</span></td>
+                            <td><button @click="mostrarDetalles(index)" class="mispedidos_view-button">Ver</button></td>
+                        </tr>
 
-                    <tr v-if="comandes.mostrar" class="mispedidos_order-details" id="mispedidos_details-001" v-for="(prod,index) in comandes.producto" :key="index">
-                        <td colspan="5">
-                          <div class="mispedidos_details-content">
-                            <p><strong>Producto:</strong> Producto {{prod.nom}}</p>
-                            <p><strong>Imagen:</strong><br> <img :src="prod.imatge"> </p>
-                            <p><strong>Subtotal:</strong> {{prod.preu}} €</p>
-                          </div>
-                        </td>
-                      </tr>
+                        <tr v-if="comandes.mostrar" class="mispedidos_order-details" id="mispedidos_details-001"
+                            v-for="(prod,index) in comandes.producto" :key="index">
+                            <td colspan="5">
+                                <div class="mispedidos_details-content">
+                                    <p><strong>Producto:</strong> Producto {{prod.nom}}</p>
+                                    <p><strong>Imagen:</strong><br> <img :src="prod.imatge"> </p>
+                                    <p><strong>Subtotal:</strong> {{prod.preu}} €</p>
+                                </div>
+                            </td>
+                        </tr>
 
 
 
 
-                    <!-- Agrega más filas según sea necesario -->
-                  </tbody>
+                        <!-- Agrega más filas según sea necesario -->
+                    </tbody>
                 </table>
-              </div>
+            </div>
 
 
-        </div>    
+        </div>
 
 
-            <!-- Contenido de productos mostrado cuando visibleProd es verdadero -->
+        <!-- Contenido de productos mostrado cuando visibleProd es verdadero -->
         <div v-if="visibleProd">
 
-            <div class="contentZapatos" >
-                <div  @click="mostrarProducte(index)" v-for="(prod, index) in llista.paginaZapatillas"
-                    :key="index" :id="'zapato' + index" class="zapatos">
+            <div class="contentZapatos">
+                <div @click="mostrarProducte(index)" v-for="(prod, index) in llista.paginaZapatillas" :key="index"
+                    :id="'zapato' + index" class="zapatos">
                     <!-- Bucle que recorre la lista de zapatillas y muestra -->
                     <!-- Detalles del producto -->
-                    <div >
+                    <div>
                         <img :src="prod.imatge">
-                        <div  >
+                        <div>
                             <div class="nomProducte">
                                 <p>{{ prod.nom }} </p>
                                 <p>{{ prod.preu }}€ </p>
@@ -250,252 +252,244 @@
                     </div>
                 </div>
             </div>
-                <div class="paginas">
-                    <button @click="alternarPagina(n)" class="paginas_boton"  v-for="n in llista.totalPaginas" :key="n">
-                        {{ n }}
+            <div class="paginas">
+                <button @click="alternarPagina(n)" class="paginas_boton" v-for="n in llista.totalPaginas" :key="n">
+                    {{ n }}
 
-                    </button>
-                </div>
+                </button>
+            </div>
 
         </div>
 
 
-            <!-- Vista del producto individual cuando es verdadero -->
-            <div v-if="visibleActual">
-                <div class="product-container">
-                    <div class="product-card">
-                        <!-- Botón para regresar a la vista anterior -->
-                        <img @click="mostrarProductes" src="./img/cancelar.png" alt="Tornar enrere" id="buto-cancelar">
-                        <div class="product-left">
-                            <!-- Imagen del producto seleccionado -->
-                            <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
-                        </div>
-                        <div class="product-right">
-                            <!-- Información del producto seleccionado -->
-                            <h2 class="product-title"> {{ actual.nom }}</h2>
-                            <p class="product-description">{{actual.descripcio}}</p>
-                            <p class="product-price">{{actual.preu}}€</p>
-                            <!-- Botones para comprar o añadir al carrito -->
-                            <div class="product-buttons">
-                                <button class="buy-now-btn" @click="compraRapida">Comprar ahora</button>
-                                <button class="add-to-cart-btn" @click="afegirProducte">Añadir al carrito</button>
-                            </div>
+        <!-- Vista del producto individual cuando es verdadero -->
+        <div v-if="visibleActual">
+            <div class="product-container">
+                <div class="product-card">
+                    <!-- Botón para regresar a la vista anterior -->
+                    <img @click="mostrarProductes" src="./img/cancelar.png" alt="Tornar enrere" id="buto-cancelar">
+                    <div class="product-left">
+                        <!-- Imagen del producto seleccionado -->
+                        <img :src="actual.imatge" alt="Zapato deportivo" class="product-image">
+                    </div>
+                    <div class="product-right">
+                        <!-- Información del producto seleccionado -->
+                        <h2 class="product-title"> {{ actual.nom }}</h2>
+                        <p class="product-description">{{actual.descripcio}}</p>
+                        <p class="product-price">{{actual.preu}}€</p>
+                        <!-- Botones para comprar o añadir al carrito -->
+                        <div class="product-buttons">
+                            <button class="buy-now-btn" @click="compraRapida">Comprar ahora</button>
+                            <button class="add-to-cart-btn" @click="afegirProducte">Añadir al carrito</button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
 
 
-            <div v-if="visibleCar" class="fonsOscur" @click="alternarCestella"></div>
-            <!-- Carrito  -->
-            <div id="cart" :class="{ 'cart-open': visibleCar, 'cart-closed': !visibleCar }">
-                <div class="cart-header">
-                    <h2>
-                        <p>Carrito</p>
-                    </h2>
-                    <button id="close-cart" class="close-cart" @click="alternarCestella">X</button>
-                </div>
-                <div class="cart-content">
-                    <div>
-                        <ul style="padding: 0;">
-                            <li v-for="(producte, index) in carrito.list" :key="index" class="producteCar">
+        <div v-if="visibleCar" class="fonsOscur" @click="alternarCestella"></div>
+        <!-- Carrito  -->
+        <div id="cart" :class="{ 'cart-open': visibleCar, 'cart-closed': !visibleCar }">
+            <div class="cart-header">
+                <h2>
+                    <p>Carrito</p>
+                </h2>
+                <button id="close-cart" class="close-cart" @click="alternarCestella">X</button>
+            </div>
+            <div class="cart-content">
+                <div>
+                    <ul style="padding: 0;">
+                        <li v-for="(producte, index) in carrito.list" :key="index" class="producteCar">
+                            <div>
+                                <div><img :src="producte.imatge" alt="Imagen de producto" class="imatgesCar">
+                                </div>
                                 <div>
-                                    <div><img :src="producte.imatge" alt="Imagen de producto" class="imatgesCar">
+                                    <div>
+                                        <p>{{ producte.nom }}</p>
                                     </div>
                                     <div>
-                                        <div>
-                                            <p>{{ producte.nom }}</p>
-                                        </div>
-                                        <div>
-                                            <p>{{ producte.preu }} €</p>
-                                        </div>
-                                        <input type="number" v-model="producte.quantitat"
-                                            @input="revisarQuantitat(index)" class="inputQuantitat">
-                                        <input type="checkbox" v-model="carrito.productesComprar" :value="producte"
-                                            @change="actualitzarPreuCarrito">
+                                        <p>{{ producte.preu }} €</p>
                                     </div>
+                                    <input type="number" v-model="producte.quantitat" @input="revisarQuantitat(index)"
+                                        class="inputQuantitat">
+                                    <input type="checkbox" v-model="carrito.productesComprar" :value="producte"
+                                        @change="actualitzarPreuCarrito">
                                 </div>
-                                <div @click="eliminarProducte(index)"><img src="img/basura.png" class="brossaProducte">
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="cart-footer">
-                    <h3>Total del carrito: <span>{{ carrito.preu }} €</span></h3>
-
-                    <button class="comprarCarrito" @click="procesCheckout">Comprar</button>
+                            </div>
+                            <div @click="eliminarProducte(index)"><img src="img/basura.png" class="brossaProducte">
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <div class="cart-footer">
+                <h3>Total del carrito: <span>{{ carrito.preu }} €</span></h3>
 
-            <div v-if="visibleCheck" id="checkout">
-                <div v-if="compra.list.length>0">
-                    <div class="checkoutContent">
-                        <ul style="padding: 0;" class="checkoutProductes">
-                            <li v-for="(producte, index) in compra.list" :key="index">
-                                <div class="checkoutProd">
-                                    <div><img :src="producte.imatge" alt="Imagen de producto"></div>
-                                    <div class="dadesProdCheck">
-                                        <div>
-                                            <h3>{{ producte.nom }}</h3>
-                                        </div>
-                                        <div>
-                                            <p>{{ producte.preu }} €</p>
-                                        </div>
-                                        <div><input type="number" v-model="producte.quantitat"
-                                                @input="revisarQuantitatCompra(index)" class="inputQuantitat"></div>
-                                        <div @click="eliminarProducteCompra(index)"><img src="img/basura.png"
-                                                class="brossaProducteCheck"></div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="checkoutFooter">
-                        <h3>Total carrito: <span>{{ compra.preu }} €</span></h3>
-                        <button class="comprarCarrito" @click="pagament">Comprar</button>
-                        <button class="cancelarCompra" @click="mostrarProductes">Continuar comprant</button>
-                    </div>
-                </div>
-                <div v-else>
-                    <h3 style="text-align: center;">No hi ha productes</h3>
-                </div>
+                <button class="comprarCarrito" @click="procesCheckout">Comprar</button>
             </div>
-
-            <div v-if="visiblePagament" id="pagament">
-                <div class="compra_container">
-                    <h2>Formulario de Compra</h2>
-                        <!-- Datos de la tarjeta bancaria -->
-                        <div class="compra_form-group">
-                            <label for="cardholder_name">Nombre del Titular de la Tarjeta:</label>
-                            <input type="text" id="cardholder_name" name="cardholder_name" required>
-                        </div>
-                
-                        <div class="compra_form-group">
-                            <label for="card_number">Número de Tarjeta:</label>
-                            <input type="number" id="card_number" name="card_number" maxlength="16" required>
-                        </div>
-                
-                        <div class="compra_form-group">
-                            <label for="expiry_date">Fecha de Expiración:</label>
-                            <input type="date" id="expiry_date" name="expiry_date" required>
-                        </div>
-                
-                        <div class="compra_form-group">
-                            <label for="cvv">CVV (Código de Seguridad):</label>
-                            <input type="number" id="cvv" name="cvv" maxlength="3" required>
-                        </div>
-                
-                        <div class="compra_form-group">
-                            <label for="billing_address">Dirección de Facturación:</label>
-                            <input type="text" id="billing_address" name="billing_address" required>
-                        </div>
-                
-                  
-                   <button  @click="compraFeta" class="compra_boton"> Pagar</button>
-           </div>
-                
-                <div class="compra_footer">
-                    <p>Al realizar la compra, aceptas los <a href="#">términos y condiciones</a>.</p>
-                </div>
-           </div>
-
-              <!-- html busquedas -->
-            <!-- Iconos de búsqueda y carrito -->
-            <div class="icons" style="display: flex; align-items: center;">
-                <!-- Campo de búsqueda (oculto por defecto) -->
-                    <div v-if="visibilidad_busqueda" class="search-bar" >
-                        <input class="browseer"
-                        type="text"   
-                        ref="campoBusqueda" 
-                        v-model="consulta_producte" 
-                        @keyup.enter="inicia_busqueda" 
-                        placeholder="cercar productes..."
-                        />
-                    </div>
-            </div>
-            <!-- div de resultado de busqueda -->
-            <div  v-if="visibilidad_resultadoBusqueda">
-                <h2>Resultats de cerca:</h2>
-                    <!-- Sección para mostrar resultados de búsqueda -->
-                    <div v-if="resultat_busqueda.length > 0" class="contentZapatos">
-                        <div 
-                            v-for="(producto, index) in resultat_busqueda" 
-                            :key="producto.idOriginal" 
-                            class="zapatos" 
-                            @click="mostrarProducte(producto.idOriginal)"
-                            >   
-                            <img :src="producto.imatge">
-                                <div class="detalles">
-                                    <div>
-                                        <p>{{ producto.nom }}</p>
-                                        <p>{{ producto.preu }} €</p> <!-- Mostrar el precio -->
-                                    </div>    
-                                </div>
-                        </div>
-                    </div>
-            </div>
-            <!-- Si no hay resultados de búsqueda, muestra un mensaje -->
-            <div v-else-if="consulta_producte.length > 0 && resultat_busqueda.length === 0 && !visibleActual && !visibleCheck && !visiblePagament && !visiblePort">
-                <h2>no s'han trobat resultats per "{{ consulta_producte }}".</h2>
-            </div>  
         </div>
+
+        <div v-if="visibleCheck" id="checkout">
+            <div v-if="compra.list.length>0">
+                <div class="checkoutContent">
+                    <ul style="padding: 0;" class="checkoutProductes">
+                        <li v-for="(producte, index) in compra.list" :key="index">
+                            <div class="checkoutProd">
+                                <div><img :src="producte.imatge" alt="Imagen de producto"></div>
+                                <div class="dadesProdCheck">
+                                    <div>
+                                        <h3>{{ producte.nom }}</h3>
+                                    </div>
+                                    <div>
+                                        <p>{{ producte.preu }} €</p>
+                                    </div>
+                                    <div><input type="number" v-model="producte.quantitat"
+                                            @input="revisarQuantitatCompra(index)" class="inputQuantitat"></div>
+                                    <div @click="eliminarProducteCompra(index)"><img src="img/basura.png"
+                                            class="brossaProducteCheck"></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checkoutFooter">
+                    <h3>Total carrito: <span>{{ compra.preu }} €</span></h3>
+                    <button class="comprarCarrito" @click="pagament">Comprar</button>
+                    <button class="cancelarCompra" @click="mostrarProductes">Continuar comprant</button>
+                </div>
+            </div>
+            <div v-else>
+                <h3 style="text-align: center;">No hi ha productes</h3>
+            </div>
+        </div>
+
+        <div v-if="visiblePagament" id="pagament">
+            <div class="compra_container">
+                <h2>Formulario de Compra</h2>
+                <!-- Datos de la tarjeta bancaria -->
+                <div class="compra_form-group">
+                    <label for="cardholder_name">Nombre del Titular de la Tarjeta:</label>
+                    <input type="text" id="cardholder_name" name="cardholder_name" required>
+                </div>
+
+                <div class="compra_form-group">
+                    <label for="card_number">Número de Tarjeta:</label>
+                    <input type="number" id="card_number" name="card_number" maxlength="16" required>
+                </div>
+
+                <div class="compra_form-group">
+                    <label for="expiry_date">Fecha de Expiración:</label>
+                    <input type="date" id="expiry_date" name="expiry_date" required>
+                </div>
+
+                <div class="compra_form-group">
+                    <label for="cvv">CVV (Código de Seguridad):</label>
+                    <input type="number" id="cvv" name="cvv" maxlength="3" required>
+                </div>
+
+                <div class="compra_form-group">
+                    <label for="billing_address">Dirección de Facturación:</label>
+                    <input type="text" id="billing_address" name="billing_address" required>
+                </div>
+
+
+                <button @click="compraFeta" class="compra_boton"> Pagar</button>
+            </div>
+
+            <div class="compra_footer">
+                <p>Al realizar la compra, aceptas los <a href="#">términos y condiciones</a>.</p>
+            </div>
+        </div>
+
+        <!-- html busquedas -->
+        <!-- Iconos de búsqueda y carrito -->
+        <div class="icons" style="display: flex; align-items: center;">
+            <!-- Campo de búsqueda (oculto por defecto) -->
+            <div v-if="visibilidad_busqueda" class="search-bar">
+                <input class="browseer" type="text" ref="campoBusqueda" v-model="consulta_producte"
+                    @keyup.enter="inicia_busqueda" placeholder="cercar productes..." />
+            </div>
+        </div>
+        <!-- div de resultado de busqueda -->
+        <div v-if="visibilidad_resultadoBusqueda">
+            <h2>Resultats de cerca:</h2>
+            <!-- Sección para mostrar resultados de búsqueda -->
+            <div v-if="resultat_busqueda.length > 0" class="contentZapatos">
+                <div v-for="(producto, index) in resultat_busqueda" :key="producto.idOriginal" class="zapatos"
+                    @click="mostrarProducte(producto.idOriginal)">
+                    <img :src="producto.imatge">
+                    <div class="detalles">
+                        <div>
+                            <p>{{ producto.nom }}</p>
+                            <p>{{ producto.preu }} €</p> <!-- Mostrar el precio -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Si no hay resultados de búsqueda, muestra un mensaje -->
+        <div
+            v-else-if="consulta_producte.length > 0 && resultat_busqueda.length === 0 && !visibleActual && !visibleCheck && !visiblePagament && !visiblePort">
+            <h2>no s'han trobat resultats per "{{ consulta_producte }}".</h2>
+        </div>
+    </div>
     </div>
     <!--JavaScript principal -->
     <script type="module" src="./js/function.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Footer section -->
-<footer class="footer">
-    <div class="footer-content">
-        <!-- Company Information -->
-        <div class="footer-section">
-            <h3>Athleto</h3>
-            <p>Tu tienda deportiva de confianza</p>
-            <div class="social-icons">
-                <a href="#" class="social-icon">📱</a>
-                <a href="#" class="social-icon">👤</a>
-                <a href="#" class="social-icon">📸</a>
-                <a href="#" class="social-icon">🐦</a>
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Company Information -->
+            <div class="footer-section">
+                <h3>Athleto</h3>
+                <p>Tu tienda deportiva de confianza</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">📱</a>
+                    <a href="#" class="social-icon">👤</a>
+                    <a href="#" class="social-icon">📸</a>
+                    <a href="#" class="social-icon">🐦</a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Enlaces rápidos</h3>
+                <ul>
+                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Envíos y devoluciones</a></li>
+                </ul>
+            </div>
+
+            <!-- Categories -->
+            <div class="footer-section">
+                <h3>Categorías</h3>
+                <ul>
+                    <li><a href="#">Hombres</a></li>
+                    <li><a href="#">Mujeres</a></li>
+                    <li><a href="#">Niños</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li>📞 +34 900 123 456</li>
+                    <li>✉️ info@athleto.com</li>
+                    <li>📍 Calle Ejemplo, 123</li>
+                    <li>🕒 Lun - Vie: 9:00 - 20:00</li>
+                </ul>
             </div>
         </div>
 
-        <!-- Quick Links -->
-        <div class="footer-section">
-            <h3>Enlaces rápidos</h3>
-            <ul>
-                <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Política de privacidad</a></li>
-                <li><a href="#">Envíos y devoluciones</a></li>
-            </ul>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Athleto. Todos los derechos reservados.</p>
         </div>
-
-        <!-- Categories -->
-        <div class="footer-section">
-            <h3>Categorías</h3>
-            <ul>
-                <li><a href="#">Hombres</a></li>
-                <li><a href="#">Mujeres</a></li>
-                <li><a href="#">Niños</a></li>
-                <li><a href="#">Ofertas</a></li>
-            </ul>
-        </div>
-
-        <!-- Contact Info -->
-        <div class="footer-section">
-            <h3>Contacto</h3>
-            <ul>
-                <li>📞 +34 900 123 456</li>
-                <li>✉️ info@athleto.com</li>
-                <li>📍 Calle Ejemplo, 123</li>
-                <li>🕒 Lun - Vie: 9:00 - 20:00</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="footer-bottom">
-        <p>&copy; 2024 Athleto. Todos los derechos reservados.</p>
-    </div>
-</footer>
+    </footer>
 </body>

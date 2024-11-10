@@ -6,7 +6,7 @@ body {
 
 /* Estilos del navbar */
 .navbar {
-  background-color:  #273043;
+  background-color: #273043;
   position: sticky;
   top: 0px;
   padding: 20px;
@@ -93,6 +93,7 @@ body {
   right: 30px;
   top: 10px;
 }
+
 .icons a {
   text-decoration: none;
   color: #eff6ee;
@@ -114,15 +115,15 @@ body {
 
 #imgLandingPage {
   text-align: center;
-  margin: 0 auto; 
-  }
+  margin: 0 auto;
+}
 
 .card {
   padding-top: 20px;
-  width: 400px; 
+  width: 400px;
   height: 200px;
-  border-radius: 8px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
   box-sizing: border-box;
   border: 1px solid white;
@@ -137,7 +138,7 @@ body {
 }
 
 .card:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }
 
 .zapatos {
@@ -161,7 +162,7 @@ body {
 
 .contentZapatos {
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   place-items: center;
   margin: 5px;
 }
@@ -286,7 +287,7 @@ body {
   background-color: #A71C24;
 }
 
-.cancelarCompra{
+.cancelarCompra {
   background-color: #CCCCCC;
   color: black;
   border: none;
@@ -296,7 +297,7 @@ body {
   border-radius: 5px;
 }
 
-.cancelarCompra:hover{
+.cancelarCompra:hover {
   background-color: #a8a7a7;
 }
 
@@ -309,22 +310,22 @@ body {
   margin-right: 10px;
 }
 
-.inputQuantitat{
+.inputQuantitat {
   width: 20px;
   right: 20px;
 }
 
-.imatgesCar{
+.imatgesCar {
   width: 100px;
   height: 100px;
 }
 
-.checkoutFooter{
+.checkoutFooter {
   padding-left: 20px;
 
 }
 
-.dadesProdCheck{
+.dadesProdCheck {
   padding-left: 20px;
 }
 
@@ -336,10 +337,11 @@ body {
   padding-top: 15px;
 }
 
-.brossaProducteCheck{
+.brossaProducteCheck {
   width: 20px;
   height: 20px;
-padding-top: 20px;}
+  padding-top: 20px;
+}
 
 .cart-footer {
   padding: 1rem;
@@ -350,7 +352,7 @@ padding-top: 20px;}
 }
 
 
-#accionsUsuari{
+#accionsUsuari {
   width: 300px;
   height: 200px;
   border: 1px solid black;
@@ -361,36 +363,37 @@ padding-top: 20px;}
   z-index: 1001;
 }
 
-#cancelAccUsu{
+#cancelAccUsu {
   position: absolute;
   top: 15px;
   right: 15px;
   margin-bottom: 200px;
 }
 
-#butoAccUsu, #butoDadesUsuari{
+#butoAccUsu,
+#butoDadesUsuari {
   cursor: pointer;
-  width: 100%;    
+  width: 100%;
   padding: 15px 5px;
   background-color: #251c1c;
   color: white;
   margin-top: 10px;
 }
 
-.enllaços{
+.enllaços {
   margin-top: 3em;
 }
 
-.enllaçosIniciat{
+.enllaçosIniciat {
   margin-top: 1em;
 }
 
-.enllaços p{
+.enllaços p {
   cursor: pointer;
   border-bottom: 1px solid rgb(182, 176, 176);
 }
 
-#accionsUsuari .contingut{
+#accionsUsuari .contingut {
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -398,11 +401,11 @@ padding-top: 20px;}
   position: absolute;
 }
 
-.funcioUsuari{
+.funcioUsuari {
   grid-area: info;
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -421,7 +424,7 @@ padding-top: 20px;}
   color: white;
 }
 
-#funcionsAdmin{
+#funcionsAdmin {
   width: 2em;
   height: 2em;
   border: 1px solid skyblue;
@@ -472,10 +475,12 @@ padding-top: 20px;}
   margin-bottom: 15px;
   width: 95%;
 }
+
 .compra_form-group label {
   font-weight: bold;
   display: block;
 }
+
 .compra_form-group input {
   width: 100%;
   padding: 10px;
@@ -483,11 +488,13 @@ padding-top: 20px;}
   border: 1px solid #ccc;
   font-size: 16px;
 }
+
 .compra_form-group input[type="text"],
 .compra_form-group input[type="number"],
 .compra_form-group input[type="date"] {
   margin-top: 5px;
 }
+
 .compra_boton {
   background-color: #273043;
   color: white;
@@ -496,8 +503,9 @@ padding-top: 20px;}
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s;
-  padding:10px 20px;
+  padding: 10px 20px;
 }
+
 .compra_footer {
   text-align: center;
   margin-top: 20px;
@@ -506,12 +514,13 @@ padding-top: 20px;}
 }
 
 
-.paginas{
+.paginas {
   text-align: center;
-  padding-bottom: 100px;  
+  padding-bottom: 100px;
 
 }
-.paginas_boton{
+
+.paginas_boton {
   margin: 5px;
   background-color: #273043;
   font-size: 15px;
@@ -519,49 +528,51 @@ padding-top: 20px;}
   color: white;
   padding: 10px;
   border: none;
-  cursor: pointer; 
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.paginas_boton:hover{
+.paginas_boton:hover {
   background-color: #3a4661;
 
 }
 
-.paginas_boton:active{
+.paginas_boton:active {
   background-color: #606670;
 }
 
 
 /*añadido para la barra busqueda*/
-.search-bar{
+.search-bar {
   right: 220px;
- position: fixed;
- top: 10px;
+  position: fixed;
+  top: 10px;
 }
 
-.search-icon a{
- position: fixed;
+.search-icon a {
+  position: fixed;
 }
-.browseer{
- bottom: 10px;
- height: 25px;
- width: 180px;
- border-radius: 15px;
+
+.browseer {
+  bottom: 10px;
+  height: 25px;
+  width: 180px;
+  border-radius: 15px;
 }
 
 .detalles {
- display: flex;
- flex-direction: column;
- padding: 10px;
- max-width: 100%;
- overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  max-width: 100%;
+  overflow: hidden;
 }
+
 .detalles p {
- white-space: nowrap;
- overflow: hidden;
- text-overflow: ellipsis;
- margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
 }
 
 .footer {
@@ -642,453 +653,467 @@ padding-top: 20px;}
 
 
 @media (min-width: 600px) {
-body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin: 0;
-  padding: 0;
-  /* Fondo claro */
-}
+  body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Fondo claro */
+  }
 
-.navbar {
-  padding: 15px;
-}
+  .navbar {
+    padding: 15px;
+  }
 
-/* Estilos de los items del menú principal */
-.menu {
-  margin: 0;
-  padding: 0;
-  justify-content: left;
-}
-
-.menu-item {
-  position: relative;
-  margin: 0 20px;
-}
-
-/* Estilos para los iconos (lupa y carrito) */
-.icons {
-  right: 30px;
-  top: 23px;
-}
-
-.icons a {
-  margin-left: 20px;
-}
-
-.menu-item a {
-  font-size: 16px;
-  padding: 10px 20px;
-}
-
-
-/* Estilos del submenú (desplegable) */
-.submenu {
-  position: absolute;
-  top: 40px;
-  left: 0;
-  border-radius: 5px;
-  z-index: 1000;
-}
-
-.submenu li {
-  margin: 0;
-  padding: 0;
-}
-
-/* Estilos responsivos */
-@media (max-width: 768px) {
+  /* Estilos de los items del menú principal */
   .menu {
-      flex-direction: column;
+    margin: 0;
+    padding: 0;
+    justify-content: left;
   }
 
   .menu-item {
-      margin: 10px 0;
+    position: relative;
+    margin: 0 20px;
   }
 
+  /* Estilos para los iconos (lupa y carrito) */
+  .icons {
+    right: 30px;
+    top: 23px;
+  }
+
+  .icons a {
+    margin-left: 20px;
+  }
+
+  .menu-item a {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+
+  /* Estilos del submenú (desplegable) */
   .submenu {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    border-radius: 5px;
+    z-index: 1000;
+  }
+
+  .submenu li {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .menu {
+      flex-direction: column;
+    }
+
+    .menu-item {
+      margin: 10px 0;
+    }
+
+    .submenu {
       top: 35px;
       left: 0;
       right: 0;
+    }
   }
-}
 
-.zapatos {
- width: 200px;
- height: 300px;
-  
-}
+  .zapatos {
+    width: 200px;
+    height: 300px;
 
-.nomProducte {
-  font-size: 17px;
-}
+  }
 
-.contentZapatos {
-  grid-template-columns: 1fr 1fr 1fr;
-  margin: 0 100px;
-}
+  .nomProducte {
+    font-size: 17px;
+  }
 
-.portada {
-  width: 200px;
-  height: 200px;
-  margin: 10px;
-  margin-top: 100px;
-}
+  .contentZapatos {
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 100px;
+  }
 
-.card {
-  width: 1200px;
-  height: 400px;
-  background: rgba(141, 54, 54, 0.58);
-  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
-padding-top: 0px;
-  margin: 50px;
-  margin-top: 100px;
-}
+  .portada {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    margin-top: 100px;
+  }
 
+  .card {
+    width: 1200px;
+    height: 400px;
+    background: rgba(141, 54, 54, 0.58);
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    padding-top: 0px;
+    margin: 50px;
+    margin-top: 100px;
+  }
 
 
-.card:hover {
-  border: 1px solid black;
-  transform: scale(1.05);
-}
 
-.card:active {
-  transform: scale(0.95) rotateZ(1.7deg);
-}
+  .card:hover {
+    border: 1px solid black;
+    transform: scale(1.05);
+  }
+
+  .card:active {
+    transform: scale(0.95) rotateZ(1.7deg);
+  }
 
 
-.product-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  margin-top: 100px;
-}
+  .product-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 100px;
+  }
 
-.product-card {
-  width: 700px;
-}
+  .product-card {
+    width: 700px;
+  }
 
-.product-left {
-  flex: 1;
-}
+  .product-left {
+    flex: 1;
+  }
 
-.product-right {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+  .product-right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-.product-image {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
+  .product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
 
-.product-title {
-  font-size: 28px;
-  margin-bottom: 10px;
-  color: #333;
-}
+  .product-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333;
+  }
 
-.product-description {
-  font-size: 16px;
-  color: #777;
-  margin-bottom: 20px;
-}
+  .product-description {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 20px;
+  }
 
-.product-price {
-  font-size: 24px;
-  color: #C82333;
-  margin-bottom: 15px;
-}
+  .product-price {
+    font-size: 24px;
+    color: #C82333;
+    margin-bottom: 15px;
+  }
 
-.product-buttons {
-  display: flex;
-  text-align: center;
-  gap: 10px;
-  /* Espacio entre los botones */
+  .product-buttons {
+    display: flex;
+    text-align: center;
+    gap: 10px;
+    /* Espacio entre los botones */
 
-}
+  }
 
-.product-container button {
-  padding: 15px 20px;
-}
+  .product-container button {
+    padding: 15px 20px;
+  }
 
-#buto-cancelar {
-  top: 25px;
-}
+  #buto-cancelar {
+    top: 25px;
+  }
 
-.fonsOscur {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-}
+  .fonsOscur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
 
-.fonsAccioUsu{
-  position: fixed;
-  width: 100%;
-  height: 100%;
-}
+  .fonsAccioUsu {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
 
-.cart-button {
-  position: absolute;
-  right: 20px;
-  top: 15px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 5px;
-}
+  .cart-button {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+  }
 
-.cart-button:hover {
-  background-color: #218838;
-}
+  .cart-button:hover {
+    background-color: #218838;
+  }
 
-.products {
-  padding: 2rem;
-  text-align: center;
-}
+  .products {
+    padding: 2rem;
+    text-align: center;
+  }
 
-.product {
-  background-color: #fff;
-  margin: 1rem auto;
-  padding: 1rem;
-  width: 300px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+  .product {
+    background-color: #fff;
+    margin: 1rem auto;
+    padding: 1rem;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-.zapatos img {
-  height: 200px;
-  width: 200px;
-}
-.producteCar {
-  display: flex;
-  position: relative;
-  border-bottom: 1px solid rgb(204, 204, 204);
-  margin-bottom: 10px;
-  padding-left: 10px;
-  margin-right: 10px;
-}
+  .zapatos img {
+    height: 200px;
+    width: 200px;
+  }
 
-#imgLandingPage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .producteCar {
+    display: flex;
+    position: relative;
+    border-bottom: 1px solid rgb(204, 204, 204);
+    margin-bottom: 10px;
+    padding-left: 10px;
+    margin-right: 10px;
+  }
 
-#checkout>img{
-  width: 200px;
-  height: 200px;
-}
+  #imgLandingPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.checkoutProd{
-  display: flex;
-}
+  #checkout>img {
+    width: 200px;
+    height: 200px;
+  }
 
-.dadesProdCheck{
-  flex-direction: column;
-  font-size: 1em;
-}
+  .checkoutProd {
+    display: flex;
+  }
 
-#compte {
-  display: grid;
-  grid-template-areas: 
+  .dadesProdCheck {
+    flex-direction: column;
+    font-size: 1em;
+  }
+
+  #compte {
+    display: grid;
+    grid-template-areas:
       "titol titol titol"
       ". info .";
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 2fr 7fr;
-}
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 2fr 7fr;
+  }
 
-#compteHeader{
-  grid-area: titol;
-  width: 100%;
-  height: 100%;
-  background-color: gray;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-#compteHeader h1{
-  font-weight: 450;
-}
-
-#compteInfo ul{
-  list-style: none;
-  padding: 0;
-}
-
-#compteInfo li {
-  position: relative;
-  padding-left: 20px;
-  padding-bottom: 18px;
-}
-
-#compteInfo li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: green;
-  font-size: 1.2em;
-}
-
-.passInput{
-  position: relative;
-}
-
-.passInput input {
-  width: 100%;
-  padding-right: 40px;
-  box-sizing: border-box;
-}
-
-.ullPass {
-  width: 20px;
-  right: 10px;
-  top: 50%;
-}
-
-#seccioRegistre{
-  text-align: center;
-}
-
-#seccioRegistre input{
-  margin-bottom: 10px;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-
-.nomUsuariInvalid{
-  border: 2px solid red;
-}
+  #compteHeader {
+    grid-area: titol;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 
-.mispedidos_container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
+  #compteHeader h1 {
+    font-weight: 450;
+  }
+
+  #compteInfo ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  #compteInfo li {
+    position: relative;
+    padding-left: 20px;
+    padding-bottom: 18px;
+  }
+
+  #compteInfo li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: green;
+    font-size: 1.2em;
+  }
+
+  .passInput {
+    position: relative;
+  }
+
+  .passInput input {
+    width: 100%;
+    padding-right: 40px;
+    box-sizing: border-box;
+  }
+
+  .ullPass {
+    width: 20px;
+    right: 10px;
+    top: 50%;
+  }
+
+  #seccioRegistre {
+    text-align: center;
+  }
+
+  #seccioRegistre input {
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
+  .nomUsuariInvalid {
+    border: 2px solid red;
+  }
 
 
-.mispedidos_orders-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
+  .mispedidos_container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
 
-.mispedidos_orders-table th, .mispedidos_orders-table td {
-  padding: 15px;
-  text-align: left;
-}
 
-.mispedidos_orders-table thead th {
-  background-color:#273043;
-  color: white;
-  font-weight: bold;
-  border-top: 2px solid #273043;
-  border-bottom: 2px solid #273043;
-}
+  .mispedidos_orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
 
-.mispedidos_orders-table tbody tr {
-  border-bottom: 1px solid #dddddd;
-}
+  .mispedidos_orders-table th,
+  .mispedidos_orders-table td {
+    padding: 15px;
+    text-align: left;
+  }
 
-.mispedidos_orders-table tbody tr:hover {
-  background-color: #f1f1f1;
-}
+  .mispedidos_orders-table thead th {
+    background-color: #273043;
+    color: white;
+    font-weight: bold;
+    border-top: 2px solid #273043;
+    border-bottom: 2px solid #273043;
+  }
 
-.mispedidos_view-button {
-  padding: 8px 16px;
-  background-color: #273043;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
+  .mispedidos_orders-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
 
-.mispedidos_view-button:hover {
-  background-color: #0056b3;
-}
+  .mispedidos_orders-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
 
-.mispedidos_details-content {
-  padding: 15px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
+  .mispedidos_view-button {
+    padding: 8px 16px;
+    background-color: #273043;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
 
-.mispedidos_details-content p {
-  margin: 8px 0;
-  color: #555;
-}
+  .mispedidos_view-button:hover {
+    background-color: #0056b3;
+  }
 
-/* Estados de pedido */
-.mispedidos_status {
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  color: white;
-}
+  .mispedidos_details-content {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 
-.mispedidos_status.mispedidos_pendiente {
-  background-color: #FFA500; /* Naranja para Pendiente */
-}
+  .mispedidos_details-content p {
+    margin: 8px 0;
+    color: #555;
+  }
 
-.mispedidos_status.mispedidos_aceptado {
-  background-color: #13e600; /* Azul para Aceptado */
-}
-.mispedidos_status.mispedidos_cancelado {
-  background-color: #e60000; /* Rojo para Cancelado*/
-}
-.mispedidos_status.mispedidos_completado {
-  background-color: #1b722f; /* Verde para Completado */
-}
-.mispedidos_status.mispedidos_enviado {
-  background-color: #007BFF; /* Azul para Enviado */
-}
-.mispedidos_status.mispedidos_recibido {
-  background-color: #808080; /* Verde para recibido */
-}
+  /* Estados de pedido */
+  .mispedidos_status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+  }
 
-#funcionsAdmin{
-  right: 30px;
-  top: 80px;
-}
-.menuAdminIcon {
-  color: black;
-}
+  .mispedidos_status.mispedidos_pendiente {
+    background-color: #FFA500;
+    /* Naranja para Pendiente */
+  }
 
-.menuAdminIcon {
-  font-size: 20px;
-}
+  .mispedidos_status.mispedidos_aceptado {
+    background-color: #13e600;
+    /* Azul para Aceptado */
+  }
 
-/*añadido para la barra busqueda*/
-.search-bar{
- right:145px;
- top: 20px;
-}
+  .mispedidos_status.mispedidos_cancelado {
+    background-color: #e60000;
+    /* Rojo para Cancelado*/
+  }
 
-.search-icon a{
- position: fixed;
-}
-.browseer{
- width: 260px;
-}
+  .mispedidos_status.mispedidos_completado {
+    background-color: #1b722f;
+    /* Verde para Completado */
+  }
+
+  .mispedidos_status.mispedidos_enviado {
+    background-color: #007BFF;
+    /* Azul para Enviado */
+  }
+
+  .mispedidos_status.mispedidos_recibido {
+    background-color: #808080;
+    /* Verde para recibido */
+  }
+
+  #funcionsAdmin {
+    right: 30px;
+    top: 80px;
+  }
+
+  .menuAdminIcon {
+    color: black;
+  }
+
+  .menuAdminIcon {
+    font-size: 20px;
+  }
+
+  /*añadido para la barra busqueda*/
+  .search-bar {
+    right: 145px;
+    top: 20px;
+  }
+
+  .search-icon a {
+    position: fixed;
+  }
+
+  .browseer {
+    width: 260px;
+  }
 
 
 }

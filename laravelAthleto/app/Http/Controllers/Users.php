@@ -16,8 +16,8 @@ class Users extends Controller
         //$productes = Producte::all();
         $usuaris = User::all();
         //dd($productes);
-      //  return response()->json($productes); // Devuelve los productos en formato JSON
-         return view('users.index', compact('usuaris'));
+        //  return response()->json($productes); // Devuelve los productos en formato JSON
+        return view('users.index', compact('usuaris'));
     }
 
     public function findMail(Request $request)
@@ -46,16 +46,16 @@ class Users extends Controller
             'username' => 'required|string',
             'email' => 'required|email'
         ]);
-    
+
         $user = User::where('nom_usuari', $request->input('username'))
-                    ->where('email', '!=', $request->input('email'))
-                    ->first();
+            ->where('email', '!=', $request->input('email'))
+            ->first();
 
         if ($user) {
             return response()->json([
                 'existeix' => true,
             ], 200);
-        } else{
+        } else {
             return response()->json([
                 'existeix' => false,
             ], 200);
@@ -106,7 +106,7 @@ class Users extends Controller
             return response()->json([
                 'missatge' => 'Inici de sessio exitos',
                 'usuari' => $user,
-                'access_token'=> $accessToken,    
+                'access_token' => $accessToken,
             ]);
             //])->cookie($cookie);
         }
@@ -118,21 +118,21 @@ class Users extends Controller
         $request->validate([
             'password' => 'required|string',
         ]);
-        
+
         // if (!Auth::check()) {
         //     return response()->json(['error' => 'No autenticado'], 401);
         // }
         $usuari = Auth::user();
-        
+
         if (Hash::check($request->password, $usuari->password)) {
             return response()->json(['correcte' => true]);
         } else {
             return response()->json(['correcte' => false]);
         }
     }
-    
+
     public function retornarDadesUsuari()
-    {   
+    {
         // if (!Auth::check()) {
         //     return response()->json(['error' => 'No autenticado'], 401);
         // }
@@ -152,20 +152,20 @@ class Users extends Controller
             'email' => 'required|email|unique:usuaris,email,' . $id,
             'adreca' => 'required|string',
         ]);
-        
+
         //dd($request->all());
         if (!Auth::check()) {
             return response()->json(['error' => 'No autenticado'], 401);
         }
-        
+
         $usuari = Auth::user();
         //dd($usuari);
-        $usuari -> nom = $request->input('nom');
-        $usuari -> cognom = $request->input('cognom');
-        $usuari -> nom_usuari = $request->input('nom_usuari');
-        $usuari -> adreca = $request->input('adreca');
+        $usuari->nom = $request->input('nom');
+        $usuari->cognom = $request->input('cognom');
+        $usuari->nom_usuari = $request->input('nom_usuari');
+        $usuari->adreca = $request->input('adreca');
 
-        $usuari -> save();
+        $usuari->save();
 
         return response()->json([
             'actualitzat' => true,
@@ -183,8 +183,8 @@ class Users extends Controller
         $usuari = Auth::user();
 
         if (Hash::check($request->password, $usuari->password)) {
-            $usuari -> password = $request->input('newPassword');
-            $usuari -> save();
+            $usuari->password = $request->input('newPassword');
+            $usuari->save();
 
             return response()->json(['updated' => true]);
         } else {
@@ -194,8 +194,8 @@ class Users extends Controller
 
     public function edit($id)
     {
-      $prod = User::find($id);
-      return view('users.edit', compact('prod'));
+        $prod = User::find($id);
+        return view('users.edit', compact('prod'));
     }
 
 
@@ -204,25 +204,27 @@ class Users extends Controller
         $producte = User::findOrFail($id);
         $producte->update($request->all());
         return redirect()->route('users.index')->with('success', 'Producto editado con éxito.');
- 
+
     }
 
-    
 
-    public function crearProductes(){
-        
+
+    public function crearProductes()
+    {
+
         return view(view: 'users.create');
 
     }
 
     public function addProductes(Request $request)
     {
-        User::create([      'nom' => $request->input('nom'),
-        'cognom' => $request->input('cognom'),
-        'nom_usuari' => $request->input('nom_usuari'),
-        'email' => $request->input('email'),
-        'password' => Hash::make($request->input('password')),
-    ]);
+        User::create([
+            'nom' => $request->input('nom'),
+            'cognom' => $request->input('cognom'),
+            'nom_usuari' => $request->input('nom_usuari'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+        ]);
 
         return redirect()->route('users.index')->with('success', 'Producto creado con éxito.');
     }
@@ -232,8 +234,8 @@ class Users extends Controller
         User::destroy($id);
         return redirect()->route('users.index')->with('success', 'Producto eliminado con éxito.');
 
-        
-    }   
+
+    }
 
 
 
