@@ -1,5 +1,5 @@
 <?php
-namespace AppConsoleCommands;
+namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use File;
 class MakeViewCommand extends Command
@@ -26,10 +26,9 @@ class MakeViewCommand extends Command
     $view = $this->argument('view');
     $path = $this->viewPath($view);
     $this->createDir($path);
-    if (File::exists($path))
-    {
-        $this->error("File {$path} already exists!");
-        return;
+    if (File::exists($path)) {
+      $this->error("File {$path} already exists!");
+      return;
     }
     File::put($path, $path);
     $this->info("File {$path} created.");
@@ -55,9 +54,8 @@ class MakeViewCommand extends Command
   public function createDir($path)
   {
     $dir = dirname($path);
-    if (!file_exists($dir))
-    {
-        mkdir($dir, 0777, true);
+    if (!file_exists($dir)) {
+      mkdir($dir, 0777, true);
     }
   }
 }

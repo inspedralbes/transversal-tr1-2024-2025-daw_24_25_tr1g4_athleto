@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cat_prod extends Model
+class compra extends Model
 {
-
     use HasFactory;
-    protected $table = 'cat_prod';
+    protected $table = 'compras';
 
     protected $fillable = [
         'id',
-        'id_producte',
-        'id_categoria',
+        'id_usuaris',
+        'preu_total',
+        'estat',
     ];
 }

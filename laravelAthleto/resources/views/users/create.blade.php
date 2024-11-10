@@ -15,28 +15,36 @@
     <div class="row h-100 justify-content-center align-items-center">
       <div class="col-10 col-md-8 col-lg-6">
         <h3>Add a Post</h3>
-        <form action="{{ route('prod.store') }}" method="post">
+        <form action="{{ route('users.store') }}" method="post">
           @csrf
           <div class="form-group">
             <label for="nom">Nom</label>
             <input type="text" class="form-control" id="nom" name="nom" required>
           </div>
           <div class="form-group">
-            <label for="descripcio">Descripcio</label>
-            <textarea class="form-control" id="descripcio" name="descripcio" rows="3" required></textarea>
-          </div>
-          <br>
-          <div class="form-group">
-            <label for="preu">Preu</label>
-            <input type="text" class="form-control" id="preu" name="preu" required>
+            <label for="cognom">Cognom</label>
+            <input type="text" class="form-control" id="cognom" name="cognom" required>
           </div>
           <div class="form-group">
-            <label for="imatge">imatge</label>
-            <input type="text" class="form-control" id="imatge" name="imatge" required>
+            <label for="password">Password</label>
+            <input type="text" class="form-control" id="password" name="password" required>
           </div>
-          <a class="btn btn-primary" href={{ route('prod.index') }}>Volver</a>
 
-          <button type="submit" class="btn btn-primary">Create Post</button>
+          <div class="form-group">
+            <label for="nom_usuari">Nom usuari</label>
+            <input type="text" class="form-control" id="nom_usuari" name="nom_usuari" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="rol">Rol</label>
+            <input type="text" class="form-control" id="rol" name="rol" required>
+          </div>
+          <a class="btn btn-primary" href={{ route('users.index') }}>Volver</a>
+
+          <button type="submit" class="btn btn-primary">Create user</button>
         </form>
       </div>
     </div>
