@@ -15,10 +15,7 @@ class Compras extends Controller
         $compras = compra::all();
         $compra_prod= prod_compras::whereIn('id_compras', $compras->pluck('id'))->get();
        
-        $productes = Producte::join('prod_compras', 'productes.id', '=', 'prod_compras.id_productes')
-          ->whereIn('prod_compras.id_compras', $compras->pluck('id'))
-            ->select('productes.*')
-              ->get();
+        $productes = Producte::all();
         
         $detallesCompras=[];      
         

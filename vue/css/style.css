@@ -1092,3 +1092,32 @@ padding-top: 0px;
 
 
 }
+
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+/* Estilos para el toast individual */
+.toast {
+  display: flex;
+  align-items: center;
+  background-color: #273043;
+  color: #fff;
+  padding: 15px 20px;
+  margin-top: 10px;
+  border: 2px solid white;
+  border-radius: 5px;
+  min-width: 200px;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Animación de entrada del toast */
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}

@@ -330,7 +330,7 @@ createApp({
 
    async function mevesComandes(){
       if(dadesUser.value==undefined){
-        alert("Registrate primero")
+        showToast('Registrate primero');
 
       }else{
      
@@ -350,7 +350,8 @@ createApp({
     function afegirProducte() {
       
       if(dadesUser.value==undefined){
-        alert("Registrate primero")
+        showToast('Registrate primero');
+        
 
       }else{
 
@@ -438,14 +439,37 @@ createApp({
       carrito.productesComprar = [];
     }
 
+    function showToast(message) {
+      // Crear el elemento toast
+      const toast = document.createElement("div");
+      toast.classList.add("toast");
+      toast.innerText = message;
 
+      // Agregar el toast al contenedor
+      const container = document.getElementById("toast-container");
+      container.appendChild(toast);
+
+      // Mostrar el toast con la animación
+      setTimeout(() => {
+          toast.classList.add("show");
+      }, 100);
+
+      // Ocultar y eliminar el toast después de 3 segundos
+      setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => {
+              container.removeChild(toast);
+          }, 300);
+      }, 3000);
+  }
 
 
     function compraFeta() {
-
+      
+      console.log(comprar)
       enviarCompra(comprar)
 
-      alert("Compra rebuda!!!");
+      showToast('Compra rebuda!!!');
       visiblePagament.value = false;
       visiblePort.value = true;
       reiniciarProductesComprar();
@@ -479,7 +503,8 @@ createApp({
     function compraRapida() {
 
       if(dadesUser.value==undefined){
-        alert("Registrate primero")
+        
+        showToast('Registrate primero');
 
       }else{
 

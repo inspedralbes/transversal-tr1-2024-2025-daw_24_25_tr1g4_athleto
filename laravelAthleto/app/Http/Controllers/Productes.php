@@ -96,23 +96,26 @@ class Productes extends Controller
 
     $compras = compra::where('id_usuaris', $id_usuario)->get();
 
+    
     $compra_prod= prod_compras::whereIn('id_compras', $compras->pluck('id'))->get();
-       
-    $productes = Producte::join('prod_compras', 'productes.id', '=', 'prod_compras.id_productes')
-      ->whereIn('prod_compras.id_compras', $compras->pluck('id'))
-        ->select('productes.*')
-          ->get();
+    
+    $productes = Producte::all();
     
     $detallesCompras=[];      
     
 
     foreach ($compras as $compra) {
         $prod_compra=[];
-
+   
         foreach ($compra_prod as $compra_pro) {
+
+            
             if ($compra_pro['id_compras'] == $compra['id']) {
-                foreach ($productes as $produc) {
+               
+             foreach ($productes as $produc) {
                     if($compra_pro['id_productes']== $produc['id']){
+
+
                         $prod_compra[]=$produc;
 
                     }
@@ -131,12 +134,12 @@ class Productes extends Controller
     ];
 
     }
-    $compra=[
+    $compraFinal=[
         'compras' => $detallesCompras
     ];
     
 
-        return response()->json($compra);
+        return response()->json($compraFinal);
     }
     public function getProductesByCategory($id_categoria)
     {
