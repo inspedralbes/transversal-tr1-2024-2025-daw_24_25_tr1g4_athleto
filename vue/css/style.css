@@ -1118,6 +1118,111 @@ body {
 
 }
 
+
+.mispedidos_container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+.mispedidos_orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.mispedidos_orders-table th,
+.mispedidos_orders-table td {
+  
+  text-align: left;
+}
+
+.mispedidos_orders-table thead th {
+  background-color: #273043;
+  color: white;
+  font-weight: bold;
+  border-top: 2px solid #273043;
+  border-bottom: 2px solid #273043;
+}
+
+.mispedidos_orders-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.mispedidos_orders-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.mispedidos_view-button {
+  padding: 8px 16px;
+  background-color: #273043;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.mispedidos_view-button:hover {
+  background-color: #0056b3;
+}
+
+.mispedidos_details-content {
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.mispedidos_details-content p {
+  margin: 8px 0;
+  color: #555;
+}
+
+/* Estados de pedido */
+.mispedidos_status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+.mispedidos_status.mispedidos_pendiente {
+  background-color: #FFA500;
+  /* Naranja para Pendiente */
+}
+
+.mispedidos_status.mispedidos_aceptado {
+  background-color: #13e600;
+  /* Azul para Aceptado */
+}
+
+.mispedidos_status.mispedidos_cancelado {
+  background-color: #e60000;
+  /* Rojo para Cancelado*/
+}
+
+.mispedidos_status.mispedidos_completado {
+  background-color: #1b722f;
+  /* Verde para Completado */
+}
+
+.mispedidos_status.mispedidos_enviado {
+  background-color: #007BFF;
+  /* Azul para Enviado */
+}
+
+.mispedidos_status.mispedidos_recibido {
+  background-color: #808080;
+  /* Verde para recibido */
+}
+
+
 #toast-container {
   position: fixed;
   top: 20px;
