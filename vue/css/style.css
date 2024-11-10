@@ -153,6 +153,18 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
+.mispedidos_container {
+  
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  font-size: 10px;  
+}
+
 .nomProducte {
   white-space: nowrap;
   overflow: hidden;
@@ -992,6 +1004,7 @@ body {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    font-size: 15px;  
   }
 
 
@@ -1008,6 +1021,7 @@ body {
   }
 
   .mispedidos_orders-table thead th {
+   
     background-color: #273043;
     color: white;
     font-weight: bold;
@@ -1119,20 +1133,13 @@ body {
 }
 
 
-.mispedidos_container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
 
 
 .mispedidos_orders-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  
 }
 
 .mispedidos_orders-table th,
@@ -1142,6 +1149,8 @@ body {
 }
 
 .mispedidos_orders-table thead th {
+  
+     
   background-color: #273043;
   color: white;
   font-weight: bold;
