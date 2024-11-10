@@ -54,10 +54,9 @@ createApp({
     const mComandes = reactive({ compras: [] });
 
     const menuAdmin = ref(false);
-    let comprar = reactive({ id_user: "", preu: "", productes: [] = "" })
     const user = reactive({ nom: "", cognom: "", nomUsuari: "", mail: "", pass: "" });
     const carrito = reactive({ list: [], productesComprar: [], preu: 0 });
-    const compra = reactive({ list: [], preu: 0 });
+    const compra = reactive({ id_user: "", list: [], preu: 0 });
     const showPass = ref(false);
     const nomExisteix = ref(false);
     let genero = ref("all"); // Variable para el filtro de género, muestra todos los generos
@@ -416,15 +415,6 @@ createApp({
       if (carrito.productesComprar.length > 0) compra.list = carrito.productesComprar.map(product => ({ ...product }));
       else compra.list = carrito.list.map(product => ({ ...product }));
       compra.preu = carrito.preu;
-      comprar = reactive(
-        {
-          id_user: dadesUser.value.id,
-          preu: carrito.preu,
-          productes: [] = carrito.list
-
-
-        }
-      )
       obrirCheckout();
       visibilidad_resultadoBusqueda.value = false;
     }
@@ -466,7 +456,14 @@ createApp({
 
     function compraFeta() {
       
-     
+      let comprar = reactive(
+        {
+          id_user: dadesUser.value.id,
+          preu: compra.preu,
+          productes: [] = compra.list
+        }
+      )
+      
       enviarCompra(comprar)
 
       showToast('Compra rebuda!!!');
@@ -475,13 +472,6 @@ createApp({
       reiniciarProductesComprar();
       actualitzarCarritoCompra();
       actualitzarPreuCarrito();
-
-
-
-
-
-
-
     }
 
     function actualitzarCarritoCompra() {
@@ -513,15 +503,7 @@ createApp({
         //compra.list.push({ ...toRaw(actual.value), quantitat: 1 });
         compra.preu = actual.value.preu;
 
-        comprar = reactive(
-          {
-            id_user: dadesUser.value.id,
-            preu: compra.preu,
-            productes: [] = compra.list
-
-
-          }
-        )
+        
         obrirCheckout();
 
       }
