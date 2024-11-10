@@ -14,7 +14,6 @@ createApp({
       try {
         if (getCookie('access_token')) {
           dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
-          console.log(dadesUser.value);
           mailExisteix.value = 3;
         }
       } catch (error) {
@@ -197,7 +196,7 @@ createApp({
           await loginUsuari(user.mail, user.pass);
         }
       } catch (error) {
-        console.log("error registrant usuari");
+        alert("error registrant usuari");
       }
     }
 
@@ -207,7 +206,7 @@ createApp({
         document.cookie = `access_token=${accessToken}; path=/; max-age=900; SameSite=Strict;`;
         await infoUser();
       } catch (error) {
-        console.log("error iniciant sessió");
+        alert("error iniciant sessió");
         dadesUser.value = "error";
       }
 
@@ -272,7 +271,6 @@ createApp({
     async function infoUser() {
       try {
         dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
-        console.log(dadesUser.value);
       } catch (error) {
         logout();
         throw error;
@@ -315,8 +313,6 @@ createApp({
       //hacer un with en el controllador para pillar tmb la talla y que seleccione que talla tiene con input, 
       /*let valor = undefined;
       carrito.list.forEach(productsd=>{
-        console.log(productsd);
-        console.log(actual);
         if (productsd==actual) {
           valor=productsd; 
         }
@@ -327,15 +323,14 @@ createApp({
     //Serveix per afegir el producte actual al carrito, actualitzar el preu i tancar el carrito
 
 
-   async function mevesComandes(){
-      if(dadesUser.value==undefined){
+    async function mevesComandes() {
+      if (dadesUser.value == undefined) {
         showToast('Registrate primero');
 
       } else {
 
         ocultarTot();
         mComandes.compras = await getmevesComandes(dadesUser.value.id);
-        console.log(mComandes.compras)
         visibleMevesComandes.value = true;
       }
     }
@@ -347,10 +342,10 @@ createApp({
 
 
     function afegirProducte() {
-      
-      if(dadesUser.value==undefined){
+
+      if (dadesUser.value == undefined) {
         showToast('Registrate primero');
-        
+
 
       } else {
 
@@ -441,21 +436,21 @@ createApp({
 
       // Mostrar el toast con la animación
       setTimeout(() => {
-          toast.classList.add("show");
+        toast.classList.add("show");
       }, 100);
 
       // Ocultar y eliminar el toast después de 3 segundos
       setTimeout(() => {
-          toast.classList.remove("show");
-          setTimeout(() => {
-              container.removeChild(toast);
-          }, 300);
+        toast.classList.remove("show");
+        setTimeout(() => {
+          container.removeChild(toast);
+        }, 300);
       }, 3000);
-  }
+    }
 
 
     function compraFeta() {
-      
+
       let comprar = reactive(
         {
           id_user: dadesUser.value.id,
@@ -463,7 +458,7 @@ createApp({
           productes: [] = compra.list
         }
       )
-      
+
       enviarCompra(comprar)
 
       showToast('Compra rebuda!!!');
@@ -492,8 +487,8 @@ createApp({
 
     function compraRapida() {
 
-      if(dadesUser.value==undefined){
-        
+      if (dadesUser.value == undefined) {
+
         showToast('Registrate primero');
 
       } else {
@@ -503,7 +498,7 @@ createApp({
         //compra.list.push({ ...toRaw(actual.value), quantitat: 1 });
         compra.preu = actual.value.preu;
 
-        
+
         obrirCheckout();
 
       }
@@ -546,7 +541,7 @@ createApp({
         dadesUser.value = await obtenirDadesUser(getCookie('access_token'));
       } catch (error) {
         logout();
-        console.log("error actualitzant les dades");
+        alert("error actualitzant les dades");
       }
     }
 
@@ -584,7 +579,7 @@ createApp({
         }
       } catch (error) {
         logout();
-        console.log("Error en actualitzar contrasenya");
+        alert("Error en actualitzar contrasenya");
       }
     }
 
@@ -638,14 +633,12 @@ createApp({
         // Establece visibilidad_busqueda a true para mostrar resultados de búsqueda
         visibilidad_resultadoBusqueda.value = resultat_busqueda.value.length > 0;  // Mostrar solo si hay resultados
         // Log para verificar los datos filtrados
-        console.log("Resultats de cerca:", resultat_busqueda.value);
       } else {
         // Si la consulta está vacía, limpiar los resultados
         resultat_busqueda.value = [];
         visibleProd.value = false;  // Ocultar resultados si no hay consulta
       }
     }
-
 
     // Retornamos las variables y funciones 
     return {
