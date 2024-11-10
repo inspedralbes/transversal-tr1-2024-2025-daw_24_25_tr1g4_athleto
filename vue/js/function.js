@@ -466,7 +466,7 @@ createApp({
 
     function compraFeta() {
       
-      console.log(comprar)
+     
       enviarCompra(comprar)
 
       showToast('Compra rebuda!!!');
