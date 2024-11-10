@@ -568,7 +568,7 @@ body {
 .browseer {
   bottom: 10px;
   height: 25px;
-  width: 180px;
+  width: 150px;
   border-radius: 15px;
 }
 
@@ -1117,7 +1117,7 @@ body {
 
   /*añadido para la barra busqueda*/
   .search-bar {
-    right: 145px;
+    right: 180px;
     top: 20px;
   }
 
