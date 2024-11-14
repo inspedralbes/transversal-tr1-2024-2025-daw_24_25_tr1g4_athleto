@@ -1,7 +1,7 @@
 # Informació
 
 * Grup4.
-* Benjamin Romero, Diego Munjica, Ishaa Amin Sultana.
+* Benjamin Romero, Diego Mujica, Ishaa Amin Sultana.
 * Fer una pagina web d'una botiga de sabates seguint l'estil puma, nike.
 * Estat
   * Ya es poden veure els productes fent fetch a la api de laravel (s'obtenen de la BBDD).
